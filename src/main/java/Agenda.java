@@ -1,20 +1,20 @@
 // Clase Agenda
+import java.util.*;
+import java.time.*;
 
-import EventoClase.java;
+public class Agenda {
+	 private ArrayList<Evento> eventos;
 
-public class AgendaClase {
-	 private List<Evento> eventos;
-
-	 public AgendaClase() {
-		  this.eventos = new ArrayList<>();
+	 public Agenda() {
+		  this.eventos = new ArrayList<Evento>();
 	 }
 
 	 // Getters y Setters
-	 public List<Evento> getEventos() {
+	 public ArrayList<Evento> getEventos() {
 		  return eventos;
 	 }
 
-	 public void setEventos(List<Evento> eventos) {
+	 public void setEventos(ArrayList<Evento> eventos) {
 		  this.eventos = eventos;
 	 }
 
@@ -27,8 +27,8 @@ public class AgendaClase {
 		  eventos.remove(evento);
 	 }
 
-	 public List<Evento> buscarEventosPorDia(LocalDate fecha) {
-		  List<Evento> resultados = new ArrayList<>();
+	 public ArrayList<Evento> buscarEventosPorDia(LocalDate fecha) {
+		  ArrayList<Evento> resultados = new ArrayList<>();
 		  for (Evento evento : eventos) {
 				if (evento.getFechaInicio().toLocalDate().equals(fecha)) {
 					 resultados.add(evento);
@@ -37,18 +37,18 @@ public class AgendaClase {
 		  return resultados;
 	 }
 
-	 public List<Evento> buscarEventosPorSemana(LocalDate fecha) {
+	 public ArrayList<Evento> buscarEventosPorSemana(LocalDate fecha) {
 		  // Implementación para buscar eventos por semana
-		  return new ArrayList<>();
+		  return new ArrayList<Evento> ();
 	 }
 
-	 public List<Evento> buscarEventosPorMes(int mes, int anio) {
+	 public ArrayList<Evento> buscarEventosPorMes(int mes, int anio) {
 		  // Implementación para buscar eventos por mes
-		  return new ArrayList<>();
+		  return new ArrayList<Evento> ();
 	 }
 
-	 public List<Evento> buscarEventosPorEtiqueta(Etiqueta etiqueta) {
-		  List<Evento> resultados = new ArrayList<>();
+	 public ArrayList<Evento> buscarEventosPorEtiqueta(Etiqueta etiqueta) {
+		  ArrayList<Evento> resultados = new ArrayList<Evento>();
 		  for (Evento evento : eventos) {
 				if (evento.getEtiquetas().contains(etiqueta)) {
 					 resultados.add(evento);

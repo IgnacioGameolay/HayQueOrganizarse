@@ -1,10 +1,9 @@
-
-public class ParticipanteClase {
+public class Participante {
     private String nombre;
     private String email;
     private String rol;
 
-    public ParticipanteClase(String nombre, String email, String rol) {
+    public Participante(String nombre, String email, String rol) {
         this.nombre = nombre;
         this.email = email;
         this.rol = rol;

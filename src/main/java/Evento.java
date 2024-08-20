@@ -1,20 +1,19 @@
 import java.time.*;
 import java.util.*;
 
-import EtiquetaClase.java;
 
 // Clase Evento
-public class EventoClase {
+public class Evento {
     private int id;
     private String titulo;
     private String descripcion;
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
     private String lugar;
-    private List<Participante> participantes;
-    private List<Etiqueta> etiquetas;
+    private ArrayList<Participante> participantes;
+    private ArrayList<Etiqueta> etiquetas;
 
-    public EventoClase(int id, String titulo, String descripcion, LocalDateTime fechaInicio, LocalDateTime fechaFin, String lugar) {
+    public Evento(int id, String titulo, String descripcion, LocalDateTime fechaInicio, LocalDateTime fechaFin, String lugar) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -74,19 +73,19 @@ public class EventoClase {
         this.lugar = lugar;
     }
 
-    public List<Participante> getParticipantes() {
+    public ArrayList<Participante> getParticipantes() {
         return participantes;
     }
 
-    public void setParticipantes(List<Participante> participantes) {
+    public void setParticipantes(ArrayList<Participante> participantes) {
         this.participantes = participantes;
     }
 
-    public List<Etiqueta> getEtiquetas() {
+    public ArrayList<Etiqueta> getEtiquetas() {
         return etiquetas;
     }
 
-    public void setEtiquetas(List<Etiqueta> etiquetas) {
+    public void setEtiquetas(ArrayList<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
     }
 
