@@ -20,10 +20,20 @@ public class Evento {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.lugar = lugar;
-        this.participantes = new ArrayList<>();
-        this.etiquetas = new ArrayList<>();
+        this.participantes = new ArrayList<Participante>();
+        this.etiquetas = new ArrayList<Etiqueta>();
     }
 
+    public Evento(int id, String titulo, String descripcion, String lugar) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.lugar = lugar;
+    }
+
+    
     // Getters y Setters
     public int getId() {
         return id;
@@ -87,6 +97,26 @@ public class Evento {
 
     public void setEtiquetas(ArrayList<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
+    }
+
+    public void MostrarEvento(){
+        System.out.println("=========================");
+        System.out.println("ID: " + id);
+        System.out.println("=========================");
+        System.out.println("Título: " + titulo);
+        System.out.println("=========================");
+        System.out.println("Descripción: " + descripcion);
+        System.out.println("=========================");
+        System.out.println("Fecha de inicio: " + fechaInicio);
+        System.out.println("=========================");
+        System.out.println("Fecha de fin: " + fechaFin);
+        System.out.println("=========================");
+        System.out.println("Lugar: " + lugar);
+        System.out.println("=========================");
+        System.out.println("Participantes: " + participantes);
+        System.out.println("=========================");
+        System.out.println("Etiquetas: " + etiquetas);
+        System.out.println("=========================");
     }
 
     // Métodos para manejar participantes y etiquetas
