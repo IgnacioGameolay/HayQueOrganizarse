@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-
+        Agenda agenda = new Agenda();
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         MostrarMenu();
         String opcion = lector.readLine();
@@ -102,7 +102,26 @@ public class Main {
 
         Evento evento = new Evento(id, titulo, descripcion, fechaInicio, fechaFin, lugar);
         evento.MostrarEvento();
+        agenda.agregarEvento(evento);
         System.out.println("=========================");
+
+
+
+
+
+        System.out.println("=========================");
+        System.out.println("Buscando evento por mes...");
+        System.out.println("=========================");
+        System.out.println("Ingrese mes a buscar");
+        String mesBuscado = lector.readLine();
+        System.out.println("Ingrese anio a buscar");
+        String anioBuscado = lector.readLine();
+        agenda.buscarEventosPorMes(mesBuscado, anioBuscado);
+        System.out.println("=========================");
+
+
+
+        
     }
 
     private static boolean horaValida(String hora) {
