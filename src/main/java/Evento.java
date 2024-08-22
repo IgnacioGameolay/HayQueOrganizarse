@@ -20,7 +20,6 @@ public class Evento {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.lugar = lugar;
-        this.participantes = new ArrayList<Participante>();
         this.etiquetas = new ArrayList<Etiqueta>();
     }
 
@@ -83,14 +82,6 @@ public class Evento {
         this.lugar = lugar;
     }
 
-    public ArrayList<Participante> getParticipantes() {
-        return participantes;
-    }
-
-    public void setParticipantes(ArrayList<Participante> participantes) {
-        this.participantes = participantes;
-    }
-
     public ArrayList<Etiqueta> getEtiquetas() {
         return etiquetas;
     }
@@ -113,7 +104,6 @@ public class Evento {
         System.out.println("=========================");
         System.out.println("Lugar: " + lugar);
         System.out.println("=========================");
-        System.out.println("Participantes: " + participantes);
         System.out.println("=========================");
         System.out.println("Etiquetas: " + etiquetas);
         System.out.println("=========================");
