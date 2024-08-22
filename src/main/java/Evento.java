@@ -119,11 +119,36 @@ public class Evento {
     }
 
     public void agregarEtiqueta(Etiqueta etiqueta) {
-        etiquetas.add(etiqueta);
+        if (!etiquetas.contains(etiqueta)){
+            etiquetas.add(etiqueta);
+            return;
+        }
+        else{
+            System.out.println("La etiqueta ya existe en el evento.");
+            return;
+        }
     }
 
     public void eliminarEtiqueta(Etiqueta etiqueta) {
-        etiquetas.remove(etiqueta);
+        if(!etiquetas.contains(etiqueta)){
+            etiquetas.remove(etiqueta);
+            return;
+        }
+        else{
+            System.out.println("La etiqueta no existe en el evento.");
+            return;
+        }
+    }
+    public void modificarEtiqueta(Etiqueta etiqueta, Etiqueta nuevaEtiqueta){
+        int index = etiquetas.indexOf(etiqueta);
+        if (index != -1){
+            etiquetas.set(index, nuevaEtiqueta);
+            return;
+        }
+        else{
+            System.out.println("La etiqueta a modificar no se encontró.");
+            return;
+        }
     }
 }
 
