@@ -1,5 +1,7 @@
 import java.util.*;
 import java.time.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 public class Agenda {
 	 private ArrayList<Evento> eventos;
@@ -83,13 +85,12 @@ public class Agenda {
 	 }*/
 
 	
-
 	 public ArrayList<Evento> buscarEventosPorSemana(LocalDate fecha) {
 		  // Implementación para buscar eventos por semana
 		  return new ArrayList<Evento>();
 	 }
 
-	 // Método para buscar si en un mes y año dado como parámetro hay eventos
+	 // Método para buscar si en un mes y anio dado como parámetro hay eventos
 	 public void buscarEventosPorMes(String mes, String anio) {
 		  String anioString = String.valueOf(anio);
 		  String mesString = String.valueOf(mes);
@@ -146,4 +147,148 @@ public class Agenda {
 		  }
 		  return resultados;
 	 }
+	//Edicion de eventos
+	public Evento buscarEventoPorId(int id) {
+			for (Evento evento : eventos) {
+					if (evento.getId() == id) {
+							return evento;
+					}
+			}
+			return null; // Retorna null si no se encuentra un evento con el ID dado.
+	}
+	public void editarEventoPorId(int id) {
+			Evento evento = buscarEventoPorId(id);
+			if (evento == null) {
+					System.out.println("Evento no encontrado.");
+					return;
+			}
+
+			Scanner scanner = new Scanner(System.in);
+
+			while (true) {
+					System.out.println("\n¿Qué te gustaría editar?");
+					System.out.println("1. Título");
+					System.out.println("2. Descripción");
+					System.out.println("3. Fecha de inicio");
+					System.out.println("4. Fecha de fin");
+					System.out.println("5. Lugar");
+					System.out.println("6. Etiquetas");
+					System.out.println("7. Finalizar edición");
+					System.out.print("Seleccione una opción: ");
+					int opcion = scanner.nextInt();
+					scanner.nextLine();
+
+					switch (opcion) {
+							case 1:
+									System.out.print("Nuevo título: ");
+									String nuevoTitulo = scanner.nextLine();
+									evento.setTitulo(nuevoTitulo);
+									break;
+
+							case 2:
+									System.out.print("Nueva descripción: ");
+									String nuevaDescripcion = scanner.nextLine();
+									evento.setDescripcion(nuevaDescripcion);
+									break;
+
+							case 3:
+									System.out.print("Nueva fecha de inicio (YYYY-MM-DDTHH:MM): ");
+									String nuevaFechaInicioStr = scanner.nextLine();
+									try {
+											LocalDateTime nuevaFechaInicio = LocalDateTime.parse(nuevaFechaInicioStr);
+											evento.setFechaInicio(nuevaFechaInicio);
+									} catch (DateTimeParseException e) {
+											System.out.println("Formato de fecha inválido.");
+									}
+									break;
+
+							case 4:
+									System.out.print("Nueva fecha de fin (YYYY-MM-DDTHH:MM): ");
+									String nuevaFechaFinStr = scanner.nextLine();
+									try {
+											LocalDateTime nuevaFechaFin = LocalDateTime.parse(nuevaFechaFinStr);
+											evento.setFechaFin(nuevaFechaFin);
+									} catch (DateTimeParseException e) {
+											System.out.println("Formato de fecha inválido.");
+									}
+									break;
+
+							case 5:
+									System.out.print("Nuevo lugar: ");
+									String nuevoLugar = scanner.nextLine();
+									evento.setLugar(nuevoLugar);
+									break;
+
+							case 6:
+									System.out.println("\n¿Qué te gustaría hacer con las etiquetas?");
+									System.out.println("1. Agregar etiqueta");
+									System.out.println("2. Eliminar etiqueta");
+									System.out.println("3. Modificar etiqueta");
+									System.out.print("Seleccione una opción: ");
+									int opcionEtiqueta = scanner.nextInt();
+									scanner.nextLine();
+
+									switch (opcionEtiqueta) {
+											case 1:
+													System.out.print("Ingrese la nueva etiqueta: ");
+													String nuevaEtiqueta = scanner.nextLine();
+													// Asumiendo que el constructor de Etiqueta necesita un id y un nombre
+													Etiqueta etiquetaAgregar = new Etiqueta(0, nuevaEtiqueta);
+													evento.agregarEtiqueta(etiquetaAgregar);
+													break;
+
+											case 2:
+													System.out.print("Ingrese la etiqueta a eliminar: ");
+													String etiquetaEliminar = scanner.nextLine();
+													Etiqueta etiquetaEliminarObj = new Etiqueta(0, etiquetaEliminar);
+													evento.eliminarEtiqueta(etiquetaEliminarObj);
+													break;
+
+											case 3:
+													System.out.print("Ingrese la etiqueta a modificar: ");
+													String etiquetaModificar = scanner.nextLine();
+													System.out.print("Ingrese la nueva etiqueta: ");
+													String etiquetaModificada = scanner.nextLine();
+													Etiqueta etiquetaModificarObj = new Etiqueta(0, etiquetaModificar);
+													Etiqueta etiquetaModificadaObj = new Etiqueta(0, etiquetaModificada);
+													evento.modificarEtiqueta(etiquetaModificarObj, etiquetaModificadaObj);
+													break;
+
+											default:
+													System.out.println("Opción no válida.");
+													break;
+									}
+									break;
+
+							case 7:
+									System.out.println("Edición finalizada.");
+									return;
+
+							default:
+									System.out.println("Opción no válida.");
+									break;
+					}
+			}
+	}
 }
+
+//Edicion de eventos 
+
+
+
+/*
+ Posible sobrecarga de metodo:
+
+ public List<Evento> buscarEventos(LocalDate fecha) {
+		 return eventos.stream()
+				 .filter(evento -> evento.getFechaInicio().toLocalDate().equals(fecha))
+				 .collect(Collectors.toList());
+ }
+
+ // Sobrecarga del método para buscar eventos por etiqueta
+ public List<Evento> buscarEventos(String etiqueta) {
+		 return eventos.stream()
+				 .filter(evento -> evento.getEtiquetas().contains(etiqueta))
+				 .collect(Collectors.toList());
+ */
+
