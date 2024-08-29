@@ -132,6 +132,7 @@ public class Evento {
         participantes.remove(participante);
     }
 
+    //Agregar una sola etiqueta
     public void agregarEtiqueta(Etiqueta etiqueta) {
         if (!etiquetas.contains(etiqueta)){
             etiquetas.add(etiqueta);
@@ -140,6 +141,26 @@ public class Evento {
         else{
             System.out.println("La etiqueta ya existe en el evento.");
             return;
+        }
+    }
+    
+    
+
+    // Sobrecarga del método para agregar múltiples etiquetas
+    public void agregarEtiqueta(ArrayList<Etiqueta> etiquetas) {
+        for (Etiqueta etiqueta : etiquetas) {
+            // Verificar si la etiqueta ya está en la lista
+            boolean exists = false;
+            for (Etiqueta e : this.etiquetas) {
+                if (e.getNombre().equals(etiqueta.getNombre())) {
+                    exists = true;
+                    break;
+                }
+            }
+            // Si la etiqueta no existe, agregarla
+            if (!exists) {
+                this.etiquetas.add(etiqueta);
+            }
         }
     }
 
