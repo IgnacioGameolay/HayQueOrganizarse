@@ -2,9 +2,10 @@ import java.util.*;
 import java.time.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
 
 public class Agenda {
-	 private ArrayList<Evento> eventos;
+	 private ArrayList<Evento> eventosEnlistados;
 
 	 private Map<String, ArrayList<Evento>> eventosPorDia;
 	 private Map<String, Map<String, ArrayList<Evento>>> eventosPorMes;
@@ -12,107 +13,105 @@ public class Agenda {
 	 private Map<String, Map<String, Map<String, ArrayList<Evento>>>> eventosPorAnio;
 
 	 public Agenda() {
-		  this.eventosPorAnio = new HashMap<String, Map<String, Map<String, ArrayList<Evento>>>>();
+			this.eventosPorAnio = new HashMap<String, Map<String, Map<String, ArrayList<Evento>>>>();
+		 this.eventosEnlistados = new ArrayList<Evento>();
 		 
 	 }
 
-	 // Getters y Setters
-	 public ArrayList<Evento> getEventos() {
-		  return eventos;
-	 }
-
-	 public void setEventos(ArrayList<Evento> eventos) {
-		  this.eventos = eventos;
-	 }
+	public void mostrarTodosLosEventos(){
+		for (Evento e : eventosEnlistados) {
+			e.MostrarEvento();
+			System.out.println("///");
+		}
+	}
 
 	// Métodos para manejar eventos
 	 public void agregarEvento(Evento evento) {
-		  LocalDateTime fechaInicio = evento.getFechaInicio();
-		  String anio, mes, dia;
-		  anio = String.valueOf(fechaInicio.getYear()); // YYYY
-		  mes = String.format("%02d", fechaInicio.getMonthValue()); // MM
-		  dia = String.format("%02d", fechaInicio.getDayOfMonth()); // DD
+			LocalDateTime fechaInicio = evento.getFechaInicio();
+			String anio, mes, dia;
+			anio = String.valueOf(fechaInicio.getYear()); // YYYY
+			mes = String.format("%02d", fechaInicio.getMonthValue()); // MM
+			dia = String.format("%02d", fechaInicio.getDayOfMonth()); // DD
 		 
 
-		  // Agregar el evento al mapa por año
-		  if (!eventosPorAnio.containsKey(anio)) {
+			// Agregar el evento al mapa por año
+			if (!eventosPorAnio.containsKey(anio)) {
 				eventosPorAnio.put(anio, new HashMap<String, Map<String, ArrayList<Evento>>>());
-		  }
-		  Map<String, Map<String, ArrayList<Evento>>> eventosPorMes = eventosPorAnio.get(anio);
+			}
+			Map<String, Map<String, ArrayList<Evento>>> eventosPorMes = eventosPorAnio.get(anio);
 
-		  // Agregar el evento al mapa por mes
-		  if (!eventosPorMes.containsKey(mes)) {
+			// Agregar el evento al mapa por mes
+			if (!eventosPorMes.containsKey(mes)) {
 				eventosPorMes.put(mes, new HashMap<String, ArrayList<Evento>>());
-		  }
-		  Map<String, ArrayList<Evento>> eventosPorDia = eventosPorMes.get(mes);
+			}
+			Map<String, ArrayList<Evento>> eventosPorDia = eventosPorMes.get(mes);
 
-		  // Agregar el evento al mapa por día
-		  if (!eventosPorDia.containsKey(dia)) {
+			// Agregar el evento al mapa por día
+			if (!eventosPorDia.containsKey(dia)) {
 				eventosPorDia.put(dia, new ArrayList<Evento>());
-		  }
-		  eventosPorDia.get(dia).add(evento);
-	 }
-	
-	/*
-	 // Métodos para manejar eventos
-	 public void agregarEvento(Evento evento) {
-		  LocalDateTime fechaInicio = evento.getFechaInicio();
-		  String anio, mes, dia;
-		  anio = String.valueOf(fechaInicio.getYear()); // YYYY
-		  mes = String.valueOf(fechaInicio.getMonthValue()); // MM
-		  dia = String.valueOf(fechaInicio.getDayOfMonth()); // DD
+			}
+			eventosPorDia.get(dia).add(evento);
 
-		  // Agregar el evento al mapa de dias
-		  eventosPorDia.computeIfAbsent(dia, k -> new ArrayList<>()).add(evento);
-		 Map<String, Map<String, ArrayList<Evento>>> eventosPorMes;
-		  // Agregar al mapa por mes
-		  eventosPorMes
-				.computeIfAbsent(anio, k -> new HashMap<>())
-				.computeIfAbsent(mes, k -> new HashMap<>())
-				.computeIfAbsent(dia, k -> new ArrayList<Evento>())
-				.add(evento);
-
-		  // Agregar al mapa por anio
-		  eventosPorAnio
-				.computeIfAbsent(anio, k -> new HashMap<>())
-				.computeIfAbsent(mes, k -> new HashMap<String, ArrayList<Evento>>())
-				.computeIfAbsent(dia, k -> new ArrayList<>())
-				.add(evento);
+		 //Agregar el evento a la lista de eventos generales
+		 eventosEnlistados.add(evento);
 	 }
 
-	 public void eliminarEvento(Evento evento) {
-		  eventos.remove(evento);
-	 }*/
+	//Generar 3 eventos de prueba, a modo de datos iniciales
+	public void inicializarEventosDePrueba() {
+			// Formato de fecha y hora
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+			// Crear eventos de prueba
+		Evento evento1 = new Evento(1, "Navidad", "Celebración de Navidad", 
+				LocalDateTime.parse("25/12/2024 00:00", formatter),
+				LocalDateTime.parse("25/12/2024 23:59", formatter), 
+				"Casa");
+		Evento evento2 = new Evento(2, "Año Nuevo", "Celebración de Año Nuevo", 
+				LocalDateTime.parse("01/01/2025 00:00", formatter),
+				LocalDateTime.parse("01/01/2025 23:59", formatter), 
+				"Casa");
+		Evento evento3 = new Evento(3, "18 de Septiembre", "Fiestas Patrias", 
+				LocalDateTime.parse("18/09/2024 00:00", formatter),
+				LocalDateTime.parse("18/09/2024 23:59", formatter), 
+				"Casa");
+
+			// Agregar los eventos a la lista de eventos generales
+				this.agregarEvento(evento1);
+
+				this.agregarEvento(evento2);
+
+				this.agregarEvento(evento3);
+	 }
 
 	
 	 public ArrayList<Evento> buscarEventosPorSemana(LocalDate fecha) {
-		  // Implementación para buscar eventos por semana
-		  return new ArrayList<Evento>();
+			// Implementación para buscar eventos por semana
+			return new ArrayList<Evento>();
 	 }
 
 	 // Método para buscar si en un mes y anio dado como parámetro hay eventos
 	 public void buscarEventosPorMes(String mes, String anio) {
-		  String anioString = String.valueOf(anio);
-		  String mesString = String.valueOf(mes);
+			String anioString = String.valueOf(anio);
+			String mesString = String.valueOf(mes);
 
-		  // Obtener el mapa de meses para el año especificado
-		  Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anioString);
+			// Obtener el mapa de meses para el año especificado
+			Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anioString);
 		 
-		  if (eventosPorMesAnio == null) {
+			if (eventosPorMesAnio == null) {
 				System.out.println("No hay eventos para el año " + anioString);
 				return;
-		  }
+			}
 
-		  // Obtener el mapa de días para el mes especificado
-		  Map<String, ArrayList<Evento>> eventosPorDiaMes = eventosPorMesAnio.get(mesString);
-		  if (eventosPorDiaMes == null) {
+			// Obtener el mapa de días para el mes especificado
+			Map<String, ArrayList<Evento>> eventosPorDiaMes = eventosPorMesAnio.get(mesString);
+			if (eventosPorDiaMes == null) {
 				System.out.println("No hay eventos para el mes ingresado " + mesString);
 				return;
-		  }
+			}
 
-		  int hayEventos = 0;
-		  // Recorrer el mapa de días
-		  for (String diaStr : eventosPorDiaMes.keySet()) {
+			int hayEventos = 0;
+			// Recorrer el mapa de días
+			for (String diaStr : eventosPorDiaMes.keySet()) {
 				// Obtener la lista de eventos para el día actual
 				ArrayList<Evento> eventos = eventosPorDiaMes.get(diaStr);
 
@@ -126,36 +125,45 @@ public class Agenda {
 
 					 // Iterar sobre cada evento en la lista de eventos
 					 for (Evento evento : eventos) {
-						  // Mostrar los detalles del evento
-						  evento.MostrarEvento();
-						  System.out.println();
+							// Mostrar los detalles del evento
+							evento.MostrarEvento();
+							System.out.println();
 					 }
 				}
-		  }
-		  // Si no hay eventos para el mes, imprime un mensaje
-		  if (hayEventos == 0) {
+			}
+			// Si no hay eventos para el mes, imprime un mensaje
+			if (hayEventos == 0) {
 				System.out.println("No hay eventos para el mes " + mesString + " del año " + anioString);
-		  }
+			}
 	 }
 
+	//Buscar eventos por etiquetas
 	 public ArrayList<Evento> buscarEventosPorEtiqueta(Etiqueta etiqueta) {
-		  ArrayList<Evento> resultados = new ArrayList<Evento>();
-		  for (Evento evento : eventos) {
-				if (evento.getEtiquetas().contains(etiqueta)) {
-					 resultados.add(evento);
+			ArrayList<Evento> resultados = new ArrayList<Evento>();
+			for (Evento evento : eventosEnlistados) {
+				for (Etiqueta etiquetaEvento : evento.getEtiquetas()){
+					if (etiquetaEvento.getNombre().equals(etiqueta.getNombre())){
+						resultados.add(evento);
+						System.out.println("=========================");
+						System.out.println("Evento encontrado: " + evento.getTitulo());
+						System.out.println("=========================");
+						break;
+					}
 				}
-		  }
-		  return resultados;
+			}
+			return resultados;
 	 }
+	
 	//Edicion de eventos
 	public Evento buscarEventoPorId(int id) {
-			for (Evento evento : eventos) {
+			for (Evento evento : eventosEnlistados) {
 					if (evento.getId() == id) {
 							return evento;
 					}
 			}
 			return null; // Retorna null si no se encuentra un evento con el ID dado.
 	}
+	
 	public void editarEventoPorId(int id) {
 			Evento evento = buscarEventoPorId(id);
 			if (evento == null) {
@@ -166,6 +174,7 @@ public class Agenda {
 			Scanner scanner = new Scanner(System.in);
 
 			while (true) {
+					System.out.println("=========================");
 					System.out.println("\n¿Qué te gustaría editar?");
 					System.out.println("1. Título");
 					System.out.println("2. Descripción");
@@ -174,10 +183,11 @@ public class Agenda {
 					System.out.println("5. Lugar");
 					System.out.println("6. Etiquetas");
 					System.out.println("7. Finalizar edición");
-					System.out.print("Seleccione una opción: ");
+					System.out.println("=========================");
+					System.out.println("Seleccione una opción: ");
 					int opcion = scanner.nextInt();
 					scanner.nextLine();
-
+					System.out.println("=========================");
 					switch (opcion) {
 							case 1:
 									System.out.print("Nuevo título: ");
@@ -220,6 +230,7 @@ public class Agenda {
 									break;
 
 							case 6:
+									System.out.println("=========================");
 									System.out.println("\n¿Qué te gustaría hacer con las etiquetas?");
 									System.out.println("1. Agregar etiqueta");
 									System.out.println("2. Eliminar etiqueta");
@@ -227,7 +238,7 @@ public class Agenda {
 									System.out.print("Seleccione una opción: ");
 									int opcionEtiqueta = scanner.nextInt();
 									scanner.nextLine();
-
+									System.out.println("=========================");
 									switch (opcionEtiqueta) {
 											case 1:
 													System.out.print("Ingrese la nueva etiqueta: ");
@@ -235,6 +246,7 @@ public class Agenda {
 													// Asumiendo que el constructor de Etiqueta necesita un id y un nombre
 													Etiqueta etiquetaAgregar = new Etiqueta(0, nuevaEtiqueta);
 													evento.agregarEtiqueta(etiquetaAgregar);
+													System.out.println("=========================");
 													break;
 
 											case 2:
@@ -242,13 +254,17 @@ public class Agenda {
 													String etiquetaEliminar = scanner.nextLine();
 													Etiqueta etiquetaEliminarObj = new Etiqueta(0, etiquetaEliminar);
 													evento.eliminarEtiqueta(etiquetaEliminarObj);
+													System.out.println("=========================");
 													break;
 
 											case 3:
 													System.out.print("Ingrese la etiqueta a modificar: ");
+													
 													String etiquetaModificar = scanner.nextLine();
+													System.out.println("=========================");
 													System.out.print("Ingrese la nueva etiqueta: ");
 													String etiquetaModificada = scanner.nextLine();
+													System.out.println("=========================");
 													Etiqueta etiquetaModificarObj = new Etiqueta(0, etiquetaModificar);
 													Etiqueta etiquetaModificadaObj = new Etiqueta(0, etiquetaModificada);
 													evento.modificarEtiqueta(etiquetaModificarObj, etiquetaModificadaObj);
@@ -267,6 +283,7 @@ public class Agenda {
 							default:
 									System.out.println("Opción no válida.");
 									break;
+							
 					}
 			}
 	}

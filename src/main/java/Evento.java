@@ -32,6 +32,7 @@ public class Evento {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.lugar = lugar;
+        this.etiquetas = new ArrayList<Etiqueta>();
     }
 
     
@@ -107,7 +108,18 @@ public class Evento {
         System.out.println("Lugar: " + lugar);
         System.out.println("=========================");
         System.out.println("=========================");
-        System.out.println("Etiquetas: " + etiquetas);
+        System.out.print("Etiquetas: [");
+        for (int i = 0; i < etiquetas.size(); i++) {
+            System.out.print(etiquetas.get(i).getNombre());
+            if (i < 2 && etiquetas.size() > 1) {
+                System.out.print(", ");
+            }
+            if (i == 2 && etiquetas.size() > 3) {
+                System.out.print("...");
+                break;
+            }
+        }
+        System.out.println("]");
         System.out.println("=========================");
     }
 
@@ -152,5 +164,27 @@ public class Evento {
             return;
         }
     }
+
+
 }
 
+
+/*
+Posible sobrecarga de metodo:
+// Método para agregar una sola etiqueta
+public void agregarEtiqueta(String etiqueta) {
+    if (!etiquetas.contains(etiqueta)) {
+        etiquetas.add(etiqueta);
+    }
+}
+
+// Sobrecarga del método para agregar múltiples etiquetas
+public void agregarEtiqueta(List<String> etiquetas) {
+    for (String etiqueta : etiquetas) {
+        if (!this.etiquetas.contains(etiqueta)) {
+            this.etiquetas.add(etiqueta);
+        }
+    }
+}
+
+*/
