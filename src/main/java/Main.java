@@ -14,6 +14,7 @@ public class Main {
 		System.out.println("3. Editar evento por ID");
 		System.out.println("4. Buscar eventos por mes");
 		System.out.println("5. Buscar eventos por etiqueta");
+		System.out.println("8. Generar reporte de eventos");
 		System.out.println("9. Salir");
 		System.out.println("=========================");
 		System.out.print("Elige una opción: ");
@@ -173,13 +174,26 @@ public class Main {
 					
 					presioneTeclaParaContinuar();
 					break;
+				case "6":
+					System.out.println("Opcion 8: ");
+					System.out.println("=========================");
+					System.out.println("Obteniendo reporte...");
+					System.out.println("=========================");
+					System.out.println("Ingrese el nombre del archivo del reporte:");
+
+					String nombreReporte = lector.readLine();
+					agenda.generarReporteEventos(nombreReporte);
+					break;
+				case "9": 
+					System.out.println("Saliendo del programa...");
+					return;
 				default:
 					System.out.println("Opción inválida. Por favor, elige una opción válida...");
 					presioneTeclaParaContinuar();
 					break;
 		
 			}
-		} while(opcion != "9");		
+		} while(opcion.equals("9"));		
 	}
 
 

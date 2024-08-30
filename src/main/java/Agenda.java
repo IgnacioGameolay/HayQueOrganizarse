@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Agenda {
 	 private ArrayList<Evento> eventosEnlistados;
@@ -135,6 +138,46 @@ public class Agenda {
 	}
 
 
+
+	public void buscarEventosPorDia(int dia, String mes, String anio) {
+		 // Convertir los parámetros en formato String
+		 String anioString = String.valueOf(anio);
+		 String mesString = String.valueOf(mes);
+		 String diaString = String.format("%02d", dia); // Asegurar formato de dos dígitos para el día
+
+		 // Obtener el mapa de meses para el año especificado
+		 Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anioString);
+		 if (eventosPorMesAnio == null) {
+			  System.out.println("No hay eventos para el año " + anioString);
+			  return;
+		 }
+
+		 // Obtener el mapa de días para el mes especificado
+		 Map<String, ArrayList<Evento>> eventosPorDiaMes = eventosPorMesAnio.get(mesString);
+		 if (eventosPorDiaMes == null) {
+			  System.out.println("No hay eventos para el mes " + mesString + " del año " + anioString);
+			  return;
+		 }
+
+		 // Obtener la lista de eventos para el día especificado
+		 ArrayList<Evento> eventos = eventosPorDiaMes.get(diaString);
+		 if (eventos != null && !eventos.isEmpty()) {
+			  // Imprimir el encabezado para el día
+			  System.out.println("Eventos para el día " + diaString + " del mes " + mesString + " del año " + anioString + ":");
+
+			  // Iterar sobre cada evento en la lista de eventos
+			  for (Evento evento : eventos) {
+					// Mostrar los detalles del evento
+					evento.MostrarEvento();
+					System.out.println();
+			  }
+		 } else {
+			  // Si no hay eventos para el día, imprime un mensaje
+			  System.out.println("No hay eventos para el día " + diaString + " del mes " + mesString + " del año " + anioString);
+		 }
+	}
+
+	
 	public void buscarEventosPorSemana(String fechaInicio, String anio) {
 		 // Crear un formateador de fechas para parsear la fecha de inicio
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -189,44 +232,6 @@ public class Agenda {
 		 // Si no hay eventos para la semana, imprime un mensaje
 		 if (hayEventos == 0) {
 			  System.out.println("No hay eventos para la semana del " + primerDiaStr + " al " + ultimoDiaStr + " del año " + anioString);
-		 }
-	}
-	
-	public void buscarEventosPorDia(int dia, String mes, String anio) {
-		 // Convertir los parámetros en formato String
-		 String anioString = String.valueOf(anio);
-		 String mesString = String.valueOf(mes);
-		 String diaString = String.format("%02d", dia); // Asegurar formato de dos dígitos para el día
-
-		 // Obtener el mapa de meses para el año especificado
-		 Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anioString);
-		 if (eventosPorMesAnio == null) {
-			  System.out.println("No hay eventos para el año " + anioString);
-			  return;
-		 }
-
-		 // Obtener el mapa de días para el mes especificado
-		 Map<String, ArrayList<Evento>> eventosPorDiaMes = eventosPorMesAnio.get(mesString);
-		 if (eventosPorDiaMes == null) {
-			  System.out.println("No hay eventos para el mes " + mesString + " del año " + anioString);
-			  return;
-		 }
-
-		 // Obtener la lista de eventos para el día especificado
-		 ArrayList<Evento> eventos = eventosPorDiaMes.get(diaString);
-		 if (eventos != null && !eventos.isEmpty()) {
-			  // Imprimir el encabezado para el día
-			  System.out.println("Eventos para el día " + diaString + " del mes " + mesString + " del año " + anioString + ":");
-
-			  // Iterar sobre cada evento en la lista de eventos
-			  for (Evento evento : eventos) {
-					// Mostrar los detalles del evento
-					evento.MostrarEvento();
-					System.out.println();
-			  }
-		 } else {
-			  // Si no hay eventos para el día, imprime un mensaje
-			  System.out.println("No hay eventos para el día " + diaString + " del mes " + mesString + " del año " + anioString);
 		 }
 	}
 
@@ -400,6 +405,7 @@ public class Agenda {
 													break;
 
 											case 3:
+													
 													System.out.print("Ingrese la etiqueta a modificar: ");
 													
 													String etiquetaModificar = scanner.nextLine();
@@ -429,6 +435,47 @@ public class Agenda {
 					}
 			}
 	}
+
+	public void generarReporteEventos(String nombreArchivo) {
+		  try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
+				// Escribir encabezados
+				writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Participantes,Etiquetas");
+				writer.newLine();
+
+				// Escribir datos de cada evento
+				for (Evento evento : eventosEnlistados) {
+					 writer.write(evento.getId() + "," +
+									  evento.getTitulo() + "," +
+									  evento.getDescripcion() + "," +
+									  evento.getFechaInicio().toString() + "," +
+									  evento.getFechaFin().toString() + "," +
+									  evento.getLugar() + "," + listaParticipantesComoTexto(evento.getParticipantes()) + "," +
+									  listaEtiquetasComoTexto(evento.getEtiquetas()));
+					 writer.newLine();
+				}
+
+				System.out.println("Reporte generado exitosamente en: " + nombreArchivo);
+
+		  } catch (IOException e) {
+				System.out.println("Error al generar el reporte: " + e.getMessage());
+		  }
+	 }
+
+	 private String listaParticipantesComoTexto(ArrayList<Participante> participantes) {
+		  StringBuilder sb = new StringBuilder();
+		  for (Participante p : participantes) {
+				sb.append(p.getNombre()).append(" ");
+		  }
+		  return sb.toString().trim();
+	 }
+
+	 private String listaEtiquetasComoTexto(ArrayList<Etiqueta> etiquetas) {
+		  StringBuilder sb = new StringBuilder();
+		  for (Etiqueta e : etiquetas) {
+				sb.append(e.getNombre()).append(" ");
+		  }
+		  return sb.toString().trim();
+	 }
 }
 
 //Edicion de eventos 

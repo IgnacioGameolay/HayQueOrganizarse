@@ -23,6 +23,7 @@ public class Evento {
         this.fechaFin = fechaFin;
         this.lugar = lugar;
         this.etiquetas = new ArrayList<Etiqueta>();
+        this.participantes = new ArrayList<Participante>();
     }
 
     public Evento(int id, String titulo, String descripcion, String lugar) {
@@ -33,17 +34,20 @@ public class Evento {
         this.fechaFin = fechaFin;
         this.lugar = lugar;
         this.etiquetas = new ArrayList<Etiqueta>();
+        this.participantes = new ArrayList<Participante>();
     }
 
     
     // Getters y Setters
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    
 
     public String getTitulo() {
         return titulo;
@@ -91,6 +95,10 @@ public class Evento {
 
     public void setEtiquetas(ArrayList<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
+    }
+
+    public ArrayList<Participante> getParticipantes() {
+        return this.participantes;
     }
 
     public void MostrarEvento(){
@@ -142,9 +150,7 @@ public class Evento {
             System.out.println("La etiqueta ya existe en el evento.");
             return;
         }
-    }
-    
-    
+    }    
 
     // Sobrecarga del método para agregar múltiples etiquetas
     public void agregarEtiqueta(ArrayList<Etiqueta> etiquetas) {
