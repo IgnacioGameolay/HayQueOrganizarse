@@ -12,8 +12,10 @@ public class Main {
 		System.out.println("1. Agregar un evento");
 		System.out.println("2. Mostrar todos los eventos");
 		System.out.println("3. Editar evento por ID");
-		System.out.println("4. Buscar eventos por mes");
-		System.out.println("5. Buscar eventos por etiqueta");
+		System.out.println("4. Buscar eventos por día");
+		System.out.println("5. Buscar eventos por semana");
+		System.out.println("6. Buscar eventos por mes");
+		System.out.println("7. Buscar eventos por etiqueta");
 		System.out.println("8. Generar reporte de eventos");
 		System.out.println("9. Salir");
 		System.out.println("=========================");
@@ -32,7 +34,8 @@ public class Main {
 		
 		//Bucle del menu
 		String opcion = "";
-		
+		int idBuscado, diaBuscado;
+		String anioBuscado, mesBuscado;
 		do {
 			limpiarPantalla();
 			MostrarMenu();
@@ -139,24 +142,56 @@ public class Main {
 					System.out.println("Editando evento por id...");
 					System.out.println("=========================");
 					System.out.println("Ingrese la id del evento a buscar:");
-					int idBuscado = Integer.parseInt(lector.readLine());
+					idBuscado = Integer.parseInt(lector.readLine());
 					agenda.editarEventoPorId(idBuscado);
 					presioneTeclaParaContinuar();
 					break;
 				case "4":
 					//System.out.println("Opcion 4: Buscar eventos por mes");;;
 					System.out.println("=========================");
-					System.out.println("Buscando evento por mes...");
+					System.out.println("Buscando evento por día...");
 					System.out.println("=========================");
-					System.out.println("Ingrese mes a buscar:");
-					String mesBuscado = lector.readLine();
-					System.out.println("Ingrese año a buscar:");
-					String anioBuscado = lector.readLine();
-					agenda.buscarEventosPorMes(mesBuscado, anioBuscado);
+					System.out.println("Ingrese año del día a buscar:");
+					anioBuscado = lector.readLine();
+					System.out.println("Ingrese mes del día a buscar:");
+					mesBuscado = lector.readLine();
+					System.out.println("Ingrese el número del día a buscar:");
+					diaBuscado = Integer.parseInt(lector.readLine());
+					System.out.println("=========================");
+					agenda.buscarEventosPorFecha(diaBuscado, mesBuscado, anioBuscado);
 					System.out.println("=========================");
 					presioneTeclaParaContinuar();
 					break;
 				case "5":
+					//System.out.println("Opcion 4: Buscar eventos por mes");;;
+					System.out.println("=========================");
+					System.out.println("Buscando evento por semana...");
+					System.out.println("=========================");
+					System.out.println("Ingrese año de la semana a buscar:");
+					anioBuscado = lector.readLine();
+					System.out.println("Ingrese fecha de inicio de la semana a buscar (dd/MM/yyyy):");
+					String fechaInicioBuscado = lector.readLine();
+					System.out.println("=========================");
+					agenda.buscarEventosPorFecha(fechaInicioBuscado, anioBuscado);
+					System.out.println("=========================");
+					presioneTeclaParaContinuar();
+					break;
+				case "6":
+					//System.out.println("Opcion 4: Buscar eventos por mes");;;
+					System.out.println("=========================");
+					System.out.println("Buscando evento por mes...");
+					System.out.println("=========================");
+					System.out.println("Ingrese año del mes a buscar:");
+					anioBuscado = lector.readLine();
+					System.out.println("Ingrese mes a buscar:");
+					mesBuscado = lector.readLine();
+					
+					System.out.println("=========================");
+					agenda.buscarEventosPorMes(mesBuscado, anioBuscado);
+					System.out.println("=========================");
+					presioneTeclaParaContinuar();
+					break;
+				case "7":
 					System.out.println("=========================");
 					System.out.println("Buscando evento por Etiqueta...");
 					System.out.println("=========================");
@@ -174,7 +209,7 @@ public class Main {
 					
 					presioneTeclaParaContinuar();
 					break;
-				case "6":
+				case "8":
 					System.out.println("Opcion 8: ");
 					System.out.println("=========================");
 					System.out.println("Obteniendo reporte...");
@@ -193,7 +228,7 @@ public class Main {
 					break;
 		
 			}
-		} while(opcion.equals("9"));		
+		} while(opcion != "9");		
 	}
 
 

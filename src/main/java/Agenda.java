@@ -56,11 +56,15 @@ public class Agenda {
 	 }
 
 	// Métodos para manejar eventos
-	public void mostrarTodosLosEventos(){
-		for (Evento e : eventosEnlistados) {
-			e.MostrarEvento();
-			System.out.println("///");
-		}
+	public void mostrarTodosLosEventos() {
+		 if (eventosEnlistados.isEmpty()) {
+			  System.out.println("No hay eventos para mostrar.");
+		 } else {
+			  for (Evento ev : eventosEnlistados) {
+					ev.MostrarEvento();
+				  System.out.println("///");
+			  }
+		 }
 	}
 	
 	 public void agregarEvento(Evento evento) {
@@ -138,11 +142,11 @@ public class Agenda {
 	}
 
 
-
-	public void buscarEventosPorDia(int dia, String mes, String anio) {
+	//buscar eventos por dia
+	public void buscarEventosPorFecha(int dia, String mes, String anio) {
 		 // Convertir los parámetros en formato String
 		 String anioString = String.valueOf(anio);
-		 String mesString = String.valueOf(mes);
+		 String mesString = String.format("%02d", Integer.parseInt(mes));
 		 String diaString = String.format("%02d", dia); // Asegurar formato de dos dígitos para el día
 
 		 // Obtener el mapa de meses para el año especificado
@@ -177,70 +181,74 @@ public class Agenda {
 		 }
 	}
 
-	
-	public void buscarEventosPorSemana(String fechaInicio, String anio) {
-		 // Crear un formateador de fechas para parsear la fecha de inicio
-		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		 LocalDate fechaInicioDate = LocalDate.parse(fechaInicio, formatter);
+	public void buscarEventosPorFecha(String fechaInicioStr, String anio) {
+		  // Formateador de fecha para el formato dd/MM/yyyy
+		  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		  LocalDate fechaInicioDate;
 
-		 // Obtener el primer día de la semana (domingo) y el último día de la semana (sábado)
-		 LocalDate primerDiaSemana = fechaInicioDate.with(TemporalAdjusters.previousOrSame(java.time.DayOfWeek.SUNDAY));
-		 LocalDate ultimoDiaSemana = primerDiaSemana.plusDays(6);
+		  // Intentar convertir la fecha proporcionada
+		  try {
+				fechaInicioDate = LocalDate.parse(fechaInicioStr, formatter);
+		  } catch (Exception e) {
+				System.out.println("Formato de fecha inválido.");
+				return;
+		  }
 
-		 String primerDiaStr = primerDiaSemana.format(formatter);
-		 String ultimoDiaStr = ultimoDiaSemana.format(formatter);
+		  // Definir el primer día de la búsqueda (fecha de inicio) y el último día (6 días después)
+		  LocalDate primerDiaBusqueda = fechaInicioDate;
+		  LocalDate ultimoDiaBusqueda = primerDiaBusqueda.plusDays(6);
 
-		 // Convertir el año en formato String
-		 String anioString = String.valueOf(anio);
+		  // Formatear las fechas para imprimir
+		  String primerDiaStr = primerDiaBusqueda.format(formatter);
+		  String ultimoDiaStr = ultimoDiaBusqueda.format(formatter);
 
-		 // Obtener el mapa de meses para el año especificado
-		 Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anioString);
-		 if (eventosPorMesAnio == null) {
-			  System.out.println("No hay eventos para el año " + anioString);
-			  return;
-		 }
+		  // Obtener el mapa de meses para el año especificado
+		  Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anio);
+		  if (eventosPorMesAnio == null) {
+				System.out.println("No hay eventos para el año " + anio);
+				return;
+		  }
 
-		 int hayEventos = 0;
+		  boolean hayEventos = false;
 
-		 // Recorrer todos los días de la semana
-		 for (LocalDate fecha = primerDiaSemana; !fecha.isAfter(ultimoDiaSemana); fecha = fecha.plusDays(1)) {
-			  String diaString = fecha.format(DateTimeFormatter.ofPattern("dd"));
-			  String mesString = fecha.format(DateTimeFormatter.ofPattern("MM"));
+		  // Recorrer todos los días de la semana
+		  for (LocalDate fecha = primerDiaBusqueda; !fecha.isAfter(ultimoDiaBusqueda); fecha = fecha.plusDays(1)) {
+				String diaString = fecha.format(DateTimeFormatter.ofPattern("dd"));
+				String mesString = fecha.format(DateTimeFormatter.ofPattern("MM"));
 
-			  // Obtener el mapa de días para el mes especificado
-			  Map<String, ArrayList<Evento>> eventosPorDiaMes = eventosPorMesAnio.get(mesString);
-			  if (eventosPorDiaMes != null) {
-					// Obtener la lista de eventos para el día específico
-					ArrayList<Evento> eventos = eventosPorDiaMes.get(diaString);
-					if (eventos != null && !eventos.isEmpty()) {
-						 // Marca que hay eventos para la semana
-						 hayEventos = 1;
+				// Obtener el mapa de días para el mes especificado
+				Map<String, ArrayList<Evento>> eventosPorDiaMes = eventosPorMesAnio.get(mesString);
+				if (eventosPorDiaMes != null) {
+					 // Obtener la lista de eventos para el día específico
+					 ArrayList<Evento> eventos = eventosPorDiaMes.get(diaString);
+					 if (eventos != null && !eventos.isEmpty()) {
+						  // Marca que hay eventos para la semana
+						  hayEventos = true;
 
-						 // Imprimir el encabezado para el día
-						 System.out.println("Eventos para el día " + diaString + " del mes " + mesString + " del año " + anioString + ":");
+						  // Imprimir el encabezado para el día
+						  System.out.println("Eventos para el día " + fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ":");
 
-						 // Iterar sobre cada evento en la lista de eventos
-						 for (Evento evento : eventos) {
-							  // Mostrar los detalles del evento
-							  evento.MostrarEvento();
-							  System.out.println();
-						 }
-					}
-			  }
-		 }
+						  // Iterar sobre cada evento en la lista de eventos
+						  for (Evento evento : eventos) {
+								evento.MostrarEvento();
+								System.out.println();
+						  }
+					 }
+				}
+		  }
 
-		 // Si no hay eventos para la semana, imprime un mensaje
-		 if (hayEventos == 0) {
-			  System.out.println("No hay eventos para la semana del " + primerDiaStr + " al " + ultimoDiaStr + " del año " + anioString);
-		 }
-	}
-
+		  // Si no hay eventos para la semana, imprime un mensaje
+		  if (!hayEventos) {
+				System.out.println("No hay eventos para la semana del " + primerDiaStr + " al " + ultimoDiaStr + " del año " + anio);
+		  }
+	 }
 	
 	 // Método para buscar si en un mes y anio dado como parámetro hay eventos
+	//buscar eventos por mes
 	 public void buscarEventosPorMes(String mes, String anio) {
 			String anioString = String.valueOf(anio);
-			String mesString = String.valueOf(mes);
-
+			String mesString = String.format("%02d", Integer.parseInt(mes));
+			
 			// Obtener el mapa de meses para el año especificado
 			Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anioString);
 		 
