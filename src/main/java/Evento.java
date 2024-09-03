@@ -6,15 +6,28 @@ import java.util.*;
 
 // Clase Evento
 public class Evento {
-    private int id;
-    private String titulo;
-    private String descripcion;
-    private LocalDateTime fechaInicio;
-    private LocalDateTime fechaFin;
-    private String lugar;
-    private ArrayList<Participante> participantes;
-    private ArrayList<Etiqueta> etiquetas;
+    // Atributos de la clase
+    private int id; //Identificador del evento
+    private String titulo; // Titulo del evento
+    private String descripcion; // Descripcion del evento
+    private LocalDateTime fechaInicio; // Fecha de inicio del evento
+    private LocalDateTime fechaFin; // Fecha del fin del evento
+    private String lugar; // Lugar del evento
+    private ArrayList<Participante> participantes; // Lista de participantes del evento
+    private ArrayList<Etiqueta> etiquetas; // Lista de etiquetas del evento
 
+    
+    /**
+     * Constructor que inicializa un evento con todos los atributos principales.
+     * 
+     * @param id           Identificador único del evento.
+     * @param titulo       Título del evento.
+     * @param descripcion  Descripción detallada del evento.
+     * @param fechaInicio  Fecha y hora de inicio del evento.
+     * @param fechaFin     Fecha y hora de finalización del evento.
+     * @param lugar        Lugar donde se realizará el evento.
+     */
+    
     public Evento(int id, String titulo, String descripcion, LocalDateTime fechaInicio, LocalDateTime fechaFin, String lugar) {
         this.id = id;
         this.titulo = titulo;
@@ -25,7 +38,15 @@ public class Evento {
         this.etiquetas = new ArrayList<Etiqueta>();
         this.participantes = new ArrayList<Participante>();
     }
-
+    /**
+     * Constructor alternativo que inicializa un evento con atributos básicos, sin fechas.
+     * 
+     * @param id          Identificador único del evento.
+     * @param titulo      Título del evento.
+     * @param descripcion Descripción detallada del evento.
+     * @param lugar       Lugar donde se realizará el evento.
+     */
+    
     public Evento(int id, String titulo, String descripcion, String lugar) {
         this.id = id;
         this.titulo = titulo;
@@ -38,7 +59,7 @@ public class Evento {
     }
 
     
-    // Getters y Setters
+    // Métodos Getter y Setter para acceder y modificar los atributos del evento.
     public void setId(int id) {
         this.id = id;
     }
@@ -46,8 +67,6 @@ public class Evento {
     public int getId() {
         return id;
     }
-
-    
 
     public String getTitulo() {
         return titulo;
@@ -100,7 +119,9 @@ public class Evento {
     public ArrayList<Participante> getParticipantes() {
         return this.participantes;
     }
-
+    
+    //* Muestra los detalles del evento en la consola.
+     
     public void MostrarEvento(){
         System.out.println("=========================");
         System.out.println("ID: " + id);
@@ -169,7 +190,11 @@ public class Evento {
             }
         }
     }
-
+    
+    //* Elimina una etiqueta del evento.
+    //* 
+    //* @param etiqueta Objeto Etiqueta a eliminar de la lista de etiquetas.
+    
     public void eliminarEtiqueta(Etiqueta etiqueta) {
         if(!etiquetas.contains(etiqueta)){
             etiquetas.remove(etiqueta);
@@ -180,6 +205,11 @@ public class Evento {
             return;
         }
     }
+    
+    //* Modifica una etiqueta existente en el evento.
+    //* @param etiqueta     Etiqueta existente a modificar.
+    //* @param nuevaEtiqueta Nueva etiqueta con los valores actualizados.
+    
     public void modificarEtiqueta(Etiqueta etiqueta, Etiqueta nuevaEtiqueta){
         int index = etiquetas.indexOf(etiqueta);
         if (index != -1){

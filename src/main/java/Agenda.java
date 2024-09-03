@@ -9,21 +9,25 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Agenda {
-	 private ArrayList<Evento> eventosEnlistados;
+//Clase Agenda para gestionar eventos.
 
+public class Agenda {
+	 // Lista general de eventos
+	 private ArrayList<Evento> eventosEnlistados;
+	 // Mapas para organizar eventos por día, mes y año
 	 private Map<String, ArrayList<Evento>> eventosPorDia;
 	 private Map<String, Map<String, ArrayList<Evento>>> eventosPorMes;
 	 private Map<String, Map<String, Map<String, ArrayList<Evento>>>> eventosPorAnio;
-
+	 //Constructor que inicializa los mapas y la lista de eventos.
+		
 	 public Agenda() {
-			this.eventosPorAnio = new HashMap<String, Map<String, Map<String, ArrayList<Evento>>>>();
-		 this.eventosEnlistados = new ArrayList<Evento>();
-		 
+		 this.eventosPorAnio = new HashMap<String, Map<String, Map<String, ArrayList<Evento>>>>();
+		 this.eventosEnlistados = new ArrayList<Evento>(); 
 	 }
-
-	public ArrayList<Evento> getEventosEnlistados() {
-		  return eventosEnlistados;
+	 //Retorna la lista de eventos enlistados.
+	 //@return ArrayList con los eventos enlistados.
+	 public ArrayList<Evento> getEventosEnlistados() {
+		 return eventosEnlistados;
 	 }
 	
 
@@ -55,7 +59,7 @@ public class Agenda {
 				this.agregarEvento(evento3);
 	 }
 
-	// Métodos para manejar eventos
+	// Muestra todos los eventos enlistados en la agenda.
 	public void mostrarTodosLosEventos() {
 		 if (eventosEnlistados.isEmpty()) {
 			  System.out.println("No hay eventos para mostrar.");
@@ -66,7 +70,7 @@ public class Agenda {
 			  }
 		 }
 	}
-	
+	//Agrega un evento a la agenda, actualizando la lista y los mapas de días, meses y años.
 	 public void agregarEvento(Evento evento) {
 			LocalDateTime fechaInicio = evento.getFechaInicio();
 			String anio, mes, dia;
@@ -96,7 +100,7 @@ public class Agenda {
 		 //Agregar el evento a la lista de eventos generales
 		 eventosEnlistados.add(evento);
 	 }
-
+  //Elimina un evento de la agenda dado su ID.
 	public void eliminarEvento(int id) {
 		 // Buscar el evento por ID
 		 Evento eventoAEliminar = buscarEventoPorId(id);
@@ -142,7 +146,7 @@ public class Agenda {
 	}
 
 
-	//buscar eventos por dia
+	//buscar eventos por dia específico
 	public void buscarEventosPorFecha(int dia, String mes, String anio) {
 		 // Convertir los parámetros en formato String
 		 String anioString = String.valueOf(anio);
@@ -181,6 +185,7 @@ public class Agenda {
 		 }
 	}
 
+	//buscar eventos de una semana entera (los 6 días seguidos a un día en especificado)
 	public void buscarEventosPorFecha(String fechaInicioStr, String anio) {
 		  // Formateador de fecha para el formato dd/MM/yyyy
 		  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -487,8 +492,6 @@ public class Agenda {
 }
 
 //Edicion de eventos 
-
-
 
 /*
  Posible sobrecarga de metodo:

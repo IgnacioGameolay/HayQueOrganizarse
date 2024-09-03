@@ -6,7 +6,8 @@ import java.io.*;
 
 public class Main {
 	
-
+  //* Muestra el menú principal de la agenda con las opciones disponibles.
+	
 	private static void MostrarMenu() {
 		System.out.println("=== Menú de la Agenda ===");
 		System.out.println("1. Agregar un evento");
@@ -21,6 +22,10 @@ public class Main {
 		System.out.println("=========================");
 		System.out.print("Elige una opción: ");
 	}
+	
+	//* Función principal que inicia la ejecución del programa.
+	//* @param args Argumentos de la línea de comandos.
+	//* @throws IOException Manejo de excepciones de entrada y salida.
 
 	public static void main(String[] args) throws IOException {
 		//Inicio del main
@@ -131,6 +136,7 @@ public class Main {
 					presioneTeclaParaContinuar();
 					break;
 				case "2":
+					// Mostrar todos los eventos
 					System.out.println("=========================");
 					System.out.println("Mostrando todos los eventos:");
 					System.out.println("=========================");
@@ -138,6 +144,7 @@ public class Main {
 					presioneTeclaParaContinuar();
 					break;
 				case "3":
+					// Editar evento por ID
 					System.out.println("=========================");
 					System.out.println("Editando evento por id...");
 					System.out.println("=========================");
@@ -147,7 +154,7 @@ public class Main {
 					presioneTeclaParaContinuar();
 					break;
 				case "4":
-					//System.out.println("Opcion 4: Buscar eventos por mes");;;
+					// Buscar eventos por día
 					System.out.println("=========================");
 					System.out.println("Buscando evento por día...");
 					System.out.println("=========================");
@@ -163,7 +170,7 @@ public class Main {
 					presioneTeclaParaContinuar();
 					break;
 				case "5":
-					//System.out.println("Opcion 4: Buscar eventos por mes");;;
+					// Buscar eventos por semana
 					System.out.println("=========================");
 					System.out.println("Buscando evento por semana...");
 					System.out.println("=========================");
@@ -177,7 +184,7 @@ public class Main {
 					presioneTeclaParaContinuar();
 					break;
 				case "6":
-					//System.out.println("Opcion 4: Buscar eventos por mes");;;
+					// Buscar eventos por mes
 					System.out.println("=========================");
 					System.out.println("Buscando evento por mes...");
 					System.out.println("=========================");
@@ -192,6 +199,7 @@ public class Main {
 					presioneTeclaParaContinuar();
 					break;
 				case "7":
+					// Buscar eventos por etiqueta
 					System.out.println("=========================");
 					System.out.println("Buscando evento por Etiqueta...");
 					System.out.println("=========================");
@@ -210,6 +218,7 @@ public class Main {
 					presioneTeclaParaContinuar();
 					break;
 				case "8":
+					// Generar reporte de eventos
 					System.out.println("Opcion 8: ");
 					System.out.println("=========================");
 					System.out.println("Obteniendo reporte...");
@@ -220,6 +229,7 @@ public class Main {
 					agenda.generarReporteEventos(nombreReporte);
 					break;
 				case "9": 
+					// Salir del programa
 					System.out.println("Saliendo del programa...");
 					return;
 				default:
@@ -235,6 +245,11 @@ public class Main {
 
 
 	// Funciones auxiliares
+
+	 //* Valida si una hora ingresada es correcta (HH:mm).
+	 //* @param hora Cadena que representa la hora en formato HH:mm.
+	 //* @return true si la hora es válida, false en caso contrario.
+	
 	private static boolean horaValida(String hora) {
 		try {
 			LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm"));
@@ -244,6 +259,12 @@ public class Main {
 		}
 	}
 
+	
+	 //* Convierte una cadena de fecha y hora en un objeto LocalDateTime.
+	 //* @param fecha La fecha en formato dd/MM/yyyy.
+	 //* @param hora La hora en formato HH:mm.
+	 //* @return Un objeto LocalDateTime si la fecha y hora son válidas; null si no lo son.
+	
 	private static LocalDateTime parsearFechaYHora(String fecha, String hora) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		try {
@@ -259,7 +280,7 @@ public class Main {
 			return null;
 		}
 	}
-
+  //* Limpia la pantalla de la consola.
 	public static void limpiarPantalla() {
 			try {
 					String sistemaOperativo = System.getProperty("os.name");
@@ -275,7 +296,7 @@ public class Main {
 					System.out.println("No se pudo limpiar la consola.");
 			}
 	}
-
+  // * Pausa la ejecución hasta que el usuario presione Enter.
 	public static void presioneTeclaParaContinuar(){
 		System.out.println("Presione una tecla para continuar...");
 		try {
