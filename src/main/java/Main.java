@@ -39,7 +39,7 @@ public class Main {
 		
 		//Bucle del menu
 		String opcion = "";
-		int idBuscado, diaBuscado;
+		int idBuscado, diaBuscado, id;
 		String anioBuscado, mesBuscado;
 		do {
 			limpiarPantalla();
@@ -54,7 +54,19 @@ public class Main {
 					System.out.println("Creando evento...");
 					System.out.println("=========================");
 					System.out.print("Ingrese el id del evento: ");
-					int id = Integer.parseInt(lector.readLine());
+					try {
+						id = Integer.parseInt(lector.readLine());
+					} catch (NumberFormatException e) {
+						System.out.println("Error: Debe ingresar un número entero");
+						presioneTeclaParaContinuar();
+						break;
+					} catch (IOException e) {
+						System.out.println("Error al leer la entrada. Intente de nuevo");
+						presioneTeclaParaContinuar();
+						break;
+					}
+
+					
 					System.out.println("=========================");
 					System.out.print("Ingrese el título del evento: ");
 					String titulo = lector.readLine();
