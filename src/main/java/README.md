@@ -24,6 +24,7 @@ Abre NetBeans.
 Ve a Archivo > Abrir Proyecto.
 Navega hasta la carpeta donde clonaste el proyecto y selecciona la carpeta del proyecto. Haz clic en Abrir Proyecto.
 Paso 3: Configurar el JDK
+
 En NetBeans, asegúrate de que el proyecto está utilizando la versión correcta del JDK:
 Haz clic derecho en el proyecto y selecciona Propiedades.
 En la sección Bibliotecas, verifica que el Java Platform esté configurado al JDK 8 o superior.
@@ -31,6 +32,7 @@ Si no está configurado correctamente, selecciona el JDK adecuado desde el menú
 Paso 4: Ejecutar el Proyecto
 Haz clic derecho en el proyecto y selecciona Ejecutar o presiona F6.
 Si todo está configurado correctamente, el proyecto debería compilarse y ejecutarse sin problemas.
+
 Estructura del Proyecto
 src/: Contiene el código fuente del proyecto.
 lib/: Contiene las dependencias y librerías adicionales.
@@ -43,3 +45,8 @@ Crea una nueva rama (git checkout -b feature/nueva-caracteristica).
 Realiza tus cambios y haz commit (git commit -m 'Añadir nueva característica').
 Sube tus cambios (git push origin feature/nueva-caracteristica).
 Abre un Pull Request.
+
+ADVERTENCIAS DE EJECUCION 
+No ingrese valores que no corresponden
+Ejemplo: 
+A los IDs numeros.
