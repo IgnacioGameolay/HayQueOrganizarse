@@ -313,6 +313,28 @@ public class Agenda {
 			}
 			return resultados;
 	 }
+	public boolean filtrarEventosPorRangoFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+			ArrayList<Evento> eventosFiltrados = new ArrayList<>();
+			for (Evento evento : this.eventosEnlistados) {
+					if ((evento.getFechaInicio().isEqual(fechaInicio) || evento.getFechaInicio().isAfter(fechaInicio)) &&
+							(evento.getFechaFin().isEqual(fechaFin) || evento.getFechaFin().isBefore(fechaFin))) {
+							eventosFiltrados.add(evento);
+					}
+			}
+
+			if (eventosFiltrados.isEmpty()) {
+					System.out.println("No hay eventos en ese rango de fechas.");
+					return false; // No se encontraron eventos
+			} else {
+					// Mostrar los eventos filtrados si hay
+					for (Evento e : eventosFiltrados) {
+							e.MostrarEvento();
+					}
+					return true; // Se encontraron eventos
+			}
+	}
+
+
 	
 	//Edicion de eventos
 	public Evento buscarEventoPorId(int id) {

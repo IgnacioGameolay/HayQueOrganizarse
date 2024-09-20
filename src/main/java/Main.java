@@ -19,6 +19,7 @@ public class Main {
 		System.out.println("7. Buscar eventos por etiqueta");
 		System.out.println("8. Generar reporte de eventos");
 		System.out.println("9. Salir");
+		System.out.println("10. Filtrar eventos");
 		System.out.println("=========================");
 		System.out.print("Elige una opción: ");
 	}
@@ -244,6 +245,29 @@ public class Main {
 					// Salir del programa
 					System.out.println("Saliendo del programa...");
 					return;
+				case "10":
+						System.out.println("=========================");
+							System.out.println("Filtrando eventos...");
+							System.out.println("=========================");
+							System.out.print("Ingrese la fecha de inicio para filtrar (dd/MM/yyyy): ");
+							String fechaInicioFiltro = lector.readLine();
+							System.out.print("Ingrese la fecha de término para filtrar (dd/MM/yyyy): ");
+							String fechaFinFiltro = lector.readLine();
+
+							// Llama al método de la agenda que implementa el filtrado
+							boolean hayEventos = agenda.filtrarEventosPorRangoFechas(
+									parsearFechaYHora(fechaInicioFiltro, "00:00"), 
+									parsearFechaYHora(fechaFinFiltro, "23:59")
+							);
+
+							// No es necesario este chequeo ya que el método ya muestra un mensaje si no hay eventos
+							if (!hayEventos) {
+									// Este mensaje es opcional porque el método ya maneja el mensaje
+									System.out.println("No se encontraron eventos en ese rango de fechas.");
+							}
+
+							presioneTeclaParaContinuar();
+							break;
 				default:
 					System.out.println("Opción inválida. Por favor, elige una opción válida...");
 					presioneTeclaParaContinuar();
