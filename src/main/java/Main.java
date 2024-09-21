@@ -1,8 +1,14 @@
-import java.time.*;
-import java.time.format.DateTimeParseException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.io.*;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class Main {
 	
@@ -54,27 +60,28 @@ public class Main {
 					System.out.println("=========================");
 					System.out.println("Creando evento...");
 					System.out.println("=========================");
-					System.out.print("Ingrese el id del evento: ");
+					String idStr = JOptionPane.showInputDialog(null, "Ingrese el id del evento:", "Agregar Evento", JOptionPane.QUESTION_MESSAGE);
+					if (idStr == null) break; // En caso de que se cancele el diálogo
 					try {
-						id = Integer.parseInt(lector.readLine());
+					    id = Integer.parseInt(idStr);
 					} catch (NumberFormatException e) {
-						System.out.println("Error: Debe ingresar un número entero");
-						presioneTeclaParaContinuar();
-						break;
+					    JOptionPane.showMessageDialog(null, "Error: Debe ingresar un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+					    break;
+					}
+
+	
+/*		
 					} catch (IOException e) {
 						System.out.println("Error al leer la entrada. Intente de nuevo");
 						presioneTeclaParaContinuar();
 						break;
 					}
 
-					
-					System.out.println("=========================");
-					System.out.print("Ingrese el título del evento: ");
-					String titulo = lector.readLine();
-					System.out.println("=========================");
-					System.out.print("Ingrese la descripción del evento: ");
-					String descripcion = lector.readLine();
-					System.out.println("=========================");
+*/
+					String titulo = JOptionPane.showInputDialog(null, "Ingrese el título del evento:", "Agregar Evento", JOptionPane.QUESTION_MESSAGE);
+					if (titulo == null) break; // En caso de que se cancele el diálogo
+					String descripcion = JOptionPane.showInputDialog(null, "Ingrese la descripción del evento:", "Agregar Evento", JOptionPane.QUESTION_MESSAGE);
+					if (descripcion == null) break;
 
 					//Ingresar datos de fecha
 					LocalDateTime fechaInicio;
