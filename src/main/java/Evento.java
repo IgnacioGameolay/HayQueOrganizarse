@@ -222,6 +222,36 @@ public class Evento {
         }
     }
 
+    // Sobrescritura del método toString() para proporcionar una representación personalizada del evento
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "id='" + id + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", lugar='" + lugar + '\'' +
+                ", participantes=" + participantes +
+                ", etiquetas=" + etiquetas +
+                '}';
+    }
+
+    // Sobrescritura del método equals() para comparar eventos por su ID
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;  // Si son el mismo objeto, son iguales
+        if (o == null || getClass() != o.getClass()) return false;  // Si no son de la misma clase, son diferentes
+        Evento evento = (Evento) o;  // Cast al tipo Evento
+        return Objects.equals(id, evento.id);  // Comparamos los eventos por su ID
+    }
+
+    // Sobrescritura del método hashCode() basado en el ID del evento
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);  // El hashCode se genera a partir del ID
+    }
+
 
 }
 
