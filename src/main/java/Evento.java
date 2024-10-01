@@ -160,6 +160,17 @@ public class Evento {
     public void eliminarParticipante(Participante participante) {
         participantes.remove(participante);
     }
+    
+    public Participante buscarParticipante(String criterio) {
+        for (Participante participante : participantes) {
+            if (participante.getNombre().equalsIgnoreCase(criterio) ||
+                participante.getEmail().equalsIgnoreCase(criterio) ||
+                participante.getRol().equalsIgnoreCase(criterio)) {
+                return participante;
+            }
+        }
+        return null; // Si no se encuentra ningún participante
+    }
 
     //Agregar una sola etiqueta
     public void agregarEtiqueta(Etiqueta etiqueta) {
