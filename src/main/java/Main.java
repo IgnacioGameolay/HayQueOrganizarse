@@ -39,7 +39,7 @@ public class Main {
 		//Inicio del main
 
 		//Definicion de variables
-		Agenda agenda = new Agenda(); // Crear una nueva agenda
+		Agenda agenda = Agenda.getInstancia(); // Crear una nueva agenda
 
 		agenda.inicializarEventosDePrueba(); // Inicializar eventos de prueba
 		

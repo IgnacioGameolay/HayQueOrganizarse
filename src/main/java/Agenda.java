@@ -9,7 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-//Clase Agenda para gestionar eventos.
+//Singleton Agenda para gestionar eventos.
 
 public class Agenda {
 	 // Lista general de eventos
@@ -19,18 +19,23 @@ public class Agenda {
 	 private Map<String, Map<String, ArrayList<Evento>>> eventosPorMes;
 	 private Map<String, Map<String, Map<String, ArrayList<Evento>>>> eventosPorAnio;
 	 //Constructor que inicializa los mapas y la lista de eventos.
-		
-	 public Agenda() {
+	
+         private static Agenda instancia;
+         
+	 private Agenda() {
 		 this.eventosPorAnio = new HashMap<String, Map<String, Map<String, ArrayList<Evento>>>>();
 		 this.eventosEnlistados = new ArrayList<Evento>(); 
 	 }
-	 //Retorna la lista de eventos enlistados.
-	 //@return ArrayList con los eventos enlistados.
-	 public ArrayList<Evento> getEventosEnlistados() {
-		 return eventosEnlistados;
-	 }
+         
+         // Método público para obtener la instancia
+        public static synchronized Agenda getInstancia() {
+            if (instancia == null) {
+                instancia = new Agenda();
+            }
+            return instancia;
+        }
 	
-
+            
 	
 	//Generar 3 eventos de prueba, a modo de datos iniciales
 	public void inicializarEventosDePrueba() {
@@ -70,6 +75,11 @@ public class Agenda {
 			  }
 		 }
 	}
+       
+        public List<Evento> getEventosEnlistados() {
+            return Collections.unmodifiableList(eventosEnlistados); // Devuelve una lista no modificable
+        }
+        
 	//Agrega un evento a la agenda, actualizando la lista y los mapas de días, meses y años.
 	 public void agregarEvento(Evento evento) {
 			LocalDateTime fechaInicio = evento.getFechaInicio();
