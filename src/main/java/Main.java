@@ -42,7 +42,22 @@ public class Main {
 		Agenda agenda = Agenda.getInstancia(); // Crear una nueva agenda
 
 		agenda.inicializarEventosDePrueba(); // Inicializar eventos de prueba
-		
+		 // Crear el JFrame (ventana)
+                JFrame frame = new JFrame("Menú Principal");
+
+                // Crear una instancia del JPanel (MenuPrincipal)
+                MenuPrincipal menuPanel = new MenuPrincipal();
+
+                // Añadir el JPanel al JFrame
+                frame.add(menuPanel);
+
+                // Establecer las propiedades del JFrame
+                frame.setSize(1280, 720);  // Ajusta el tamaño según tus necesidades
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Cierra la aplicación al cerrar la ventana
+                frame.setVisible(true);  // Hacer visible la ventana
+                        
+                        
+                    
 		BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 		
 		//Bucle del menu
@@ -50,21 +65,6 @@ public class Main {
 		int idBuscado, diaBuscado, id;
 		String anioBuscado, mesBuscado;
 		do {
-                        // Crear el JFrame (ventana)
-                        JFrame frame = new JFrame("Menú Principal");
-
-                        // Crear una instancia del JPanel (MenuPrincipal)
-                        MenuPrincipal menuPanel = new MenuPrincipal();
-
-                        // Añadir el JPanel al JFrame
-                        frame.add(menuPanel);
-
-                        // Establecer las propiedades del JFrame
-                        frame.setSize(1280, 720);  // Ajusta el tamaño según tus necesidades
-                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Cierra la aplicación al cerrar la ventana
-                        frame.setVisible(true);  // Hacer visible la ventana
-                        
-                        
 			limpiarPantalla();
 			MostrarMenu();
 			opcion = lector.readLine();

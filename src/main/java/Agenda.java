@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -481,30 +482,50 @@ public class Agenda {
 			}
 	}
 
-	public void generarReporteEventos(String nombreArchivo) {
-		  try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
-				// Escribir encabezados
-				writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Participantes,Etiquetas");
-				writer.newLine();
+        public void generarReporteEventos(String nombreArchivo) {
+            // Añadir .txt si no está presente
+            if (!nombreArchivo.endsWith(".txt")) {
+                nombreArchivo += ".txt";
+            }
+            // Obtener el directorio de trabajo actual
+            String directorioTrabajo = System.getProperty("user.dir") + File.separator + "src";;
 
-				// Escribir datos de cada evento
-				for (Evento evento : eventosEnlistados) {
-					 writer.write(evento.getId() + "," +
-									  evento.getTitulo() + "," +
-									  evento.getDescripcion() + "," +
-									  evento.getFechaInicio().toString() + "," +
-									  evento.getFechaFin().toString() + "," +
-									  evento.getLugar() + "," + listaParticipantesComoTexto(evento.getParticipantes()) + "," +
-									  listaEtiquetasComoTexto(evento.getEtiquetas()));
-					 writer.newLine();
-				}
+            // Definir el nombre de la carpeta donde se guardará el archivo
+            String nombreCarpeta = "Reportes"; // Puedes cambiar el nombre según sea necesario
+            File carpeta = new File(directorioTrabajo, nombreCarpeta);
 
-				System.out.println("Reporte generado exitosamente en: " + nombreArchivo);
+            // Verificar si la carpeta existe, si no, crearla
+            if (!carpeta.exists()) {
+                carpeta.mkdirs(); // Crea la carpeta y cualquier carpeta padre necesaria
+            }
 
-		  } catch (IOException e) {
-				System.out.println("Error al generar el reporte: " + e.getMessage());
-		  }
-	 }
+            // Crear el archivo en la carpeta especificada
+            File archivo = new File(carpeta, nombreArchivo);
+                
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+                // Escribir encabezados
+                writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Participantes,Etiquetas");
+                writer.newLine();
+
+                // Escribir datos de cada evento
+                for (Evento evento : eventosEnlistados) {
+                    writer.write(evento.getId() + "," +
+                                 evento.getTitulo() + "," +
+                                 evento.getDescripcion() + "," +
+                                 evento.getFechaInicio().toString() + "," +
+                                 evento.getFechaFin().toString() + "," +
+                                 evento.getLugar() + "," +
+                                 listaParticipantesComoTexto(evento.getParticipantes()) + "," +
+                                 listaEtiquetasComoTexto(evento.getEtiquetas()));
+                    writer.newLine();
+                }
+
+                System.out.println("Reporte generado exitosamente en: " + nombreArchivo);
+
+            } catch (IOException e) {
+                System.out.println("Error al generar el reporte: " + e.getMessage());
+            }
+        }
 
 	 private String listaParticipantesComoTexto(ArrayList<Participante> participantes) {
 		  StringBuilder sb = new StringBuilder();
