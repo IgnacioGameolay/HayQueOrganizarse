@@ -9,6 +9,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class Main {
 	
@@ -49,6 +50,21 @@ public class Main {
 		int idBuscado, diaBuscado, id;
 		String anioBuscado, mesBuscado;
 		do {
+                        // Crear el JFrame (ventana)
+                        JFrame frame = new JFrame("Menú Principal");
+
+                        // Crear una instancia del JPanel (MenuPrincipal)
+                        MenuPrincipal menuPanel = new MenuPrincipal();
+
+                        // Añadir el JPanel al JFrame
+                        frame.add(menuPanel);
+
+                        // Establecer las propiedades del JFrame
+                        frame.setSize(1280, 720);  // Ajusta el tamaño según tus necesidades
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Cierra la aplicación al cerrar la ventana
+                        frame.setVisible(true);  // Hacer visible la ventana
+                        
+                        
 			limpiarPantalla();
 			MostrarMenu();
 			opcion = lector.readLine();
@@ -60,6 +76,8 @@ public class Main {
 					System.out.println("=========================");
 					System.out.println("Creando evento...");
 					System.out.println("=========================");
+                                        //SwingUtilities.invokeLater(() -> {JOptionPane.showInputDialog(null, "waka");});
+                                        
 					String idStr = JOptionPane.showInputDialog(null, "Ingrese el id del evento:", "Agregar Evento", JOptionPane.QUESTION_MESSAGE);
 					if (idStr == null) break; // En caso de que se cancele el diálogo
 					try {
@@ -68,7 +86,7 @@ public class Main {
 					    JOptionPane.showMessageDialog(null, "Error: Debe ingresar un número entero", "Error", JOptionPane.ERROR_MESSAGE);
 					    break;
 					}
-
+                                        System.out.println("No funca");
 	
 /*		
 					} catch (IOException e) {
