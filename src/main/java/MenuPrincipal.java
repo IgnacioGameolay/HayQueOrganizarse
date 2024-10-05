@@ -2,8 +2,10 @@
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -50,13 +52,14 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         PanelMostrarEventos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
 
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -138,19 +141,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Ingese Fecha y Hora de Inicio:");
 
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField4.setText("dd/MM/yyyy HH:mm");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("Ingese Fecha y Hora de Fin:");
-
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField5.setText("dd/MM/yyyy HH:mm");
 
         jButton4.setBackground(new java.awt.Color(255, 255, 0));
         jButton4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -179,23 +171,23 @@ public class MenuPrincipal extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
+                        .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                            .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 91, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAgregarEventosLayout.createSequentialGroup()
                         .addGap(0, 4, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(206, 206, 206))
-                    .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
-                        .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(206, 206, 206))))
             .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
                 .addGap(262, 262, 262)
                 .addComponent(jButton4)
@@ -220,16 +212,16 @@ public class MenuPrincipal extends javax.swing.JPanel {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(91, 91, 91)
+                .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(95, 95, 95)
                 .addComponent(jButton4)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelAgregarEventos, "cardAgregarEventos");
@@ -267,6 +259,21 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         PanelCambiante.add(PanelMostrarEventos, "cardMostrarEventos");
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 648, Short.MAX_VALUE)
+        );
+
+        PanelCambiante.add(jPanel1, "card4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -284,7 +291,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(141, 141, 141)
                         .addComponent(PanelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(318, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,26 +363,33 @@ public class MenuPrincipal extends javax.swing.JPanel {
         String titulo = jTextField1.getText(); // Campo para nombre del evento
         String descripcion = jTextArea1.getText(); // Campo para descripción
         String lugar = jTextField3.getText(); // Campo para lugar
-        String fechaHoraInicioStr  = jTextField4.getText(); // Campo para fecha y hora de inicio
-        String fechaHoraFinStr  = jTextField5.getText(); // Campo para fecha y hora de fin
         int id = 0;
+        // Obtener la fecha de los JDateChooser
+        Date fechaHoraInicioDate = jDateChooser1.getDate(); // Campo para fecha y hora de inicio
+        Date fechaHoraFinDate = jDateChooser2.getDate(); // Campo para fecha y hora de fin
 
         // Validar los campos (opcional)
-        if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || fechaHoraInicioStr.isEmpty() || fechaHoraFinStr.isEmpty()) {
+        if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || fechaHoraInicioDate == null || fechaHoraFinDate == null) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Definir el formato de la fecha y hora
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"); // Ajusta el patrón según necesites
+        // Convertir Date a LocalDateTime
+        LocalDateTime fechaHoraInicio = fechaHoraInicioDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime fechaHoraFin = fechaHoraFinDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
-        LocalDateTime fechaHoraInicio;
-        LocalDateTime fechaHoraFin;
+        // Definir el formato de la fecha y hora
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); // Ajustar el patrón según necesites
 
         try {
-            // Convertir las cadenas a LocalDateTime
-            fechaHoraInicio = LocalDateTime.parse(fechaHoraInicioStr, formatter);
-            fechaHoraFin = LocalDateTime.parse(fechaHoraFinStr, formatter);
+            // Validar el formato de las fechas (esto no es realmente necesario ya que no trabajamos con strings, pero lo mantengo si requieres un formato específico)
+            String fechaHoraInicioStr = fechaHoraInicio.format(formatter);
+            String fechaHoraFinStr = fechaHoraFin.format(formatter);
+
+            // Imprimir fechas para verificación
+            System.out.println("Fecha de inicio: " + fechaHoraInicioStr);
+            System.out.println("Fecha de fin: " + fechaHoraFinStr);
+
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Formato de fecha y hora inválido. Use 'yyyy-MM-dd HH:mm'.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -391,29 +405,12 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jTextField1.setText("");
         jTextArea1.setText("");
         jTextField3.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
+        jDateChooser1.setDate(null);
+        jDateChooser2.setDate(null);
 
         // Confirmación al usuario
         JOptionPane.showMessageDialog(this, "Evento agregado exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        /*JButton mostrarButton = new JButton("Mostrar Fecha");
-        mostrarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Date selectedDate = (Date) datePicker.getModel().getValue();
-                if (selectedDate != null) {
-                    // Aquí puedes usar la fecha seleccionada como desees
-                    JOptionPane.showMessageDialog(null, "Fecha seleccionada: " + selectedDate);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Por favor, selecciona una fecha.");
-                }
-            }
-        });*/
-
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -459,19 +456,20 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
