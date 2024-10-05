@@ -21,10 +21,12 @@ import javax.swing.JOptionPane;
 
 public class MenuPrincipal extends javax.swing.JPanel {
     private CardLayout cardLayout;
+    private GestorDeDatos gestorDeDatos;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipal(GestorDeDatos gestorDeDatos) {
+        this.gestorDeDatos = gestorDeDatos;
         initComponents();
         //initDateChooser();
     }
@@ -358,7 +360,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+           
         // Recuperar los datos de los campos de texto
         String titulo = jTextField1.getText(); // Campo para nombre del evento
         String descripcion = jTextArea1.getText(); // Campo para descripción
@@ -409,20 +411,9 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jDateChooser2.setDate(null);
 
         // Confirmación al usuario
+        gestorDeDatos.guardarDatos();
         JOptionPane.showMessageDialog(this, "Evento agregado exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
-        // TODO add your handling code here:
-        if (jTextField3.getText().equals("Lugar Evento")) {
-            jTextField3.setText(""); // Limpia el texto del placeholder
-            jTextField3.setForeground(new Color(153,153,153)); // Cambia el color a negro
-        }
-    }//GEN-LAST:event_jTextField3FocusGained
 
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         if (jTextField1.getText().equals("")) {
@@ -439,12 +430,24 @@ public class MenuPrincipal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField1FocusGained
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
     private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
         if (jTextField3.getText().equals("")) {
             jTextField3.setText("Lugar Evento"); // Limpia el texto del placeholder
             jTextField3.setForeground(new Color(153,153,153)); // Cambia el color a negro
         }
     }//GEN-LAST:event_jTextField3FocusLost
+
+    private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
+        // TODO add your handling code here:
+        if (jTextField3.getText().equals("Lugar Evento")) {
+            jTextField3.setText(""); // Limpia el texto del placeholder
+            jTextField3.setForeground(new Color(153,153,153)); // Cambia el color a negro
+        }
+    }//GEN-LAST:event_jTextField3FocusGained
 
     
     

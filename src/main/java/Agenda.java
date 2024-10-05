@@ -24,8 +24,8 @@ public class Agenda {
          private static Agenda instancia;
          
 	 private Agenda() {
-		 this.eventosPorAnio = new HashMap<String, Map<String, Map<String, ArrayList<Evento>>>>();
-		 this.eventosEnlistados = new ArrayList<Evento>(); 
+            this.eventosPorAnio = new HashMap<String, Map<String, Map<String, ArrayList<Evento>>>>();
+            this.eventosEnlistados = new ArrayList<Evento>(); 
 	 }
          
          // Método público para obtener la instancia
@@ -40,6 +40,7 @@ public class Agenda {
 	
 	//Generar 3 eventos de prueba, a modo de datos iniciales
 	public void inicializarEventosDePrueba() {
+            System.out.println("Inicializando Eventos de Prueba...");
 			// Formato de fecha y hora
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
@@ -63,6 +64,7 @@ public class Agenda {
 				this.agregarEvento(evento2);
 
 				this.agregarEvento(evento3);
+            System.out.println("Eventos de Prueba Inicializados Correctamente!");
 	 }
 
 	// Muestra todos los eventos enlistados en la agenda.
@@ -79,6 +81,10 @@ public class Agenda {
        
         public List<Evento> getEventosEnlistados() {
             return Collections.unmodifiableList(eventosEnlistados); // Devuelve una lista no modificable
+        }
+        
+        public int getEventosEnlistadosLargo() {
+            return eventosEnlistados.size(); // Devuelve el largo de la lista de eventos
         }
         
 	//Agrega un evento a la agenda, actualizando la lista y los mapas de días, meses y años.
@@ -481,67 +487,6 @@ public class Agenda {
 					}
 			}
 	}
-
-        public void generarReporteEventos(String nombreArchivo) {
-            // Añadir .txt si no está presente
-            if (!nombreArchivo.endsWith(".txt")) {
-                nombreArchivo += ".txt";
-            }
-            // Obtener el directorio de trabajo actual
-            String directorioTrabajo = System.getProperty("user.dir") + File.separator + "src";;
-
-            // Definir el nombre de la carpeta donde se guardará el archivo
-            String nombreCarpeta = "Reportes"; // Puedes cambiar el nombre según sea necesario
-            File carpeta = new File(directorioTrabajo, nombreCarpeta);
-
-            // Verificar si la carpeta existe, si no, crearla
-            if (!carpeta.exists()) {
-                carpeta.mkdirs(); // Crea la carpeta y cualquier carpeta padre necesaria
-            }
-
-            // Crear el archivo en la carpeta especificada
-            File archivo = new File(carpeta, nombreArchivo);
-                
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
-                // Escribir encabezados
-                writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Participantes,Etiquetas");
-                writer.newLine();
-
-                // Escribir datos de cada evento
-                for (Evento evento : eventosEnlistados) {
-                    writer.write(evento.getId() + "," +
-                                 evento.getTitulo() + "," +
-                                 evento.getDescripcion() + "," +
-                                 evento.getFechaInicio().toString() + "," +
-                                 evento.getFechaFin().toString() + "," +
-                                 evento.getLugar() + "," +
-                                 listaParticipantesComoTexto(evento.getParticipantes()) + "," +
-                                 listaEtiquetasComoTexto(evento.getEtiquetas()));
-                    writer.newLine();
-                }
-
-                System.out.println("Reporte generado exitosamente en: " + nombreArchivo);
-
-            } catch (IOException e) {
-                System.out.println("Error al generar el reporte: " + e.getMessage());
-            }
-        }
-
-	 private String listaParticipantesComoTexto(ArrayList<Participante> participantes) {
-		  StringBuilder sb = new StringBuilder();
-		  for (Participante p : participantes) {
-				sb.append(p.getNombre()).append(" ");
-		  }
-		  return sb.toString().trim();
-	 }
-
-	 private String listaEtiquetasComoTexto(ArrayList<Etiqueta> etiquetas) {
-		  StringBuilder sb = new StringBuilder();
-		  for (Etiqueta e : etiquetas) {
-				sb.append(e.getNombre()).append(" ");
-		  }
-		  return sb.toString().trim();
-	 }
 }
 
 //Edicion de eventos 

@@ -35,18 +35,31 @@ public class Main {
 	//* @param args Argumentos de la línea de comandos.
 	//* @throws IOException Manejo de excepciones de entrada y salida.
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException,PersistenciaException {
 		//Inicio del main
 
 		//Definicion de variables
 		Agenda agenda = Agenda.getInstancia(); // Crear una nueva agenda
-
-		agenda.inicializarEventosDePrueba(); // Inicializar eventos de prueba
+                
+                GestorDeDatos gestorDeDatos = new GestorDeDatos();
+                
+                 // Cargar eventos al iniciar la aplicación
+                try {
+                    gestorDeDatos.cargarDatos();
+                    System.out.println("Eventos cargados exitosamente desde el ");
+                } catch (PersistenciaException e) {
+                    System.out.println("Error al cargar los eventos: " + e.getMessage());
+                }
+                
+                if (agenda.getEventosEnlistadosLargo() == 0){
+                    agenda.inicializarEventosDePrueba(); // Inicializar eventos de prueba
+                    gestorDeDatos.guardarDatos();
+                }
 		 // Crear el JFrame (ventana)
                 JFrame frame = new JFrame("Menú Principal");
 
                 // Crear una instancia del JPanel (MenuPrincipal)
-                MenuPrincipal menuPanel = new MenuPrincipal();
+                MenuPrincipal menuPanel = new MenuPrincipal(gestorDeDatos);
 
                 // Añadir el JPanel al JFrame
                 frame.add(menuPanel);
@@ -264,7 +277,7 @@ public class Main {
 					System.out.println("Ingrese el nombre del archivo del reporte:");
 
 					String nombreReporte = lector.readLine();
-					agenda.generarReporteEventos(nombreReporte);
+					gestorDeDatos.generarReporteEventos(nombreReporte);
 					break;
 				case "9": 
 					// Salir del programa
@@ -299,6 +312,7 @@ public class Main {
 					break;
 		
 			}
+                    gestorDeDatos.guardarDatos();
 		} while(opcion != "9");		
 	}
 

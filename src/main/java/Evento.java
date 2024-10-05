@@ -1,6 +1,4 @@
 import java.time.*;
-import java.time.format.DateTimeParseException;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -51,11 +49,21 @@ public class Evento {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
         this.lugar = lugar;
         this.etiquetas = new ArrayList<Etiqueta>();
         this.participantes = new ArrayList<Participante>();
+    }
+    
+    
+    public Evento(int id, String titulo, String descripcion, LocalDateTime fechaInicio, LocalDateTime fechaFin, String lugar, ArrayList<Etiqueta> etiquetas, ArrayList<Participante> participantes) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.lugar = lugar;
+        this.etiquetas = etiquetas;
+        this.participantes = participantes;
     }
 
     
@@ -108,12 +116,14 @@ public class Evento {
         this.lugar = lugar;
     }
 
-    public ArrayList<Etiqueta> getEtiquetas() {
-        return etiquetas;
-    }
+    
 
     public void setEtiquetas(ArrayList<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
+    }
+    
+    public ArrayList<Etiqueta> getEtiquetas() {
+        return etiquetas;
     }
 
     public ArrayList<Participante> getParticipantes() {
@@ -262,6 +272,7 @@ public class Evento {
     public int hashCode() {
         return Objects.hash(id);  // El hashCode se genera a partir del ID
     }
+
 
 
 }
