@@ -42,20 +42,20 @@ public class Agenda {
     public void inicializarEventosDePrueba() {
         System.out.println("Inicializando Eventos de Prueba...");
         // Formato de fecha y hora
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm");
         
         // Crear eventos de prueba
         Evento evento1 = new Evento(1, "Navidad", "Celebración de Navidad",
-                LocalDateTime.parse("25/12/2024 00:00:00", formatter),
-                LocalDateTime.parse("25/12/2024 23:59:00", formatter),
+                LocalDateTime.parse("25-12-2024 | 00:00", formatter),
+                LocalDateTime.parse("25-12-2024 | 23:59", formatter),
                 "Casa");
         Evento evento2 = new Evento(2, "Año Nuevo", "Celebración de Año Nuevo",
-                LocalDateTime.parse("01/01/2025 00:00:00", formatter),
-                LocalDateTime.parse("01/01/2025 23:59:00", formatter),
+                LocalDateTime.parse("01-01-2025 | 00:00", formatter),
+                LocalDateTime.parse("01-01-2025 | 23:59", formatter),
                 "Casa");
         Evento evento3 = new Evento(3, "18 de Septiembre", "Fiestas Patrias",
-                LocalDateTime.parse("18/09/2024 00:00:00", formatter),
-                LocalDateTime.parse("18/09/2024 23:59:00", formatter),
+                LocalDateTime.parse("18-09-2024 | 00:00", formatter),
+                LocalDateTime.parse("18-09-2024 | 23:59", formatter),
                 "Casa");
         
         // Agregar los eventos a la lista de eventos generales
@@ -164,7 +164,7 @@ public class Agenda {
     
     
     //buscar eventos por dia específico
-    public void buscarEventosPorFecha(int dia, String mes, String anio) {
+    public javax.swing.table.DefaultTableModel buscarEventosPorFecha(int dia, String mes, String anio) {
         // Convertir los parámetros en formato String
         String anioString = String.valueOf(anio);
         String mesString = String.format("%02d", Integer.parseInt(mes));
@@ -173,33 +173,38 @@ public class Agenda {
         // Obtener el mapa de meses para el año especificado
         Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anioString);
         if (eventosPorMesAnio == null) {
-            System.out.println("No hay eventos para el año " + anioString);
-            return;
+            return null;
         }
         
         // Obtener el mapa de días para el mes especificado
         Map<String, ArrayList<Evento>> eventosPorDiaMes = eventosPorMesAnio.get(mesString);
         if (eventosPorDiaMes == null) {
-            System.out.println("No hay eventos para el mes " + mesString + " del año " + anioString);
-            return;
+            return null;
         }
         
         // Obtener la lista de eventos para el día especificado
         ArrayList<Evento> eventos = eventosPorDiaMes.get(diaString);
         if (eventos != null && !eventos.isEmpty()) {
-            // Imprimir el encabezado para el día
-            System.out.println("Eventos para el día " + diaString + " del mes " + mesString + " del año " + anioString + ":");
-            
+            javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
+        
+            // Limpiar el modelo antes de añadir filas nuevas
+            modelo.setRowCount(0);
+        
             // Iterar sobre cada evento en la lista de eventos
             for (Evento evento : eventos) {
-                // Mostrar los detalles del evento
-                evento.MostrarEvento();
-                System.out.println();
+                Object[] fila = new Object[4];
+                fila[0] = (Object)evento.getTitulo();
+                fila[1] = (Object)evento.getLugar();
+                fila[2] = (Object)evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                fila[3] = (Object)evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                modelo.addRow(fila);
             }
+            return modelo;
         } else {
             // Si no hay eventos para el día, imprime un mensaje
             System.out.println("No hay eventos para el día " + diaString + " del mes " + mesString + " del año " + anioString);
         }
+        return null;
     }
     
     //buscar eventos de una semana entera (los 6 días seguidos a un día en especificado)
@@ -267,7 +272,7 @@ public class Agenda {
     
     // Método para buscar si en un mes y anio dado como parámetro hay eventos
     //buscar eventos por mes
-    public void buscarEventosPorMes(String mes, String anio) {
+    public javax.swing.table.DefaultTableModel buscarEventosPorMes(String mes, String anio) {
         String anioString = String.valueOf(anio);
         String mesString = String.format("%02d", Integer.parseInt(mes));
         
@@ -275,48 +280,43 @@ public class Agenda {
         Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anioString);
         
         if (eventosPorMesAnio == null) {
-            System.out.println("No hay eventos para el año " + anioString);
-            return;
+            return null;
         }
         
         // Obtener el mapa de días para el mes especificado
         Map<String, ArrayList<Evento>> eventosPorDiaMes = eventosPorMesAnio.get(mesString);
         if (eventosPorDiaMes == null) {
-            System.out.println("No hay eventos para el mes ingresado " + mesString);
-            return;
+            return null;
         }
         
-        int hayEventos = 0;
+
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
+    
         // Recorrer el mapa de días
         for (String diaStr : eventosPorDiaMes.keySet()) {
             // Obtener la lista de eventos para el día actual
             ArrayList<Evento> eventos = eventosPorDiaMes.get(diaStr);
-            
+
             // Verificar si la lista de eventos está vacía
             if (eventos != null && !eventos.isEmpty()) {
-                // Marca que hay eventos para el mes
-                hayEventos = 1;
-                
-                // Imprime el encabezado para el día
-                System.out.println("Eventos para el día " + diaStr + ":");
-                
                 // Iterar sobre cada evento en la lista de eventos
                 for (Evento evento : eventos) {
-                    // Mostrar los detalles del evento
-                    evento.MostrarEvento();
-                    System.out.println();
+                    Object[] fila = new Object[4];
+                    fila[0] = evento.getTitulo();
+                    fila[1] = evento.getLugar();
+                    fila[2] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                    fila[3] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                    modelo.addRow(fila);
                 }
+                
             }
         }
-        // Si no hay eventos para el mes, imprime un mensaje
-        if (hayEventos == 0) {
-            System.out.println("No hay eventos para el mes " + mesString + " del año " + anioString);
-        }
+        return modelo;
     }
     
     //Buscar eventos por etiquetas
     public ArrayList<Evento> buscarEventosPorEtiqueta(Etiqueta etiqueta) {
-        ArrayList<Evento> resultados = new ArrayList<Evento>();
+        ArrayList<Evento> resultados = new ArrayList<>();
         for (Evento evento : eventosEnlistados) {
             for (Etiqueta etiquetaEvento : evento.getEtiquetas()){
                 if (etiquetaEvento.getNombre().equals(etiqueta.getNombre())){
@@ -401,7 +401,7 @@ public class Agenda {
                     break;
                     
                 case 3:
-                    System.out.print("Nueva fecha de inicio (dd-MM-yyyyHH:MM): ");
+                    System.out.print("Nueva fecha de inicio (dd-MM-yyyy | HH:mm): ");
                     String nuevaFechaInicioStr = scanner.nextLine();
                     try {
                         LocalDateTime nuevaFechaInicio = LocalDateTime.parse(nuevaFechaInicioStr);
@@ -412,7 +412,7 @@ public class Agenda {
                     break;
                     
                 case 4:
-                    System.out.print("Nueva fecha de fin (dd-MM-yyyyTHH:MM): ");
+                    System.out.print("Nueva fecha de fin (dd-MM-yyyy | HH:mm): ");
                     String nuevaFechaFinStr = scanner.nextLine();
                     try {
                         LocalDateTime nuevaFechaFin = LocalDateTime.parse(nuevaFechaFinStr);

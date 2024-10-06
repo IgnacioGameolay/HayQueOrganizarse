@@ -140,7 +140,7 @@ public class GestorDeDatos {
         }
     }
     
-    public void generarReporteEventos(String nombreArchivo) {
+    public void generarReporteEventos(String nombreArchivo) throws PersistenciaException{
         if (!nombreArchivo.endsWith(".txt")) {
             nombreArchivo += ".txt";
         }

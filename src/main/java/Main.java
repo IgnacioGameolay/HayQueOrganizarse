@@ -82,114 +82,8 @@ public class Main {
         int idBuscado, diaBuscado, id;
         String anioBuscado, mesBuscado;
         do {
-            limpiarPantalla();
-            MostrarMenu();
-            opcion = lector.readLine();
-            
             //Switch de opciones
-            switch (opcion){
-                case "1":
-                    //Crear evento
-                    System.out.println("=========================");
-                    System.out.println("Creando evento...");
-                    System.out.println("=========================");
-                    //SwingUtilities.invokeLater(() -> {JOptionPane.showInputDialog(null, "waka");});
-                    
-                    String idStr = JOptionPane.showInputDialog(null, "Ingrese el id del evento:", "Agregar Evento", JOptionPane.QUESTION_MESSAGE);
-                    if (idStr == null) break; // En caso de que se cancele el diálogo
-                    try {
-                        id = Integer.parseInt(idStr);
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Error: Debe ingresar un número entero", "Error", JOptionPane.ERROR_MESSAGE);
-                        break;
-                    }
-                    
-                    String titulo = JOptionPane.showInputDialog(null, "Ingrese el título del evento:", "Agregar Evento", JOptionPane.QUESTION_MESSAGE);
-                    if (titulo == null) break; // En caso de que se cancele el diálogo
-                    String descripcion = JOptionPane.showInputDialog(null, "Ingrese la descripción del evento:", "Agregar Evento", JOptionPane.QUESTION_MESSAGE);
-                    if (descripcion == null) break;
-                    
-                    //Ingresar datos de fecha
-                    LocalDateTime fechaInicio;
-                    while (true) {
-                        System.out.print("Ingrese la fecha de inicio del evento (dd/MM/yyyy): ");
-                        String fechaInicioStr = lector.readLine();
-                        
-                        String horaInicioStr;
-                        while (true) {
-                            System.out.print("Ingrese la hora de inicio del evento (HH:mm en formato 24 hrs): ");
-                            horaInicioStr = lector.readLine();
-                            if (horaValida(horaInicioStr)) break;
-                            else System.out.println("Hora inválida. Intente nuevamente.");
-                        }
-                        
-                        fechaInicio = parsearFechaYHora(fechaInicioStr, horaInicioStr);
-                        if (fechaInicio == null) {
-                            System.out.println("Por favor, ingrese nuevamente la fecha y la hora.");
-                        } else if (fechaInicio.isBefore(LocalDateTime.now())) {
-                            System.out.println("Advertencia: La fecha y hora del evento es anterior a la actual.");
-                            System.out.print("¿Desea guardar el evento de todos modos? (sí/no): ");
-                            String confirmacion = lector.readLine().trim().toLowerCase();
-                            if (confirmacion.equals("sí") || confirmacion.equals("si")) {
-                                break;
-                            } else {
-                                System.out.println("Por favor, ingrese una nueva fecha y hora de inicio.");
-                            }
-                        } else {
-                            break;
-                        }
-                    }
-                    
-                    System.out.println("=========================");
-                    System.out.print("¿La fecha de término es la misma que la de inicio? (sí/no): ");
-                    String mismaFecha = lector.readLine().trim().toLowerCase();
-                    
-                    LocalDateTime fechaFin;
-                    if (mismaFecha.equals("sí") || mismaFecha.equals("si")) {
-                        fechaFin = fechaInicio;
-                    } else {
-                        while (true) {
-                            System.out.print("Ingrese la fecha de término del evento (dd/MM/yyyy): ");
-                            String fechaFinStr = lector.readLine();
-                            
-                            String horaFinStr;
-                            while (true) {
-                                System.out.print("Ingrese la hora de término del evento (HH:mm en formato 24 hrs): ");
-                                horaFinStr = lector.readLine();
-                                if (horaValida(horaFinStr)) break;
-                                else System.out.println("Hora inválida. Intente nuevamente.");
-                            }
-                            
-                            fechaFin = parsearFechaYHora(fechaFinStr, horaFinStr);
-                            if (fechaFin == null || fechaFin.isBefore(fechaInicio)) {
-                                System.out.println("La fecha y hora de término debe ser posterior a la fecha y hora de inicio. Intente nuevamente.");
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-                    
-                    System.out.println("=========================");
-                    System.out.print("Ingrese el lugar del evento: ");
-                    String lugar = lector.readLine();
-                    System.out.println("=========================");
-                    
-                    //Crear evento
-                    Evento evento = new Evento(id, titulo, descripcion, fechaInicio, fechaFin, lugar);
-                    evento.MostrarEvento();
-                    agenda.agregarEvento(evento);
-                    System.out.println("=========================");
-                    presioneTeclaParaContinuar();
-                    break;
-                case "2":
-                    // Mostrar todos los eventos
-                    System.out.println("=========================");
-                    System.out.println("Mostrando todos los eventos:");
-                    System.out.println("=========================");
-                    agenda.mostrarTodosLosEventos();
-                    presioneTeclaParaContinuar();
-                    break;
-                case "3":
+            switch (opcion){                case "3":
                     // Editar evento por ID
                     System.out.println("=========================");
                     System.out.println("Editando evento por id...");
@@ -199,22 +93,7 @@ public class Main {
                     agenda.editarEventoPorId(idBuscado);
                     presioneTeclaParaContinuar();
                     break;
-                case "4":
-                    // Buscar eventos por día
-                    System.out.println("=========================");
-                    System.out.println("Buscando evento por día...");
-                    System.out.println("=========================");
-                    System.out.println("Ingrese año del día a buscar:");
-                    anioBuscado = lector.readLine();
-                    System.out.println("Ingrese mes del día a buscar:");
-                    mesBuscado = lector.readLine();
-                    System.out.println("Ingrese el número del día a buscar:");
-                    diaBuscado = Integer.parseInt(lector.readLine());
-                    System.out.println("=========================");
-                    agenda.buscarEventosPorFecha(diaBuscado, mesBuscado, anioBuscado);
-                    System.out.println("=========================");
-                    presioneTeclaParaContinuar();
-                    break;
+
                 case "5":
                     // Buscar eventos por semana
                     System.out.println("=========================");
@@ -263,21 +142,6 @@ public class Main {
                     
                     presioneTeclaParaContinuar();
                     break;
-                case "8":
-                    // Generar reporte de eventos
-                    System.out.println("Opcion 8: ");
-                    System.out.println("=========================");
-                    System.out.println("Obteniendo reporte...");
-                    System.out.println("=========================");
-                    System.out.println("Ingrese el nombre del archivo del reporte:");
-                    
-                    String nombreReporte = lector.readLine();
-                    gestorDeDatos.generarReporteEventos(nombreReporte);
-                    break;
-                case "9":
-                    // Salir del programa
-                    System.out.println("Saliendo del programa...");
-                    return;
                 case "10":
                     System.out.println("=========================");
                     System.out.println("Filtrando eventos...");
