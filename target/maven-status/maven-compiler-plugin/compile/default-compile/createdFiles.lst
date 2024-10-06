@@ -9,6 +9,7 @@ MenuPrincipal$6.class
 Etiqueta.class
 Main.class
 Evento.class
+GUIException.class
 MenuPrincipal$1.class
 Participante.class
 MenuPrincipal$5.class

@@ -10,27 +10,28 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+* Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+*/
 
 /**
  *
  * @author IgnacioGameolay
  */
 
-public class MenuPrincipal extends javax.swing.JPanel {
+public class MenuPrincipal extends javax.swing.JPanel{
+    
     private CardLayout cardLayout;
     private GestorDeDatos gestorDeDatos;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal(GestorDeDatos gestorDeDatos) {
+    public MenuPrincipal(GestorDeDatos gestorDeDatos) throws GUIException{
         this.gestorDeDatos = gestorDeDatos;
         initComponents();
         //initDateChooser();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -314,18 +315,18 @@ public class MenuPrincipal extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         cardLayout = (CardLayout) this.PanelCambiante.getLayout();
         cardLayout.show(PanelCambiante, "cardMostrarEventos");
-
+        
         // Obtener la instancia de la agenda
         Agenda agenda = Agenda.getInstancia(); // Asegúrate de que getInstancia() no crea una nueva instancia.
-
+        
         // Mostrar todos los eventos en la consola (opcional)
         agenda.mostrarTodosLosEventos();
-
+        
         // Obtener la lista de eventos
         List<Evento> eventos = agenda.getEventosEnlistados();
         
@@ -333,7 +334,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         
         // Limpiar el modelo antes de añadir filas nuevas
         modelo.setRowCount(0);
-
+        
         // Recorrer la lista de eventos y añadir filas al modelo
         for (Evento evento : eventos) {
             Object[] fila = new Object[4]; // Cambia el tamaño según tus columnas
@@ -343,24 +344,24 @@ public class MenuPrincipal extends javax.swing.JPanel {
             fila[3] = (Object)evento.getFechaFin();
             modelo.addRow(fila);
         }
-
+        
         // Asignar el modelo a tu JTable
         jTable1.setModel(modelo); // Asegúrate de que jTable1 sea el nombre de tu JTable
         
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
     private void jButton2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jButton2StateChanged
-       
+        
     }//GEN-LAST:event_jButton2StateChanged
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         cardLayout = (CardLayout) this.PanelCambiante.getLayout();
         cardLayout.show(PanelCambiante, "cardAgregarEventos");
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-           
+        
         // Recuperar los datos de los campos de texto
         String titulo = jTextField1.getText(); // Campo para nombre del evento
         String descripcion = jTextArea1.getText(); // Campo para descripción
@@ -369,59 +370,59 @@ public class MenuPrincipal extends javax.swing.JPanel {
         // Obtener la fecha de los JDateChooser
         Date fechaHoraInicioDate = jDateChooser1.getDate(); // Campo para fecha y hora de inicio
         Date fechaHoraFinDate = jDateChooser2.getDate(); // Campo para fecha y hora de fin
-
+        
         // Validar los campos (opcional)
         if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || fechaHoraInicioDate == null || fechaHoraFinDate == null) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        
         // Convertir Date a LocalDateTime
         LocalDateTime fechaHoraInicio = fechaHoraInicioDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         LocalDateTime fechaHoraFin = fechaHoraFinDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-
+        
         // Definir el formato de la fecha y hora
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); // Ajustar el patrón según necesites
-
+        
         try {
             // Validar el formato de las fechas (esto no es realmente necesario ya que no trabajamos con strings, pero lo mantengo si requieres un formato específico)
             String fechaHoraInicioStr = fechaHoraInicio.format(formatter);
             String fechaHoraFinStr = fechaHoraFin.format(formatter);
-
+            
             // Imprimir fechas para verificación
             System.out.println("Fecha de inicio: " + fechaHoraInicioStr);
             System.out.println("Fecha de fin: " + fechaHoraFinStr);
-
+            
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Formato de fecha y hora inválido. Use 'yyyy-MM-dd HH:mm'.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        
         // Crear un nuevo evento
         Evento nuevoEvento = new Evento(id, titulo, descripcion, fechaHoraInicio, fechaHoraFin, lugar);
         // Agregar el evento a la agenda
         Agenda agenda = Agenda.getInstancia();
         agenda.agregarEvento(nuevoEvento); // Asegúrate de que tengas este método en tu clase Agenda
-
+        
         // Limpiar los campos después de agregar el evento
         jTextField1.setText("");
         jTextArea1.setText("");
         jTextField3.setText("");
         jDateChooser1.setDate(null);
         jDateChooser2.setDate(null);
-
+        
         // Confirmación al usuario
         gestorDeDatos.guardarDatos();
         JOptionPane.showMessageDialog(this, "Evento agregado exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         if (jTextField1.getText().equals("")) {
             jTextField1.setText("Nombre Evento"); // Limpia el texto del placeholder
             jTextField1.setForeground(new Color(153,153,153)); // Cambia el color a negro
         }
     }//GEN-LAST:event_jTextField1FocusLost
-
+    
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
         // TODO add your handling code here:
         if (jTextField1.getText().equals("Nombre Evento")) {
@@ -429,18 +430,18 @@ public class MenuPrincipal extends javax.swing.JPanel {
             jTextField1.setForeground(new Color(153,153,153)); // Cambia el color a negro
         }
     }//GEN-LAST:event_jTextField1FocusGained
-
+    
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
+    
     private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
         if (jTextField3.getText().equals("")) {
             jTextField3.setText("Lugar Evento"); // Limpia el texto del placeholder
             jTextField3.setForeground(new Color(153,153,153)); // Cambia el color a negro
         }
     }//GEN-LAST:event_jTextField3FocusLost
-
+    
     private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
         // TODO add your handling code here:
         if (jTextField3.getText().equals("Lugar Evento")) {
@@ -448,7 +449,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
             jTextField3.setForeground(new Color(153,153,153)); // Cambia el color a negro
         }
     }//GEN-LAST:event_jTextField3FocusGained
-
+    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

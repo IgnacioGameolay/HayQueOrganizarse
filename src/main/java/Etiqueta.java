@@ -12,9 +12,9 @@ public class Etiqueta {
         this.id = id;
         this.nombre = nombre;
     }
-
+    
     // Getters y Setters
-
+    
     //Obtiene el identificador de la etiqueta.
     //@return El identificador de la etiqueta.
     
@@ -35,7 +35,7 @@ public class Etiqueta {
     public String getNombre() {
         return nombre;
     }
-
+    
     //Establece el nombre de la etiqueta.
     //@param nombre El nombre a establecer.
     
