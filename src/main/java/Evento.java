@@ -11,7 +11,6 @@ public class Evento {
     private LocalDateTime fechaInicio; // Fecha de inicio del evento
     private LocalDateTime fechaFin; // Fecha del fin del evento
     private String lugar; // Lugar del evento
-    private ArrayList<Participante> participantes; // Lista de participantes del evento
     private ArrayList<Etiqueta> etiquetas; // Lista de etiquetas del evento
     
     
@@ -34,7 +33,6 @@ public class Evento {
     this.fechaFin = fechaFin.withSecond(0).withNano(0);
         this.lugar = lugar;
         this.etiquetas = new ArrayList<Etiqueta>();
-        this.participantes = new ArrayList<Participante>();
     }
     /**
      * Constructor alternativo que inicializa un evento con atributos básicos, sin fechas.
@@ -51,11 +49,10 @@ public class Evento {
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.etiquetas = new ArrayList<Etiqueta>();
-        this.participantes = new ArrayList<Participante>();
     }
     
     
-    public Evento(int id, String titulo, String descripcion, LocalDateTime fechaInicio, LocalDateTime fechaFin, String lugar, ArrayList<Etiqueta> etiquetas, ArrayList<Participante> participantes) {
+    public Evento(int id, String titulo, String descripcion, LocalDateTime fechaInicio, LocalDateTime fechaFin, String lugar, ArrayList<Etiqueta> etiquetas) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -63,7 +60,6 @@ public class Evento {
         this.fechaFin = fechaFin;
         this.lugar = lugar;
         this.etiquetas = etiquetas;
-        this.participantes = participantes;
     }
     
     
@@ -116,18 +112,12 @@ public class Evento {
         this.lugar = lugar;
     }
     
-    
-    
     public void setEtiquetas(ArrayList<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
     }
     
     public ArrayList<Etiqueta> getEtiquetas() {
         return etiquetas;
-    }
-    
-    public ArrayList<Participante> getParticipantes() {
-        return this.participantes;
     }
     
     //* Muestra los detalles del evento en la consola.
@@ -162,24 +152,9 @@ public class Evento {
         System.out.println("=========================");
     }
     
-    // Métodos para manejar participantes y etiquetas
-    public void agregarParticipante(Participante participante) {
-        participantes.add(participante);
-    }
-    
-    public void eliminarParticipante(Participante participante) {
-        participantes.remove(participante);
-    }
-    
-    public Participante buscarParticipante(String criterio) {
-        for (Participante participante : participantes) {
-            if (participante.getNombre().equalsIgnoreCase(criterio) ||
-                    participante.getEmail().equalsIgnoreCase(criterio) ||
-                    participante.getRol().equalsIgnoreCase(criterio)) {
-                return participante;
-            }
-        }
-        return null; // Si no se encuentra ningún participante
+    //Metodo para agendar this evento a Agenda, siendo un diseño de sistema sumamente extensible para multiples eventos especiales.
+    public void agendarEvento(Agenda agenda) {
+        agenda.agregarEvento(this);
     }
     
     //Agregar una sola etiqueta
@@ -237,35 +212,5 @@ public class Evento {
             System.out.println("La etiqueta a modificar no se encontró.");
             return;
         }
-    }
-    
-    // Sobrescritura del método toString() para proporcionar una representación personalizada del evento
-    @Override
-    public String toString() {
-        return "Evento{" +
-                "id='" + id + '\'' +
-                ", titulo='" + titulo + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", fechaInicio=" + fechaInicio +
-                ", fechaFin=" + fechaFin +
-                ", lugar='" + lugar + '\'' +
-                ", participantes=" + participantes +
-                ", etiquetas=" + etiquetas +
-                '}';
-    }
-    
-    // Sobrescritura del método equals() para comparar eventos por su ID
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;  // Si son el mismo objeto, son iguales
-        if (o == null || getClass() != o.getClass()) return false;  // Si no son de la misma clase, son diferentes
-        Evento evento = (Evento) o;  // Cast al tipo Evento
-        return Objects.equals(id, evento.id);  // Comparamos los eventos por su ID
-    }
-    
-    // Sobrescritura del método hashCode() basado en el ID del evento
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);  // El hashCode se genera a partir del ID
     }
 }

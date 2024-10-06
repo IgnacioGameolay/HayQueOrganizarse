@@ -42,7 +42,7 @@ public class Agenda {
     public void inicializarEventosDePrueba() {
         System.out.println("Inicializando Eventos de Prueba...");
         // Formato de fecha y hora
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         
         // Crear eventos de prueba
         Evento evento1 = new Evento(1, "Navidad", "Celebración de Navidad",
@@ -205,7 +205,7 @@ public class Agenda {
     //buscar eventos de una semana entera (los 6 días seguidos a un día en especificado)
     public void buscarEventosPorFecha(String fechaInicioStr, String anio) {
         // Formateador de fecha para el formato dd/MM/yyyy
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fechaInicioDate;
         
         // Intentar convertir la fecha proporcionada
@@ -248,7 +248,7 @@ public class Agenda {
                     hayEventos = true;
                     
                     // Imprimir el encabezado para el día
-                    System.out.println("Eventos para el día " + fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ":");
+                    System.out.println("Eventos para el día " + fecha.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ":");
                     
                     // Iterar sobre cada evento en la lista de eventos
                     for (Evento evento : eventos) {
@@ -401,7 +401,7 @@ public class Agenda {
                     break;
                     
                 case 3:
-                    System.out.print("Nueva fecha de inicio (YYYY-MM-DDTHH:MM): ");
+                    System.out.print("Nueva fecha de inicio (dd-MM-yyyyHH:MM): ");
                     String nuevaFechaInicioStr = scanner.nextLine();
                     try {
                         LocalDateTime nuevaFechaInicio = LocalDateTime.parse(nuevaFechaInicioStr);
@@ -412,7 +412,7 @@ public class Agenda {
                     break;
                     
                 case 4:
-                    System.out.print("Nueva fecha de fin (YYYY-MM-DDTHH:MM): ");
+                    System.out.print("Nueva fecha de fin (dd-MM-yyyyTHH:MM): ");
                     String nuevaFechaFinStr = scanner.nextLine();
                     try {
                         LocalDateTime nuevaFechaFin = LocalDateTime.parse(nuevaFechaFinStr);

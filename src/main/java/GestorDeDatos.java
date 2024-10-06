@@ -20,7 +20,7 @@ public class GestorDeDatos {
     
     private void escribirDatos(BufferedWriter writer) throws IOException {
         // Escribir encabezados
-        writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Participantes,Etiquetas");
+        writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Etiquetas");
         writer.newLine();
         
         // Escribir datos de cada evento
@@ -31,7 +31,6 @@ public class GestorDeDatos {
                     evento.getFechaInicio().toString() + "," +
                     evento.getFechaFin().toString() + "," +
                     evento.getLugar() + "," +
-                    listaParticipantesComoTexto(evento.getParticipantes()) + "," +
                     listaEtiquetasComoTexto(evento.getEtiquetas()));
             writer.newLine();
         }
@@ -116,20 +115,15 @@ public class GestorDeDatos {
                         LocalDateTime fechaInicio = LocalDateTime.parse(datos[3]);
                         LocalDateTime fechaFin = LocalDateTime.parse(datos[4]);
                         String lugar = datos[5];
-                        ArrayList<Participante> participantes = new ArrayList<>();
                         ArrayList<Etiqueta> etiquetas = new ArrayList<>();
                         
-                        // Verificar si hay participantes
-                        if (datos.length > 6 && !datos[6].isEmpty()) {
-                            // Aquí se agregarían los participantes si los hubiera
-                        }
                         
                         // Verificar si hay etiquetas
                         if (datos.length > 7 && !datos[7].isEmpty()) {
                             // Aquí se agregarían las etiquetas si las hubiera
                         }
                         
-                        Evento nuevoEvento = new Evento(id, titulo, descripcion, fechaInicio, fechaFin, lugar, etiquetas, participantes);
+                        Evento nuevoEvento = new Evento(id, titulo, descripcion, fechaInicio, fechaFin, lugar, etiquetas);
                         agenda.agregarEvento(nuevoEvento);
                     }
                 }
@@ -162,7 +156,7 @@ public class GestorDeDatos {
         File archivo = new File(carpeta, nombreArchivo);
         
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
-            writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Participantes,Etiquetas");
+            writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Etiquetas");
             writer.newLine();
             
             for (Evento evento : agenda.getEventosEnlistados()) {
@@ -172,7 +166,6 @@ public class GestorDeDatos {
                         evento.getFechaInicio().toString() + "," +
                         evento.getFechaFin().toString() + "," +
                         evento.getLugar() + "," +
-                        listaParticipantesComoTexto(evento.getParticipantes()) + "," +
                         listaEtiquetasComoTexto(evento.getEtiquetas()));
                 writer.newLine();
             }
@@ -182,14 +175,6 @@ public class GestorDeDatos {
         } catch (IOException e) {
             System.out.println("Error al generar el reporte: " + e.getMessage());
         }
-    }
-    
-    private String listaParticipantesComoTexto(ArrayList<Participante> participantes) {
-        StringBuilder sb = new StringBuilder();
-        for (Participante p : participantes) {
-            sb.append(p.getNombre()).append(" ");
-        }
-        return sb.toString().trim();
     }
     
     private String listaEtiquetasComoTexto(ArrayList<Etiqueta> etiquetas) {
