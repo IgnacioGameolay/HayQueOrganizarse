@@ -73,10 +73,7 @@ public class Main {
             
         } catch (GUIException e) {
             throw new GUIException("Ha ocurrido un error inesperado al intentar crear la ventana: " + e.getMessage());
-        }
-        
-        
-        
+        } 
         
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
