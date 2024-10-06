@@ -1,4 +1,3 @@
-
 //Clase Etiqueta que representa una etiqueta con un identificador y un nombre.
 public class Etiqueta {
     private int id; // Identificador único de la etiqueta

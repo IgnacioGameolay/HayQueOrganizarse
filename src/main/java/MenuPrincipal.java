@@ -59,6 +59,12 @@ public class MenuPrincipal extends javax.swing.JPanel{
         jButton4 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jSpinField1 = new com.toedter.components.JSpinField();
+        jSpinField2 = new com.toedter.components.JSpinField();
+        jLabel7 = new javax.swing.JLabel();
+        jSpinField3 = new com.toedter.components.JSpinField();
+        jSpinField4 = new com.toedter.components.JSpinField();
+        jLabel8 = new javax.swing.JLabel();
         PanelMostrarEventos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -156,6 +162,10 @@ public class MenuPrincipal extends javax.swing.JPanel{
             }
         });
 
+        jLabel7.setText(":");
+
+        jLabel8.setText(":");
+
         javax.swing.GroupLayout PanelAgregarEventosLayout = new javax.swing.GroupLayout(PanelAgregarEventos);
         PanelAgregarEventos.setLayout(PanelAgregarEventosLayout);
         PanelAgregarEventosLayout.setHorizontalGroup(
@@ -174,6 +184,12 @@ public class MenuPrincipal extends javax.swing.JPanel{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAgregarEventosLayout.createSequentialGroup()
+                        .addGap(0, 4, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(206, 206, 206))
                     .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
                         .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
@@ -184,13 +200,21 @@ public class MenuPrincipal extends javax.swing.JPanel{
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 91, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAgregarEventosLayout.createSequentialGroup()
-                        .addGap(0, 4, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(206, 206, 206))))
+                        .addGap(29, 29, 29)
+                        .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
+                                .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
+                                .addComponent(jSpinField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(115, 115, 115))))
             .addGroup(PanelAgregarEventosLayout.createSequentialGroup()
                 .addGap(262, 262, 262)
                 .addComponent(jButton4)
@@ -217,14 +241,20 @@ public class MenuPrincipal extends javax.swing.JPanel{
                 .addGap(18, 18, 18)
                 .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(PanelAgregarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(95, 95, 95)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(192, 192, 192)
                 .addComponent(jButton4)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelAgregarEventos, "cardAgregarEventos");
@@ -323,10 +353,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
         
         // Obtener la instancia de la agenda
         Agenda agenda = Agenda.getInstancia(); // Asegúrate de que getInstancia() no crea una nueva instancia.
-        
-        // Mostrar todos los eventos en la consola (opcional)
-        agenda.mostrarTodosLosEventos();
-        
+                
         // Obtener la lista de eventos
         List<Evento> eventos = agenda.getEventosEnlistados();
         
@@ -337,16 +364,15 @@ public class MenuPrincipal extends javax.swing.JPanel{
         
         // Recorrer la lista de eventos y añadir filas al modelo
         for (Evento evento : eventos) {
-            Object[] fila = new Object[4]; // Cambia el tamaño según tus columnas
-            fila[0] = (Object)evento.getTitulo(); // Asegúrate de que tu clase Evento tenga estos métodos
+            Object[] fila = new Object[4];
+            fila[0] = (Object)evento.getTitulo();
             fila[1] = (Object)evento.getLugar();
             fila[2] = (Object)evento.getFechaInicio();
             fila[3] = (Object)evento.getFechaFin();
             modelo.addRow(fila);
         }
         
-        // Asignar el modelo a tu JTable
-        jTable1.setModel(modelo); // Asegúrate de que jTable1 sea el nombre de tu JTable
+        jTable1.setModel(modelo);
         
     }//GEN-LAST:event_jButton2ActionPerformed
     
@@ -361,59 +387,84 @@ public class MenuPrincipal extends javax.swing.JPanel{
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
         // Recuperar los datos de los campos de texto
-        String titulo = jTextField1.getText(); // Campo para nombre del evento
-        String descripcion = jTextArea1.getText(); // Campo para descripción
-        String lugar = jTextField3.getText(); // Campo para lugar
-        int id = 0;
-        // Obtener la fecha de los JDateChooser
-        Date fechaHoraInicioDate = jDateChooser1.getDate(); // Campo para fecha y hora de inicio
-        Date fechaHoraFinDate = jDateChooser2.getDate(); // Campo para fecha y hora de fin
-        
-        // Validar los campos (opcional)
-        if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || fechaHoraInicioDate == null || fechaHoraFinDate == null) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // Convertir Date a LocalDateTime
-        LocalDateTime fechaHoraInicio = fechaHoraInicioDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        LocalDateTime fechaHoraFin = fechaHoraFinDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        
-        // Definir el formato de la fecha y hora
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); // Ajustar el patrón según necesites
-        
-        try {
-            // Validar el formato de las fechas (esto no es realmente necesario ya que no trabajamos con strings, pero lo mantengo si requieres un formato específico)
-            String fechaHoraInicioStr = fechaHoraInicio.format(formatter);
-            String fechaHoraFinStr = fechaHoraFin.format(formatter);
-            
-            // Imprimir fechas para verificación
-            System.out.println("Fecha de inicio: " + fechaHoraInicioStr);
-            System.out.println("Fecha de fin: " + fechaHoraFinStr);
-            
-        } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(this, "Formato de fecha y hora inválido. Use 'yyyy-MM-dd HH:mm'.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // Crear un nuevo evento
-        Evento nuevoEvento = new Evento(id, titulo, descripcion, fechaHoraInicio, fechaHoraFin, lugar);
-        // Agregar el evento a la agenda
-        Agenda agenda = Agenda.getInstancia();
-        agenda.agregarEvento(nuevoEvento); // Asegúrate de que tengas este método en tu clase Agenda
-        
-        // Limpiar los campos después de agregar el evento
-        jTextField1.setText("");
-        jTextArea1.setText("");
-        jTextField3.setText("");
-        jDateChooser1.setDate(null);
-        jDateChooser2.setDate(null);
-        
-        // Confirmación al usuario
-        gestorDeDatos.guardarDatos();
-        JOptionPane.showMessageDialog(this, "Evento agregado exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    String titulo = jTextField1.getText(); // Campo para nombre del evento
+    String descripcion = jTextArea1.getText(); // Campo para descripción
+    String lugar = jTextField3.getText(); // Campo para lugar
+    int id = 0;
+
+    // Obtener la fecha de los JDateChooser
+    Date fechaHoraInicioDate = jDateChooser1.getDate(); // Campo para fecha y hora de inicio
+    Date fechaHoraFinDate = jDateChooser2.getDate(); // Campo para fecha y hora de fin
+    
+    // Obtener la hora y el minuto de los jSpinFields
+    int horaInicio = jSpinField1.getValue();
+    int minutoInicio = jSpinField2.getValue();
+    int horaFinal = jSpinField3.getValue();
+    int minutoFinal = jSpinField4.getValue();
+    
+    // Validar los campos (opcional)
+    if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || fechaHoraInicioDate == null || fechaHoraFinDate == null) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Validar que las horas estén en el rango de 0 a 23 y los minutos en el rango de 0 a 59
+    if (horaInicio < 0 || horaInicio > 23 || horaFinal < 0 || horaFinal > 23 || minutoInicio < 0 || minutoInicio > 59 || minutoFinal < 0 || minutoFinal > 59) {
+        JOptionPane.showMessageDialog(this, "Las horas deben estar entre 0 y 23, y los minutos entre 0 y 59.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Convertir Date a LocalDateTime y añadir las horas y minutos
+    LocalDateTime fechaHoraInicio = fechaHoraInicioDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+        .withHour(horaInicio).withMinute(minutoInicio);
+    LocalDateTime fechaHoraFin = fechaHoraFinDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+        .withHour(horaFinal).withMinute(minutoFinal);
+
+    // Verificar que la fecha final sea posterior o igual a la fecha de inicio
+    if (fechaHoraFin.isBefore(fechaHoraInicio)) {
+        JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior o igual a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Definir el formato de la fecha y hora
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); // Ajustar el patrón según necesites
+
+    try {
+        // Validar el formato de las fechas (esto no es realmente necesario ya que no trabajamos con strings, pero lo mantengo si requieres un formato específico)
+        String fechaHoraInicioStr = fechaHoraInicio.format(formatter);
+        String fechaHoraFinStr = fechaHoraFin.format(formatter);
+
+        // Imprimir fechas para verificación
+        System.out.println("Fecha de inicio: " + fechaHoraInicioStr);
+        System.out.println("Fecha de fin: " + fechaHoraFinStr);
+
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(this, "Formato de fecha y hora inválido. Use 'dd-MM-yyyy HH:mm'.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Crear un nuevo evento
+    Evento nuevoEvento = new Evento(id, titulo, descripcion, fechaHoraInicio, fechaHoraFin, lugar);
+
+    // Agregar el evento a la agenda
+    Agenda agenda = Agenda.getInstancia();
+    agenda.agregarEvento(nuevoEvento); // Asegúrate de que tengas este método en tu clase Agenda
+
+    // Limpiar los campos después de agregar el evento
+    jTextField1.setText("");
+    jTextArea1.setText("");
+    jTextField3.setText("");
+    jDateChooser1.setDate(null);
+    jDateChooser2.setDate(null);
+    jSpinField1.setValue(0);
+    jSpinField2.setValue(0);
+    jSpinField3.setValue(0);
+    jSpinField4.setValue(0);
+
+    // Confirmación al usuario
+    gestorDeDatos.guardarDatos();
+    JOptionPane.showMessageDialog(this, "¡Evento agregado exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton4ActionPerformed
     
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
@@ -468,9 +519,15 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private com.toedter.components.JSpinField jSpinField1;
+    private com.toedter.components.JSpinField jSpinField2;
+    private com.toedter.components.JSpinField jSpinField3;
+    private com.toedter.components.JSpinField jSpinField4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;

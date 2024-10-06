@@ -46,16 +46,16 @@ public class Agenda {
         
         // Crear eventos de prueba
         Evento evento1 = new Evento(1, "Navidad", "Celebración de Navidad",
-                LocalDateTime.parse("25/12/2024 00:00", formatter),
-                LocalDateTime.parse("25/12/2024 23:59", formatter),
+                LocalDateTime.parse("25/12/2024 00:00:00", formatter),
+                LocalDateTime.parse("25/12/2024 23:59:00", formatter),
                 "Casa");
         Evento evento2 = new Evento(2, "Año Nuevo", "Celebración de Año Nuevo",
-                LocalDateTime.parse("01/01/2025 00:00", formatter),
-                LocalDateTime.parse("01/01/2025 23:59", formatter),
+                LocalDateTime.parse("01/01/2025 00:00:00", formatter),
+                LocalDateTime.parse("01/01/2025 23:59:00", formatter),
                 "Casa");
         Evento evento3 = new Evento(3, "18 de Septiembre", "Fiestas Patrias",
-                LocalDateTime.parse("18/09/2024 00:00", formatter),
-                LocalDateTime.parse("18/09/2024 23:59", formatter),
+                LocalDateTime.parse("18/09/2024 00:00:00", formatter),
+                LocalDateTime.parse("18/09/2024 23:59:00", formatter),
                 "Casa");
         
         // Agregar los eventos a la lista de eventos generales

@@ -30,8 +30,8 @@ public class Evento {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
+        this.fechaInicio = fechaInicio.withSecond(0).withNano(0);
+    this.fechaFin = fechaFin.withSecond(0).withNano(0);
         this.lugar = lugar;
         this.etiquetas = new ArrayList<Etiqueta>();
         this.participantes = new ArrayList<Participante>();
@@ -186,11 +186,9 @@ public class Evento {
     public void agregarEtiqueta(Etiqueta etiqueta) {
         if (!etiquetas.contains(etiqueta)){
             etiquetas.add(etiqueta);
-            return;
         }
         else{
             System.out.println("La etiqueta ya existe en el evento.");
-            return;
         }
     }
     
@@ -219,11 +217,9 @@ public class Evento {
     public void eliminarEtiqueta(Etiqueta etiqueta) {
         if(!etiquetas.contains(etiqueta)){
             etiquetas.remove(etiqueta);
-            return;
         }
         else{
             System.out.println("La etiqueta no existe en el evento.");
-            return;
         }
     }
     
