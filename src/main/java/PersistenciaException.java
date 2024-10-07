@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author IgnacioGameolay
- */
 public class PersistenciaException extends Exception {
     public PersistenciaException(String mensaje) {
+        /**
+     * Constructor que inicializa una nueva instancia de {@link PersistenciaException} con un mensaje específico.
+     *
+     * @param mensaje El mensaje de error que describe la causa de la excepción.
+     */
         super(mensaje);
     }
 }

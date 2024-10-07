@@ -7,6 +7,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+
+/**
+ * Clase encargada de gestionar la persistencia de datos de eventos.
+ * Proporciona métodos para guardar y cargar eventos desde un archivo CSV,
+ * así como para generar reportes de eventos.
+ */
 public class GestorDeDatos {
     private ArrayList<Evento> eventosEnlistados; // Lista de eventos
     private static final String NOMBRE_ARCHIVO = "RegistroDeConsistenciaDeDatos/RegistroDatos.csv"; // Ruta para registro de datos
@@ -15,10 +21,20 @@ public class GestorDeDatos {
     private static final long RETARDO_REINTENTO_MS = 5000; // Tiempo de espera entre reintentos (5 segundos)
     Agenda agenda = Agenda.getInstancia();
     
+    /**
+     * Constructor que inicializa una nueva instancia de {@link GestorDeDatos}.
+     * Se inicializa la lista de eventos enlistados.
+     */
     public GestorDeDatos() {
         eventosEnlistados = new ArrayList<>();
     }
     
+    /**
+     * Método privado que escribe los datos de los eventos en el archivo CSV.
+     * 
+     * @param writer El BufferedWriter utilizado para escribir en el archivo.
+     * @throws IOException Si ocurre un error durante la escritura en el archivo.
+     */
     private void escribirDatos(BufferedWriter writer) throws IOException {
         // Escribir encabezados
         writer.write("ID,Título,Descripción,FechaInicio,FechaFin,Lugar,Etiquetas");
@@ -37,6 +53,11 @@ public class GestorDeDatos {
         }
     }
     
+    /**
+     * Método que guarda los datos de los eventos en un archivo CSV.
+     * Intenta escribir en el archivo original y, en caso de error, 
+     * escribe en un archivo temporal y reintenta.
+     */
     public void guardarDatos() {
         File archivoRegistro = new File(NOMBRE_ARCHIVO);
         File carpetaRegistro = archivoRegistro.getParentFile();
@@ -87,6 +108,12 @@ public class GestorDeDatos {
         }
     }
     
+    
+    /**
+     * Método que carga los datos de los eventos desde un archivo CSV.
+     * 
+     * @throws PersistenciaException Si ocurre un error al cargar los datos o si el formato es incorrecto.
+     */
     public void cargarDatos() throws PersistenciaException {
         ArrayList<Evento> eventos = new ArrayList<>();
         Path path = Paths.get(NOMBRE_ARCHIVO);
@@ -128,6 +155,12 @@ public class GestorDeDatos {
         }
     }
     
+    /**
+     * Método que genera un reporte de eventos y lo guarda en un archivo de texto.
+     * 
+     * @param nombreArchivo El nombre del archivo donde se guardará el reporte.
+     * @throws PersistenciaException Si ocurre un error al generar el reporte.
+     */
     public void generarReporteEventos(String nombreArchivo) throws PersistenciaException{
         if (!nombreArchivo.endsWith(".txt")) {
             nombreArchivo += ".txt";
@@ -167,6 +200,12 @@ public class GestorDeDatos {
         }
     }
     
+    /**
+     * Método privado que convierte una lista de etiquetas en un texto separado por espacios.
+     * 
+     * @param etiquetas La lista de etiquetas a convertir.
+     * @return Una cadena de texto que representa las etiquetas.
+     */
     private String listaEtiquetasComoTexto(ArrayList<Etiqueta> etiquetas) {
         StringBuilder sb = new StringBuilder();
         for (Etiqueta e : etiquetas) {

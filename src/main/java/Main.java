@@ -18,7 +18,7 @@ public class Main {
         
         GestorDeDatos gestorDeDatos = new GestorDeDatos(); // Crear un getso de datos
         
-        // Cargar eventos al iniciar la aplicaciÃ³n
+        // Cargar eventos al iniciar la aplicaci…‰n
         try {
             gestorDeDatos.cargarDatos();
         } catch (PersistenciaException e) {
@@ -31,18 +31,22 @@ public class Main {
         }
         
         try {
+            // Forzar la codificaci…‰n a UTF-8
+            System.setProperty("file.encoding", "UTF-8");
+        
             // Crear el JFrame (ventana)
-            JFrame frame = new JFrame("MenÃº Principal");
-
+            JFrame frame = new JFrame("Men… Principal");
+            
+            
             // Crear una instancia del JPanel (MenuPrincipal)
             MenuPrincipal menuPanel = new MenuPrincipal(gestorDeDatos);
 
-            // AÃ±adir el JPanel al JFrame
+            // A…‡adir el JPanel al JFrame
             frame.add(menuPanel);
 
             // Establecer las propiedades del JFrame
-            frame.setSize(1600, 800);  // Ajusta el tamaÃ±o segÃºn tus necesidades
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Cierra la aplicaciÃ³n al cerrar la ventana
+            frame.setSize(1600, 800);  // Ajusta el tama…‡o seg…n tus necesidades
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Cierra la aplicaci…‰n al cerrar la ventana
             frame.setVisible(true);  // Hacer visible la ventana
 
             

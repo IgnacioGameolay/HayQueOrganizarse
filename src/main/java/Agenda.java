@@ -14,7 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-//Singleton Agenda para gestionar eventos.
+/**
+ * Singleton class Agenda para gestionar eventos.
+ * Esta clase permite almacenar, buscar y eliminar eventos organizados por fecha.
+ */
 
 public class Agenda {
     // Lista general de eventos
@@ -27,12 +30,19 @@ public class Agenda {
     
     private static Agenda instancia;
     
+    /**
+     * Constructor privado que inicializa los mapas y la lista de eventos.
+     */
     private Agenda() {
         this.eventosPorAnio = new HashMap<String, Map<String, Map<String, ArrayList<Evento>>>>();
         this.eventosEnlistados = new ArrayList<Evento>();
     }
     
-    // Método público para obtener la instancia
+    /**
+     * Método público para obtener la instancia única de Agenda.
+     * 
+     * @return La instancia de Agenda.
+     */
     public static synchronized Agenda getInstancia() {
         if (instancia == null) {
             instancia = new Agenda();
@@ -42,7 +52,10 @@ public class Agenda {
     
     
     
-    //Generar 3 eventos de prueba, a modo de datos iniciales
+    /**
+     * Genera 3 eventos de prueba, a modo de datos iniciales.
+     * Este método se puede utilizar para inicializar la agenda con eventos de ejemplo.
+     */
     public void inicializarEventosDePrueba() {
 
         // Formato de fecha y hora
@@ -71,15 +84,30 @@ public class Agenda {
     }
     
     
+    /**
+     * Obtiene la lista de eventos enlistados.
+     * 
+     * @return Lista no modificable de eventos enlistados.
+     */
     public List<Evento> getEventosEnlistados() {
         return Collections.unmodifiableList(eventosEnlistados); // Devuelve una lista no modificable
     }
     
+    /**
+     * Obtiene el número de eventos enlistados.
+     * 
+     * @return Largo de la lista de eventos.
+     */
     public int getEventosEnlistadosLargo() {
         return eventosEnlistados.size(); // Devuelve el largo de la lista de eventos
     }
     
-    //Agrega un evento a la agenda, actualizando la lista y los mapas de días, meses y años.
+    
+    /**
+     * Agrega un evento a la agenda, actualizando la lista y los mapas de días, meses y años.
+     * 
+     * @param evento Evento a agregar a la agenda.
+     */
     public void agregarEvento(Evento evento) {
         LocalDateTime fechaInicio = evento.getFechaInicio();
         String anio, mes, dia;
@@ -109,7 +137,11 @@ public class Agenda {
         //Agregar el evento a la lista de eventos generales
         eventosEnlistados.add(evento);
     }
-    //Elimina un evento de la agenda dado su ID.
+    /**
+     * Elimina un evento de la agenda dado su ID.
+     * 
+     * @param id ID del evento a eliminar.
+     */
     public void eliminarEvento(int id) {
         // Buscar el evento por ID
         Evento eventoAEliminar = buscarEventoPorId(id);
@@ -154,7 +186,15 @@ public class Agenda {
     }
     
     
-    //buscar eventos por dia específico
+    
+    /**
+     * Busca eventos por una fecha específica (día, mes, año).
+     * 
+     * @param dia Día del evento a buscar.
+     * @param mes Mes del evento a buscar.
+     * @param anio Año del evento a buscar.
+     * @return Un modelo de tabla con los eventos encontrados o null si no hay eventos.
+     */
     public javax.swing.table.DefaultTableModel buscarEventosPorFecha(int dia, String mes, String anio) {
         // Convertir los parámetros en formato String
         String anioString = String.valueOf(anio);
@@ -211,7 +251,14 @@ public class Agenda {
         
     }
     
-    //buscar eventos de una semana entera (los 6 días seguidos a un día en especificado)
+   /**
+     * Busca eventos dentro de una semana, comenzando desde la fecha especificada.
+     * 
+     * @param fechaInicioStr La fecha de inicio en formato "dd-MM-yyyy".
+     * @param anio El año en el que se están buscando los eventos.
+     * @return Un modelo de tabla con los eventos encontrados dentro de la semana especificada,
+     *         o null si la fecha proporcionada es inválida o no hay eventos.
+     */
     public javax.swing.table.DefaultTableModel buscarEventosPorFecha(String fechaInicioStr, String anio) {
         // Formateador de fecha para el formato dd/MM/yyyy
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -291,8 +338,14 @@ public class Agenda {
         return modelo;
     }
     
-    // Método para buscar si en un mes y anio dado como parámetro hay eventos
-    //buscar eventos por mes
+    /**
+     * Busca eventos en un mes específico de un año dado.
+     * 
+     * @param mes El mes en el que se están buscando los eventos, en formato "MM".
+     * @param anio El año en el que se están buscando los eventos.
+     * @return Un modelo de tabla con los eventos encontrados en el mes y año especificados,
+     *         o null si no hay eventos o el mes/año son inválidos.
+     */
     public javax.swing.table.DefaultTableModel buscarEventosPorMes(String mes, String anio) {
         String anioString = String.valueOf(anio);
         String mesString = String.format("%02d", Integer.parseInt(mes));
@@ -349,7 +402,12 @@ public class Agenda {
         return modelo;
     }
     
-    //Buscar eventos por etiquetas
+    /**
+     * Busca eventos que contengan una etiqueta específica.
+     * 
+     * @param etiqueta La etiqueta que se busca en los eventos.
+     * @return Un modelo de tabla con los eventos que tienen la etiqueta especificada.
+     */
     public javax.swing.table.DefaultTableModel buscarEventosPorEtiqueta(Etiqueta etiqueta) {
         javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
                 new Object[]{"ID", "Titulo", "Lugar", "FechaInicio", "FechaFin", "Etiquetas"}, 0
@@ -382,6 +440,14 @@ public class Agenda {
         return modelo;
     }
     
+    /**
+ * Filtra los eventos de la lista según un rango de fechas proporcionado.
+ *
+ * @param fechaInicio La fecha de inicio del rango a filtrar.
+ * @param fechaFin   La fecha de fin del rango a filtrar.
+ * @return Un modelo de tabla que contiene los eventos que se encuentran dentro del rango de fechas
+ *         especificado, o null si no se encontraron eventos.
+ */
     public javax.swing.table.DefaultTableModel filtrarEventosPorRangoFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         ArrayList<Evento> eventosFiltrados = new ArrayList<>();
         
@@ -427,7 +493,13 @@ public class Agenda {
     
     
     
-    //Edicion de eventos
+    
+    /**
+ * Busca un evento en la lista por su ID.
+ *
+ * @param id El ID del evento a buscar.
+ * @return El evento correspondiente al ID proporcionado, o null si no se encuentra.
+ */
     public Evento buscarEventoPorId(int id) {
         for (Evento evento : eventosEnlistados) {
             if (evento.getId() == id) {
@@ -437,7 +509,16 @@ public class Agenda {
         return null; // Retorna null si no se encuentra un evento con el ID dado.
     }
     
-    //Metodo para modificar un evento por id
+    /**
+ * Modifica un evento existente basado en su ID.
+ *
+ * @param id                  El ID del evento a modificar.
+ * @param jTextFieldTitulo    El campo de texto para el nuevo título del evento.
+ * @param jTextAreaDescripcion El área de texto para la nueva descripción del evento.
+ * @param jTextFieldLugar     El campo de texto para el nuevo lugar del evento.
+ * @param jDateChooserInicio  El selector de fecha para la nueva fecha de inicio del evento.
+ * @param jDateChooserFin     El selector de fecha para la nueva fecha de fin del evento.
+ */
     public void editarEventoPorId(int id, JTextField jTextFieldTitulo, JTextArea jTextAreaDescripcion, JTextField jTextFieldLugar, JDateChooser jDateChooserInicio, JDateChooser jDateChooserFin) {
         Evento evento = buscarEventoPorId(id);
         if (evento == null) {
