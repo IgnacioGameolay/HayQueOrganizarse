@@ -94,35 +94,6 @@ public class Main {
                     presioneTeclaParaContinuar();
                     break;
 
-                case "5":
-                    // Buscar eventos por semana
-                    System.out.println("=========================");
-                    System.out.println("Buscando evento por semana...");
-                    System.out.println("=========================");
-                    System.out.println("Ingrese año de la semana a buscar:");
-                    anioBuscado = lector.readLine();
-                    System.out.println("Ingrese fecha de inicio de la semana a buscar (dd/MM/yyyy):");
-                    String fechaInicioBuscado = lector.readLine();
-                    System.out.println("=========================");
-                    agenda.buscarEventosPorFecha(fechaInicioBuscado, anioBuscado);
-                    System.out.println("=========================");
-                    presioneTeclaParaContinuar();
-                    break;
-                case "6":
-                    // Buscar eventos por mes
-                    System.out.println("=========================");
-                    System.out.println("Buscando evento por mes...");
-                    System.out.println("=========================");
-                    System.out.println("Ingrese año del mes a buscar:");
-                    anioBuscado = lector.readLine();
-                    System.out.println("Ingrese mes a buscar:");
-                    mesBuscado = lector.readLine();
-                    
-                    System.out.println("=========================");
-                    agenda.buscarEventosPorMes(mesBuscado, anioBuscado);
-                    System.out.println("=========================");
-                    presioneTeclaParaContinuar();
-                    break;
                 case "7":
                     // Buscar eventos por etiqueta
                     System.out.println("=========================");
@@ -142,29 +113,7 @@ public class Main {
                     
                     presioneTeclaParaContinuar();
                     break;
-                case "10":
-                    System.out.println("=========================");
-                    System.out.println("Filtrando eventos...");
-                    System.out.println("=========================");
-                    System.out.print("Ingrese la fecha de inicio para filtrar (dd/MM/yyyy): ");
-                    String fechaInicioFiltro = lector.readLine();
-                    System.out.print("Ingrese la fecha de término para filtrar (dd/MM/yyyy): ");
-                    String fechaFinFiltro = lector.readLine();
-                    
-                    // Llama al método de la agenda que implementa el filtrado
-                    boolean hayEventos = agenda.filtrarEventosPorRangoFechas(
-                            parsearFechaYHora(fechaInicioFiltro, "00:00"),
-                            parsearFechaYHora(fechaFinFiltro, "23:59")
-                    );
-                    
-                    // No es necesario este chequeo ya que el método ya muestra un mensaje si no hay eventos
-                    if (!hayEventos) {
-                        // Este mensaje es opcional porque el método ya maneja el mensaje
-                        System.out.println("No se encontraron eventos en ese rango de fechas.");
-                    }
-                    
-                    presioneTeclaParaContinuar();
-                    break;
+                
                 default:
                     System.out.println("Opción inválida. Por favor, elige una opción válida...");
                     presioneTeclaParaContinuar();

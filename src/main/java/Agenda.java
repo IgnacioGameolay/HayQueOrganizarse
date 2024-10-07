@@ -332,8 +332,12 @@ public class Agenda {
         }
         return resultados;
     }
-    public boolean filtrarEventosPorRangoFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+    
+    public javax.swing.table.DefaultTableModel filtrarEventosPorRangoFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         ArrayList<Evento> eventosFiltrados = new ArrayList<>();
+        
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
+    
         for (Evento evento : this.eventosEnlistados) {
             if ((evento.getFechaInicio().isEqual(fechaInicio) || evento.getFechaInicio().isAfter(fechaInicio)) &&
                     (evento.getFechaFin().isEqual(fechaFin) || evento.getFechaFin().isBefore(fechaFin))) {
@@ -342,14 +346,18 @@ public class Agenda {
         }
         
         if (eventosFiltrados.isEmpty()) {
-            System.out.println("No hay eventos en ese rango de fechas.");
-            return false; // No se encontraron eventos
+            return null; // No se encontraron eventos
         } else {
             // Mostrar los eventos filtrados si hay
-            for (Evento e : eventosFiltrados) {
-                e.MostrarEvento();
+            for (Evento evento : eventosFiltrados) {
+                Object[] fila = new Object[4];
+                    fila[0] = evento.getTitulo();
+                    fila[1] = evento.getLugar();
+                    fila[2] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                    fila[3] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                    modelo.addRow(fila);
             }
-            return true; // Se encontraron eventos
+            return modelo; // Se encontraron eventos
         }
     }
     
