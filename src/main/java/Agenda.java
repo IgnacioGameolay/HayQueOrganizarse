@@ -1,3 +1,4 @@
+import com.toedter.calendar.JDateChooser;
 import java.util.*;
 import java.time.*;
 import java.time.LocalDateTime;
@@ -9,6 +10,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 //Singleton Agenda para gestionar eventos.
 
@@ -40,7 +44,7 @@ public class Agenda {
     
     //Generar 3 eventos de prueba, a modo de datos iniciales
     public void inicializarEventosDePrueba() {
-        System.out.println("Inicializando Eventos de Prueba...");
+
         // Formato de fecha y hora
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm");
         
@@ -64,20 +68,8 @@ public class Agenda {
         this.agregarEvento(evento2);
         
         this.agregarEvento(evento3);
-        System.out.println("Eventos de Prueba Inicializados Correctamente!");
     }
     
-    // Muestra todos los eventos enlistados en la agenda.
-    public void mostrarTodosLosEventos() {
-        if (eventosEnlistados.isEmpty()) {
-            System.out.println("No hay eventos para mostrar.");
-        } else {
-            for (Evento ev : eventosEnlistados) {
-                ev.MostrarEvento();
-                System.out.println("///");
-            }
-        }
-    }
     
     public List<Evento> getEventosEnlistados() {
         return Collections.unmodifiableList(eventosEnlistados); // Devuelve una lista no modificable
@@ -122,7 +114,6 @@ public class Agenda {
         // Buscar el evento por ID
         Evento eventoAEliminar = buscarEventoPorId(id);
         if (eventoAEliminar == null) {
-            System.out.println("Evento no encontrado.");
             return;
         }
         
@@ -159,7 +150,7 @@ public class Agenda {
             }
         }
         
-        System.out.println("Evento eliminado correctamente.");
+
     }
     
     
@@ -215,10 +206,9 @@ public class Agenda {
             }
             return modelo;
         } else {
-            // Si no hay eventos para el día, imprime un mensaje
-            System.out.println("No hay eventos para el día " + diaString + " del mes " + mesString + " del año " + anioString);
+            return null;
         }
-        return null;
+        
     }
     
     //buscar eventos de una semana entera (los 6 días seguidos a un día en especificado)
@@ -447,128 +437,44 @@ public class Agenda {
         return null; // Retorna null si no se encuentra un evento con el ID dado.
     }
     
-    public void editarEventoPorId(int id) {
+    //Metodo para modificar un evento por id
+    public void editarEventoPorId(int id, JTextField jTextFieldTitulo, JTextArea jTextAreaDescripcion, JTextField jTextFieldLugar, JDateChooser jDateChooserInicio, JDateChooser jDateChooserFin) {
         Evento evento = buscarEventoPorId(id);
         if (evento == null) {
-            System.out.println("Evento no encontrado.");
+            JOptionPane.showMessageDialog(null, "Evento no encontrado.", "Error!", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
-        Scanner scanner = new Scanner(System.in);
-        
-        while (true) {
-            System.out.println("=========================");
-            System.out.println("\n¿Qué te gustaría editar?");
-            System.out.println("1. Título");
-            System.out.println("2. Descripción");
-            System.out.println("3. Fecha de inicio");
-            System.out.println("4. Fecha de fin");
-            System.out.println("5. Lugar");
-            System.out.println("6. Etiquetas");
-            System.out.println("7. Finalizar edición");
-            System.out.println("=========================");
-            System.out.println("Seleccione una opción: ");
-            int opcion = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("=========================");
-            switch (opcion) {
-                case 1:
-                    System.out.print("Nuevo título: ");
-                    String nuevoTitulo = scanner.nextLine();
-                    evento.setTitulo(nuevoTitulo);
-                    break;
-                    
-                case 2:
-                    System.out.print("Nueva descripción: ");
-                    String nuevaDescripcion = scanner.nextLine();
-                    evento.setDescripcion(nuevaDescripcion);
-                    break;
-                    
-                case 3:
-                    System.out.print("Nueva fecha de inicio (dd-MM-yyyy | HH:mm): ");
-                    String nuevaFechaInicioStr = scanner.nextLine();
-                    try {
-                        LocalDateTime nuevaFechaInicio = LocalDateTime.parse(nuevaFechaInicioStr);
-                        evento.setFechaInicio(nuevaFechaInicio);
-                    } catch (DateTimeParseException e) {
-                        System.out.println("Formato de fecha inválido.");
-                    }
-                    break;
-                    
-                case 4:
-                    System.out.print("Nueva fecha de fin (dd-MM-yyyy | HH:mm): ");
-                    String nuevaFechaFinStr = scanner.nextLine();
-                    try {
-                        LocalDateTime nuevaFechaFin = LocalDateTime.parse(nuevaFechaFinStr);
-                        evento.setFechaFin(nuevaFechaFin);
-                    } catch (DateTimeParseException e) {
-                        System.out.println("Formato de fecha inválido.");
-                    }
-                    break;
-                    
-                case 5:
-                    System.out.print("Nuevo lugar: ");
-                    String nuevoLugar = scanner.nextLine();
-                    evento.setLugar(nuevoLugar);
-                    break;
-                    
-                case 6:
-                    System.out.println("=========================");
-                    System.out.println("\n¿Qué te gustaría hacer con las etiquetas?");
-                    System.out.println("1. Agregar etiqueta");
-                    System.out.println("2. Eliminar etiqueta");
-                    System.out.println("3. Modificar etiqueta");
-                    System.out.print("Seleccione una opción: ");
-                    int opcionEtiqueta = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("=========================");
-                    switch (opcionEtiqueta) {
-                        case 1:
-                            System.out.print("Ingrese la nueva etiqueta: ");
-                            String nuevaEtiqueta = scanner.nextLine();
-                            // Asumiendo que el constructor de Etiqueta necesita un id y un nombre
-                            Etiqueta etiquetaAgregar = new Etiqueta(0, nuevaEtiqueta);
-                            evento.agregarEtiqueta(etiquetaAgregar);
-                            System.out.println("=========================");
-                            break;
-                            
-                        case 2:
-                            System.out.print("Ingrese la etiqueta a eliminar: ");
-                            String etiquetaEliminar = scanner.nextLine();
-                            Etiqueta etiquetaEliminarObj = new Etiqueta(0, etiquetaEliminar);
-                            evento.eliminarEtiqueta(etiquetaEliminarObj);
-                            System.out.println("=========================");
-                            break;
-                            
-                        case 3:
-                            
-                            System.out.print("Ingrese la etiqueta a modificar: ");
-                            
-                            String etiquetaModificar = scanner.nextLine();
-                            System.out.println("=========================");
-                            System.out.print("Ingrese la nueva etiqueta: ");
-                            String etiquetaModificada = scanner.nextLine();
-                            System.out.println("=========================");
-                            Etiqueta etiquetaModificarObj = new Etiqueta(0, etiquetaModificar);
-                            Etiqueta etiquetaModificadaObj = new Etiqueta(0, etiquetaModificada);
-                            evento.modificarEtiqueta(etiquetaModificarObj, etiquetaModificadaObj);
-                            break;
-                            
-                        default:
-                            System.out.println("Opción no válida.");
-                            break;
-                    }
-                    break;
-                    
-                case 7:
-                    System.out.println("Edición finalizada.");
-                    return;
-                    
-                default:
-                    System.out.println("Opción no válida.");
-                    break;
-                    
+
+        // Cargar datos actuales del evento en los campos de la GUI
+        jTextFieldTitulo.setText(evento.getTitulo());
+        jTextAreaDescripcion.setText(evento.getDescripcion());
+        jTextFieldLugar.setText(evento.getLugar());
+        jDateChooserInicio.setDate(Date.from(evento.getFechaInicio().atZone(ZoneId.systemDefault()).toInstant()));
+        jDateChooserFin.setDate(Date.from(evento.getFechaFin().atZone(ZoneId.systemDefault()).toInstant()));
+
+        int confirmation = JOptionPane.showConfirmDialog(null, "¿Quieres modificar el evento?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (confirmation == JOptionPane.YES_OPTION) {
+            // Actualizar los valores en el evento basado en los campos de la GUI
+            String nuevoTitulo = jTextFieldTitulo.getText();
+            String nuevaDescripcion = jTextAreaDescripcion.getText();
+            String nuevoLugar = jTextFieldLugar.getText();
+            LocalDateTime nuevaFechaInicio = jDateChooserInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            LocalDateTime nuevaFechaFin = jDateChooserFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+            // Validar que la fecha final sea posterior o igual a la fecha de inicio
+            if (nuevaFechaFin.isBefore(nuevaFechaInicio)) {
+                JOptionPane.showMessageDialog(null, "La fecha de fin debe ser posterior o igual a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+
+            // Establecer los nuevos valores en el evento
+            evento.setTitulo(nuevoTitulo);
+            evento.setDescripcion(nuevaDescripcion);
+            evento.setLugar(nuevoLugar);
+            evento.setFechaInicio(nuevaFechaInicio);
+            evento.setFechaFin(nuevaFechaFin);
+
+            JOptionPane.showMessageDialog(null, "Evento actualizado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

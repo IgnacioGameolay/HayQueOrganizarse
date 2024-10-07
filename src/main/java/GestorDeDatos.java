@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class GestorDeDatos {
     private ArrayList<Evento> eventosEnlistados; // Lista de eventos
@@ -52,28 +53,23 @@ public class GestorDeDatos {
                 // Intentar escribir directamente en el archivo original
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoRegistro))) {
                     escribirDatos(writer);
-                    System.out.println("Datos guardados exitosamente en: " + NOMBRE_ARCHIVO);
                     break; // Salir del bucle si la escritura fue exitosa
                 }
             } catch (IOException e) {
-                System.out.println("Error al guardar en el archivo original: " + e.getMessage());
-                System.out.println("Guardando en archivo temporal...");
-                
                 // Si no se puede guardar en el archivo original, guardar en el archivo temporal
                 try (BufferedWriter writerTemp = new BufferedWriter(new FileWriter(archivoTemporal))) {
                     escribirDatos(writerTemp);
-                    System.out.println("Datos guardados temporalmente en: " + archivoTemporal.getName());
                 } catch (IOException ex) {
-                    System.out.println("Error al guardar en el archivo temporal: " + ex.getMessage());
-                    break; // Si ni siquiera se puede guardar en el archivo temporal, romper el bucle
+                   break; // Si ni siquiera se puede guardar en el archivo temporal, romper el bucle
                 }
                 
                 // Reintentar después de un tiempo
                 try {
-                    System.out.println("Reintentando en " + (RETARDO_REINTENTO_MS / 1000) + " segundos...");
+                    JOptionPane.showMessageDialog(null, "Cierre el archivo de Registro durante "
+                            + "la ejecución del programa para poder guardar... Reintentando en " + (RETARDO_REINTENTO_MS / 1000) + " segundos...", "Error", JOptionPane.ERROR_MESSAGE);
                     Thread.sleep(RETARDO_REINTENTO_MS); // Esperar antes de intentar nuevamente
                 } catch (InterruptedException ie) {
-                    System.out.println("Proceso interrumpido: " + ie.getMessage());
+                    JOptionPane.showMessageDialog(null, "\"Proceso interrumpido: \" + ie.getMessage()", "Error", JOptionPane.ERROR_MESSAGE);
                     break; // Si el hilo es interrumpido, salir del bucle
                 }
             }
@@ -83,13 +79,10 @@ public class GestorDeDatos {
         if (archivoTemporal.exists()) {
             try {
                 Path sourcePath = archivoTemporal.toPath();
-                Path targetPath = archivoRegistro.toPath();
-                
-                // Usar Files.move para reemplazar el archivo de manera más confiable
+                Path targetPath = archivoRegistro.toPath();           
+               // Usar Files.move para reemplazar el archivo de manera más confiable
                 Files.move(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Archivo original reemplazado exitosamente con el archivo temporal.");
             } catch (IOException e) {
-                System.out.println("Error al reemplazar el archivo original: " + e.getMessage());
             }
         }
     }
@@ -106,7 +99,6 @@ public class GestorDeDatos {
                 String linea;
                 
                 while ((linea = reader.readLine()) != null) {
-                    System.out.println("Leyendo línea: " + linea);
                     String[] datos = linea.split(",");
                     if (datos.length >= 6) {
                         int id = Integer.parseInt(datos[0]);
@@ -128,15 +120,11 @@ public class GestorDeDatos {
                     }
                 }
                 
-                System.out.println("Datos cargados exitosamente desde: " + NOMBRE_ARCHIVO);
             } catch (IOException e) {
                 throw new PersistenciaException("Error al cargar los datos: " + e.getMessage());
             } catch (Exception e) {
                 throw new PersistenciaException("Error en el formato de los datos: " + e.getMessage());
             }
-        } else {
-            System.out.println("No se encontró un archivo desde el cuál cargar datos. ");
-            System.out.println("Intentando crear uno nuevo...");
         }
     }
     
@@ -170,10 +158,12 @@ public class GestorDeDatos {
                 writer.newLine();
             }
             
-            System.out.println("Reporte generado exitosamente en: " + archivo.getPath());
+            
+            JOptionPane.showMessageDialog(null, "Reporte generado exitosamente en: " + archivo.getPath());
             
         } catch (IOException e) {
-            System.out.println("Error al generar el reporte: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage());
+            
         }
     }
     

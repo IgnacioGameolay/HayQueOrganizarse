@@ -122,36 +122,6 @@ public class Evento {
     
     //* Muestra los detalles del evento en la consola.
     
-    public void MostrarEvento(){
-        System.out.println("=========================");
-        System.out.println("ID: " + id);
-        System.out.println("=========================");
-        System.out.println("Título: " + titulo);
-        System.out.println("=========================");
-        System.out.println("Descripción: " + descripcion);
-        System.out.println("=========================");
-        System.out.println("Fecha de inicio: " + fechaInicio);
-        System.out.println("=========================");
-        System.out.println("Fecha de fin: " + fechaFin);
-        System.out.println("=========================");
-        System.out.println("Lugar: " + lugar);
-        System.out.println("=========================");
-        System.out.println("=========================");
-        System.out.print("Etiquetas: [");
-        for (int i = 0; i < etiquetas.size(); i++) {
-            System.out.print(etiquetas.get(i).getNombre());
-            if (i < 2 && etiquetas.size() > 1) {
-                System.out.print(", ");
-            }
-            if (i == 2 && etiquetas.size() > 3) {
-                System.out.print("...");
-                break;
-            }
-        }
-        System.out.println("]");
-        System.out.println("=========================");
-    }
-    
     //Metodo para agendar this evento a Agenda, siendo un diseño de sistema sumamente extensible para multiples eventos especiales.
     public void agendarEvento(Agenda agenda) {
         agenda.agregarEvento(this);
@@ -161,9 +131,6 @@ public class Evento {
     public void agregarEtiqueta(Etiqueta etiqueta) {
         if (!etiquetas.contains(etiqueta)){
             etiquetas.add(etiqueta);
-        }
-        else{
-            System.out.println("La etiqueta ya existe en el evento.");
         }
     }
     
@@ -193,9 +160,6 @@ public class Evento {
         if(!etiquetas.contains(etiqueta)){
             etiquetas.remove(etiqueta);
         }
-        else{
-            System.out.println("La etiqueta no existe en el evento.");
-        }
     }
     
     //* Modifica una etiqueta existente en el evento.
@@ -206,10 +170,6 @@ public class Evento {
         int index = etiquetas.indexOf(etiqueta);
         if (index != -1){
             etiquetas.set(index, nuevaEtiqueta);
-            return;
-        }
-        else{
-            System.out.println("La etiqueta a modificar no se encontró.");
             return;
         }
     }
