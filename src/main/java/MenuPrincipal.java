@@ -113,7 +113,14 @@ public class MenuPrincipal extends javax.swing.JPanel{
         jLabel18 = new javax.swing.JLabel();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
         jButton9 = new javax.swing.JButton();
+        PanelBuscarEventosPorSemana = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jLabel20 = new javax.swing.JLabel();
+        jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        jButton13 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -175,11 +182,11 @@ public class MenuPrincipal extends javax.swing.JPanel{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 975, Short.MAX_VALUE)
+            .addGap(0, 977, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
+            .addGap(0, 648, Short.MAX_VALUE)
         );
 
         PanelCambiante.add(jPanel1, "card4");
@@ -284,7 +291,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                                 .addGap(29, 29, 29)
                                 .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                        .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                                        .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -318,7 +325,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -426,7 +433,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                         .addGap(29, 29, 29)
                         .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
-                                .addComponent(jSpinField5, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                                .addComponent(jSpinField5, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -501,7 +508,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addComponent(jLabel15))
                 .addGap(91, 91, 91)
                 .addComponent(jButton6)
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelAgregarEventosRepetitivos, "cardAgregarEventosRepetitivos");
@@ -526,7 +533,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
             PanelMostrarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMostrarEventosLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PanelMostrarEventosLayout.setVerticalGroup(
@@ -534,7 +541,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
             .addGroup(PanelMostrarEventosLayout.createSequentialGroup()
                 .addGap(106, 106, 106)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelMostrarEventos, "cardMostrarEventos");
@@ -581,7 +588,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addGroup(PanelGenerarReporteLayout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(jButton8)))
-                .addContainerGap(546, Short.MAX_VALUE))
+                .addContainerGap(548, Short.MAX_VALUE))
         );
         PanelGenerarReporteLayout.setVerticalGroup(
             PanelGenerarReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -592,7 +599,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addComponent(jButton8)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(361, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelGenerarReporte, "cardGenerarReportes");
@@ -629,7 +636,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                 .addGroup(PanelBuscarEventosPorMesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE))
                     .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel19)
@@ -665,7 +672,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                                 .addComponent(jLabel19)
                                 .addGap(32, 32, 32)))))
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelBuscarEventosPorMes, "cardBuscarEventosPorMes");
@@ -697,18 +704,18 @@ public class MenuPrincipal extends javax.swing.JPanel{
         javax.swing.GroupLayout PanelBuscarEventosPorDiaLayout = new javax.swing.GroupLayout(PanelBuscarEventosPorDia);
         PanelBuscarEventosPorDia.setLayout(PanelBuscarEventosPorDiaLayout);
         PanelBuscarEventosPorDiaLayout.setHorizontalGroup(
-            PanelBuscarEventosPorDiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            PanelBuscarEventosPorDiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(PanelBuscarEventosPorDiaLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel18)
                 .addGap(18, 18, 18)
-                .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBuscarEventosPorDiaLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PanelBuscarEventosPorDiaLayout.setVerticalGroup(
@@ -721,16 +728,85 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addComponent(jButton9))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelBuscarEventosPorDia, "cardBuscarEventosPorDia");
+
+        PanelBuscarEventosPorSemana.setBackground(new java.awt.Color(204, 204, 204));
+        PanelBuscarEventosPorSemana.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jTable4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Titulo", "Lugar", "FechaInicio", "FechaFinal"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable4);
+
+        jLabel20.setText("Ingrese Fecha de Inicio Para Buscar Eventos En Los Siguientes 7 días:");
+
+        jButton13.setBackground(new java.awt.Color(255, 255, 0));
+        jButton13.setText("Buscar Eventos");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelBuscarEventosPorSemanaLayout = new javax.swing.GroupLayout(PanelBuscarEventosPorSemana);
+        PanelBuscarEventosPorSemana.setLayout(PanelBuscarEventosPorSemanaLayout);
+        PanelBuscarEventosPorSemanaLayout.setHorizontalGroup(
+            PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton13)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        PanelBuscarEventosPorSemanaLayout.setVerticalGroup(
+            PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
+                .addGroup(PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton13))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(200, Short.MAX_VALUE))
+        );
+
+        PanelCambiante.add(PanelBuscarEventosPorSemana, "cardBuscarEventosPorSemana");
 
         jButton10.setForeground(new java.awt.Color(0, 204, 153));
         jButton10.setText("Buscar Eventos Por Mes");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setForeground(new java.awt.Color(0, 204, 153));
+        jButton12.setText("Buscar Eventos Por Semana");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
             }
         });
 
@@ -752,7 +828,8 @@ public class MenuPrincipal extends javax.swing.JPanel{
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -780,6 +857,8 @@ public class MenuPrincipal extends javax.swing.JPanel{
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73))))
@@ -1110,6 +1189,11 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         Date fechaIngresada = jDateChooser5.getDate();
         
+        if ((fechaIngresada == null )) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         LocalDate fechaMod = fechaIngresada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         System.out.println("fechaes: " + fechaMod);
         int dia = fechaMod.getDayOfMonth();
@@ -1143,6 +1227,11 @@ public class MenuPrincipal extends javax.swing.JPanel{
         int mesIngresado = jMonthChooser1.getMonth()+1;
         int anioIngresado = jYearChooser1.getYear();
         
+        if ((mesIngresado == 0 )|| (anioIngresado == 0)) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         String anioString = String.valueOf(anioIngresado);
         String mesString = String.format("%02d", mesIngresado);
         
@@ -1154,6 +1243,36 @@ public class MenuPrincipal extends javax.swing.JPanel{
             jTable3.setModel(modelo);
         }
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        cardLayout = (CardLayout) this.PanelCambiante.getLayout();
+        cardLayout.show(PanelCambiante, "cardBuscarEventosPorSemana");
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        Date fechaIngresada = jDateChooser6.getDate();
+        
+        // Validar los campos (opcional)
+        if (fechaIngresada == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        LocalDate fechaMod = fechaIngresada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        // Formatear la fecha en formato "dd-MM-yyyy"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String fechaFormateada = fechaMod.format(formatter);
+
+        String anioString = String.valueOf(fechaMod.getYear());
+
+        javax.swing.table.DefaultTableModel modelo = agenda.buscarEventosPorFecha(fechaFormateada, anioString);
+        
+        if(modelo == null) {
+            JOptionPane.showMessageDialog(this, "No hay eventos para ese día", "Atención!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            jTable4.setModel(modelo);
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
     
     
     
@@ -1162,12 +1281,15 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JPanel PanelAgregarEventosSimples;
     private javax.swing.JPanel PanelBuscarEventosPorDia;
     private javax.swing.JPanel PanelBuscarEventosPorMes;
+    private javax.swing.JPanel PanelBuscarEventosPorSemana;
     private javax.swing.JPanel PanelCambiante;
     private javax.swing.JPanel PanelGenerarReporte;
     private javax.swing.JPanel PanelMostrarEventos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1182,6 +1304,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private com.toedter.calendar.JDateChooser jDateChooser4;
     private com.toedter.calendar.JDateChooser jDateChooser5;
+    private com.toedter.calendar.JDateChooser jDateChooser6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1194,6 +1317,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1208,6 +1332,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private com.toedter.components.JSpinField jSpinField1;
     private com.toedter.components.JSpinField jSpinField2;
     private com.toedter.components.JSpinField jSpinField3;
@@ -1219,6 +1344,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;

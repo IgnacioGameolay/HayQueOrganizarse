@@ -5,6 +5,7 @@ MenuPrincipal$12.class
 MenuPrincipal$8.class
 EventosAnuales.class
 MenuPrincipal$10.class
+MenuPrincipal$20.class
 MenuPrincipal.class
 MenuPrincipal$14.class
 Etiqueta.class
@@ -13,6 +14,7 @@ Evento.class
 GUIException.class
 MenuPrincipal$19.class
 MenuPrincipal$16.class
+MenuPrincipal$21.class
 MenuPrincipal$5.class
 PersistenciaException.class
 Agenda.class

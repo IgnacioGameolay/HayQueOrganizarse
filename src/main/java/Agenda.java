@@ -208,7 +208,7 @@ public class Agenda {
     }
     
     //buscar eventos de una semana entera (los 6 días seguidos a un día en especificado)
-    public void buscarEventosPorFecha(String fechaInicioStr, String anio) {
+    public javax.swing.table.DefaultTableModel buscarEventosPorFecha(String fechaInicioStr, String anio) {
         // Formateador de fecha para el formato dd/MM/yyyy
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fechaInicioDate;
@@ -217,8 +217,7 @@ public class Agenda {
         try {
             fechaInicioDate = LocalDate.parse(fechaInicioStr, formatter);
         } catch (Exception e) {
-            System.out.println("Formato de fecha inválido.");
-            return;
+            return null;
         }
         
         // Definir el primer día de la búsqueda (fecha de inicio) y el último día (6 días después)
@@ -232,11 +231,11 @@ public class Agenda {
         // Obtener el mapa de meses para el año especificado
         Map<String, Map<String, ArrayList<Evento>>> eventosPorMesAnio = eventosPorAnio.get(anio);
         if (eventosPorMesAnio == null) {
-            System.out.println("No hay eventos para el año " + anio);
-            return;
+            return null;
         }
         
         boolean hayEventos = false;
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
         
         // Recorrer todos los días de la semana
         for (LocalDate fecha = primerDiaBusqueda; !fecha.isAfter(ultimoDiaBusqueda); fecha = fecha.plusDays(1)) {
@@ -252,22 +251,25 @@ public class Agenda {
                     // Marca que hay eventos para la semana
                     hayEventos = true;
                     
-                    // Imprimir el encabezado para el día
-                    System.out.println("Eventos para el día " + fecha.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ":");
-                    
+                    // Iterar sobre cada evento en la lista de eventos
+                    // Limpiar el modelo antes de añadir filas nuevas
+                    modelo.setRowCount(0);
+
                     // Iterar sobre cada evento en la lista de eventos
                     for (Evento evento : eventos) {
-                        evento.MostrarEvento();
-                        System.out.println();
+                        Object[] fila = new Object[4];
+                        fila[0] = (Object)evento.getTitulo();
+                        fila[1] = (Object)evento.getLugar();
+                        fila[2] = (Object)evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                        fila[3] = (Object)evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                        modelo.addRow(fila);
                     }
+                    
                 }
             }
         }
         
-        // Si no hay eventos para la semana, imprime un mensaje
-        if (!hayEventos) {
-            System.out.println("No hay eventos para la semana del " + primerDiaStr + " al " + ultimoDiaStr + " del año " + anio);
-        }
+        return modelo;
     }
     
     // Método para buscar si en un mes y anio dado como parámetro hay eventos
