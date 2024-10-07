@@ -185,18 +185,32 @@ public class Agenda {
         // Obtener la lista de eventos para el día especificado
         ArrayList<Evento> eventos = eventosPorDiaMes.get(diaString);
         if (eventos != null && !eventos.isEmpty()) {
-            javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
-        
+            javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
+                    new Object[]{"ID", "Titulo", "Lugar", "FechaInicio", "FechaFin", "Etiquetas"}, 0
+            );
             // Limpiar el modelo antes de añadir filas nuevas
             modelo.setRowCount(0);
-        
+            
             // Iterar sobre cada evento en la lista de eventos
             for (Evento evento : eventos) {
-                Object[] fila = new Object[4];
-                fila[0] = (Object)evento.getTitulo();
-                fila[1] = (Object)evento.getLugar();
-                fila[2] = (Object)evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
-                fila[3] = (Object)evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                Object[] fila = new Object[6]; // 6 columnas: ID, Titulo, Lugar, FechaInicio, FechaFin, Etiquetas
+                
+                fila[0] = evento.getId(); // Añadir ID del evento
+                fila[1] = evento.getTitulo(); // Título del evento
+                fila[2] = evento.getLugar(); // Lugar del evento
+                fila[3] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de inicio
+                fila[4] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de fin
+                
+                // Convertir el array de etiquetas en un string para mostrarlo en una celda
+                List<Etiqueta> etiquetas = evento.getEtiquetas();
+                String etiquetasStr = etiquetas.stream()
+                        .map(Etiqueta::getNombre) // Obtener el nombre de cada etiqueta
+                        .reduce((acc, nombre) -> acc + ", " + nombre) // Unirlas en un string
+                        .orElse(""); // En caso de que no haya etiquetas
+                
+                fila[5] = etiquetasStr; // Añadir la cadena de etiquetas a la fila
+                
+                // Añadir la fila al modelo
                 modelo.addRow(fila);
             }
             return modelo;
@@ -235,7 +249,9 @@ public class Agenda {
         }
         
         boolean hayEventos = false;
-        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
+                new Object[]{"ID", "Titulo", "Lugar", "FechaInicio", "FechaFin", "Etiquetas"}, 0
+        );
         
         // Recorrer todos los días de la semana
         for (LocalDate fecha = primerDiaBusqueda; !fecha.isAfter(ultimoDiaBusqueda); fecha = fecha.plusDays(1)) {
@@ -254,14 +270,27 @@ public class Agenda {
                     // Iterar sobre cada evento en la lista de eventos
                     // Limpiar el modelo antes de añadir filas nuevas
                     modelo.setRowCount(0);
-
+                    
                     // Iterar sobre cada evento en la lista de eventos
                     for (Evento evento : eventos) {
-                        Object[] fila = new Object[4];
-                        fila[0] = (Object)evento.getTitulo();
-                        fila[1] = (Object)evento.getLugar();
-                        fila[2] = (Object)evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
-                        fila[3] = (Object)evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                        Object[] fila = new Object[6]; // 6 columnas: ID, Titulo, Lugar, FechaInicio, FechaFin, Etiquetas
+                        
+                        fila[0] = evento.getId(); // Añadir ID del evento
+                        fila[1] = evento.getTitulo(); // Título del evento
+                        fila[2] = evento.getLugar(); // Lugar del evento
+                        fila[3] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de inicio
+                        fila[4] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de fin
+                        
+                        // Convertir el array de etiquetas en un string para mostrarlo en una celda
+                        List<Etiqueta> etiquetas = evento.getEtiquetas();
+                        String etiquetasStr = etiquetas.stream()
+                                .map(Etiqueta::getNombre) // Obtener el nombre de cada etiqueta
+                                .reduce((acc, nombre) -> acc + ", " + nombre) // Unirlas en un string
+                                .orElse(""); // En caso de que no haya etiquetas
+                        
+                        fila[5] = etiquetasStr; // Añadir la cadena de etiquetas a la fila
+                        
+                        // Añadir la fila al modelo
                         modelo.addRow(fila);
                     }
                     
@@ -291,23 +320,37 @@ public class Agenda {
             return null;
         }
         
-
-        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
-    
+        
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
+                new Object[]{"ID", "Titulo", "Lugar", "FechaInicio", "FechaFin", "Etiquetas"}, 0
+        );
         // Recorrer el mapa de días
         for (String diaStr : eventosPorDiaMes.keySet()) {
             // Obtener la lista de eventos para el día actual
             ArrayList<Evento> eventos = eventosPorDiaMes.get(diaStr);
-
+            
             // Verificar si la lista de eventos está vacía
             if (eventos != null && !eventos.isEmpty()) {
                 // Iterar sobre cada evento en la lista de eventos
                 for (Evento evento : eventos) {
-                    Object[] fila = new Object[4];
-                    fila[0] = evento.getTitulo();
-                    fila[1] = evento.getLugar();
-                    fila[2] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
-                    fila[3] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+                    Object[] fila = new Object[6]; // 6 columnas: ID, Titulo, Lugar, FechaInicio, FechaFin, Etiquetas
+                    
+                    fila[0] = evento.getId(); // Añadir ID del evento
+                    fila[1] = evento.getTitulo(); // Título del evento
+                    fila[2] = evento.getLugar(); // Lugar del evento
+                    fila[3] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de inicio
+                    fila[4] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de fin
+                    
+                    // Convertir el array de etiquetas en un string para mostrarlo en una celda
+                    List<Etiqueta> etiquetas = evento.getEtiquetas();
+                    String etiquetasStr = etiquetas.stream()
+                            .map(Etiqueta::getNombre) // Obtener el nombre de cada etiqueta
+                            .reduce((acc, nombre) -> acc + ", " + nombre) // Unirlas en un string
+                            .orElse(""); // En caso de que no haya etiquetas
+                    
+                    fila[5] = etiquetasStr; // Añadir la cadena de etiquetas a la fila
+                    
+                    // Añadir la fila al modelo
                     modelo.addRow(fila);
                 }
                 
@@ -317,27 +360,45 @@ public class Agenda {
     }
     
     //Buscar eventos por etiquetas
-    public ArrayList<Evento> buscarEventosPorEtiqueta(Etiqueta etiqueta) {
-        ArrayList<Evento> resultados = new ArrayList<>();
+    public javax.swing.table.DefaultTableModel buscarEventosPorEtiqueta(Etiqueta etiqueta) {
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
+                new Object[]{"ID", "Titulo", "Lugar", "FechaInicio", "FechaFin", "Etiquetas"}, 0
+        );
         for (Evento evento : eventosEnlistados) {
             for (Etiqueta etiquetaEvento : evento.getEtiquetas()){
                 if (etiquetaEvento.getNombre().equals(etiqueta.getNombre())){
-                    resultados.add(evento);
-                    System.out.println("=========================");
-                    System.out.println("Evento encontrado: " + evento.getTitulo());
-                    System.out.println("=========================");
-                    break;
+                    Object[] fila = new Object[6]; // 6 columnas: ID, Titulo, Lugar, FechaInicio, FechaFin, Etiquetas
+                    
+                    fila[0] = evento.getId(); // Añadir ID del evento
+                    fila[1] = evento.getTitulo(); // Título del evento
+                    fila[2] = evento.getLugar(); // Lugar del evento
+                    fila[3] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de inicio
+                    fila[4] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de fin
+                    
+                    // Convertir el array de etiquetas en un string para mostrarlo en una celda
+                    List<Etiqueta> etiquetas = evento.getEtiquetas();
+                    String etiquetasStr = etiquetas.stream()
+                            .map(Etiqueta::getNombre) // Obtener el nombre de cada etiqueta
+                            .reduce((acc, nombre) -> acc + ", " + nombre) // Unirlas en un string
+                            .orElse(""); // En caso de que no haya etiquetas
+                    
+                    fila[5] = etiquetasStr; // Añadir la cadena de etiquetas a la fila
+                    
+                    // Añadir la fila al modelo
+                    modelo.addRow(fila);
                 }
             }
         }
-        return resultados;
+        return modelo;
     }
     
     public javax.swing.table.DefaultTableModel filtrarEventosPorRangoFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         ArrayList<Evento> eventosFiltrados = new ArrayList<>();
         
-        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
-    
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
+                new Object[]{"ID", "Titulo", "Lugar", "FechaInicio", "FechaFin", "Etiquetas"}, 0
+        );
+        
         for (Evento evento : this.eventosEnlistados) {
             if ((evento.getFechaInicio().isEqual(fechaInicio) || evento.getFechaInicio().isAfter(fechaInicio)) &&
                     (evento.getFechaFin().isEqual(fechaFin) || evento.getFechaFin().isBefore(fechaFin))) {
@@ -350,12 +411,25 @@ public class Agenda {
         } else {
             // Mostrar los eventos filtrados si hay
             for (Evento evento : eventosFiltrados) {
-                Object[] fila = new Object[4];
-                    fila[0] = evento.getTitulo();
-                    fila[1] = evento.getLugar();
-                    fila[2] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
-                    fila[3] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
-                    modelo.addRow(fila);
+                Object[] fila = new Object[6]; // 6 columnas: ID, Titulo, Lugar, FechaInicio, FechaFin, Etiquetas
+                
+                fila[0] = evento.getId(); // Añadir ID del evento
+                fila[1] = evento.getTitulo(); // Título del evento
+                fila[2] = evento.getLugar(); // Lugar del evento
+                fila[3] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de inicio
+                fila[4] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de fin
+                
+                // Convertir el array de etiquetas en un string para mostrarlo en una celda
+                List<Etiqueta> etiquetas = evento.getEtiquetas();
+                String etiquetasStr = etiquetas.stream()
+                        .map(Etiqueta::getNombre) // Obtener el nombre de cada etiqueta
+                        .reduce((acc, nombre) -> acc + ", " + nombre) // Unirlas en un string
+                        .orElse(""); // En caso de que no haya etiquetas
+                
+                fila[5] = etiquetasStr; // Añadir la cadena de etiquetas a la fila
+                
+                // Añadir la fila al modelo
+                modelo.addRow(fila);
             }
             return modelo; // Se encontraron eventos
         }

@@ -72,6 +72,8 @@ public class MenuPrincipal extends javax.swing.JPanel{
         jSpinField3 = new com.toedter.components.JSpinField();
         jSpinField4 = new com.toedter.components.JSpinField();
         jLabel8 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
         PanelAgregarEventosRepetitivos = new javax.swing.JPanel();
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -93,6 +95,8 @@ public class MenuPrincipal extends javax.swing.JPanel{
         jLabel15 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
         PanelMostrarEventos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -127,9 +131,16 @@ public class MenuPrincipal extends javax.swing.JPanel{
         jButton15 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jDateChooser8 = new com.toedter.calendar.JDateChooser();
+        PanelBuscarEventosPorEtiquetas = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        jButton18 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
 
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -191,11 +202,11 @@ public class MenuPrincipal extends javax.swing.JPanel{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
+            .addGap(0, 1051, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 578, Short.MAX_VALUE)
         );
 
         PanelCambiante.add(jPanel1, "card4");
@@ -258,6 +269,20 @@ public class MenuPrincipal extends javax.swing.JPanel{
 
         jLabel8.setText(":");
 
+        jTextField8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField8.setText("Etiqueta");
+        jTextField8.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField8FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField8FocusLost(evt);
+            }
+        });
+
+        jLabel25.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel25.setText("Ingese Etiqueta del Evento:");
+
         javax.swing.GroupLayout PanelAgregarEventosSimplesLayout = new javax.swing.GroupLayout(PanelAgregarEventosSimples);
         PanelAgregarEventosSimples.setLayout(PanelAgregarEventosSimplesLayout);
         PanelAgregarEventosSimplesLayout.setHorizontalGroup(
@@ -269,49 +294,53 @@ public class MenuPrincipal extends javax.swing.JPanel{
                         .addGap(290, 290, 290)
                         .addComponent(jButton4)
                         .addGap(314, 314, 314))
-                    .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                        .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                            .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(0, 610, Short.MAX_VALUE))
+                        .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                            .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(29, 29, 29)
-                                .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                        .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
-                                        .addComponent(jSpinField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSpinField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(104, 104, 104))))
+                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jSpinField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jSpinField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                                    .addGap(23, 23, 23)
+                                    .addComponent(jSpinField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(104, 104, 104)))))
         );
         PanelAgregarEventosSimplesLayout.setVerticalGroup(
             PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,22 +363,29 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel5)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(74, 74, 74)
-                .addComponent(jButton4)
-                .addGap(244, 244, 244))
+                    .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                        .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSpinField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(71, 71, 71)
+                        .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelAgregarEventosSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25))
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton4)
+                        .addGap(244, 244, 244))
+                    .addGroup(PanelAgregarEventosSimplesLayout.createSequentialGroup()
+                        .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         PanelCambiante.add(PanelAgregarEventosSimples, "cardAgregarEventosSimples");
@@ -422,6 +458,20 @@ public class MenuPrincipal extends javax.swing.JPanel{
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel16.setText("Ingese Ciclo de Repetición del evento:");
 
+        jLabel24.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel24.setText("Ingese Etiqueta del Evento:");
+
+        jTextField7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField7.setText("Etiqueta");
+        jTextField7.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField7FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField7FocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelAgregarEventosRepetitivosLayout = new javax.swing.GroupLayout(PanelAgregarEventosRepetitivos);
         PanelAgregarEventosRepetitivos.setLayout(PanelAgregarEventosRepetitivosLayout);
         PanelAgregarEventosRepetitivosLayout.setHorizontalGroup(
@@ -429,31 +479,6 @@ public class MenuPrincipal extends javax.swing.JPanel{
             .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
-                        .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
-                            .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(29, 29, 29)
-                        .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
-                                .addComponent(jSpinField5, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
-                                .addComponent(jSpinField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(115, 115, 115))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -473,7 +498,37 @@ public class MenuPrincipal extends javax.swing.JPanel{
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
+                        .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                                .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jDateChooser4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(29, 29, 29)
+                        .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
+                                .addComponent(jSpinField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
+                                .addComponent(jSpinField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(115, 115, 115))))
             .addGroup(PanelAgregarEventosRepetitivosLayout.createSequentialGroup()
                 .addGap(294, 294, 294)
                 .addComponent(jButton6)
@@ -505,7 +560,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                 .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinField5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSpinField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
@@ -515,9 +570,13 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addComponent(jSpinField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addGap(91, 91, 91)
+                .addGap(18, 18, 18)
+                .addGroup(PanelAgregarEventosRepetitivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(53, 53, 53)
                 .addComponent(jButton6)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelAgregarEventosRepetitivos, "cardAgregarEventosRepetitivos");
@@ -531,7 +590,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
 
             },
             new String [] {
-                "Titulo", "Lugar", "FechaInicio", "FechaFinal"
+                "Id", "Titulo", "Lugar", "FechaInicio", "FechaFinal", "Etiquetas"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -541,16 +600,16 @@ public class MenuPrincipal extends javax.swing.JPanel{
         PanelMostrarEventosLayout.setHorizontalGroup(
             PanelMostrarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMostrarEventosLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelMostrarEventosLayout.setVerticalGroup(
             PanelMostrarEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMostrarEventosLayout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addGap(84, 84, 84)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelMostrarEventos, "cardMostrarEventos");
@@ -597,7 +656,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addGroup(PanelGenerarReporteLayout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(jButton8)))
-                .addContainerGap(591, Short.MAX_VALUE))
+                .addContainerGap(622, Short.MAX_VALUE))
         );
         PanelGenerarReporteLayout.setVerticalGroup(
             PanelGenerarReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,7 +667,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addComponent(jButton8)
-                .addContainerGap(363, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelGenerarReporte, "cardGenerarReportes");
@@ -622,7 +681,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
 
             },
             new String [] {
-                "Titulo", "Lugar", "FechaInicio", "FechaFinal"
+                "Id", "Titulo", "Lugar", "FechaInicio", "FechaFinal", "Etiquetas"
             }
         ));
         jScrollPane5.setViewportView(jTable3);
@@ -642,46 +701,42 @@ public class MenuPrincipal extends javax.swing.JPanel{
         PanelBuscarEventosPorMesLayout.setHorizontalGroup(
             PanelBuscarEventosPorMesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(PanelBuscarEventosPorMesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE))
-                    .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel19)
                         .addGroup(PanelBuscarEventosPorMesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel19)
+                                .addGap(43, 43, 43)
+                                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton11)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGap(212, 212, 212)
+                                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton11)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelBuscarEventosPorMesLayout.setVerticalGroup(
             PanelBuscarEventosPorMesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorMesLayout.createSequentialGroup()
                 .addGroup(PanelBuscarEventosPorMesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton11)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorMesLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(PanelBuscarEventosPorMesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel19))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorMesLayout.createSequentialGroup()
-                                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorMesLayout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(32, 32, 32)))))
+                                .addContainerGap()
+                                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelBuscarEventosPorMesLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton11)))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelBuscarEventosPorMes, "cardBuscarEventosPorMes");
@@ -695,7 +750,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
 
             },
             new String [] {
-                "Titulo", "Lugar", "FechaInicio", "FechaFinal"
+                "Id", "Titulo", "Lugar", "FechaInicio", "FechaFinal", "Etiquetas"
             }
         ));
         jScrollPane4.setViewportView(jTable2);
@@ -723,9 +778,9 @@ public class MenuPrincipal extends javax.swing.JPanel{
                 .addComponent(jButton9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBuscarEventosPorDiaLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 941, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(526, 526, 526))
         );
         PanelBuscarEventosPorDiaLayout.setVerticalGroup(
             PanelBuscarEventosPorDiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -737,7 +792,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
                     .addComponent(jButton9))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelBuscarEventosPorDia, "cardBuscarEventosPorDia");
@@ -751,7 +806,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
 
             },
             new String [] {
-                "Titulo", "Lugar", "FechaInicio", "FechaFinal"
+                "Id", "Titulo", "Lugar", "FechaInicio", "FechaFinal", "Etiquetas"
             }
         ));
         jScrollPane6.setViewportView(jTable4);
@@ -771,34 +826,30 @@ public class MenuPrincipal extends javax.swing.JPanel{
         PanelBuscarEventosPorSemanaLayout.setHorizontalGroup(
             PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton13))
+                    .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         PanelBuscarEventosPorSemanaLayout.setVerticalGroup(
             PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
-                .addGroup(PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton13))
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorSemanaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGap(37, 37, 37)
+                .addGroup(PanelBuscarEventosPorSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton13)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelBuscarEventosPorSemana, "cardBuscarEventosPorSemana");
@@ -812,7 +863,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
 
             },
             new String [] {
-                "Titulo", "Lugar", "FechaInicio", "FechaFinal"
+                "Id", "Titulo", "Lugar", "FechaInicio", "FechaFinal", "Etiquetas"
             }
         ));
         jScrollPane7.setViewportView(jTable5);
@@ -833,10 +884,6 @@ public class MenuPrincipal extends javax.swing.JPanel{
         PanelBuscarEventosPorTramos.setLayout(PanelBuscarEventosPorTramosLayout);
         PanelBuscarEventosPorTramosLayout.setHorizontalGroup(
             PanelBuscarEventosPorTramosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorTramosLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(PanelBuscarEventosPorTramosLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(PanelBuscarEventosPorTramosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -848,9 +895,13 @@ public class MenuPrincipal extends javax.swing.JPanel{
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooser7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton15)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorTramosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(704, 704, 704))
         );
         PanelBuscarEventosPorTramosLayout.setVerticalGroup(
             PanelBuscarEventosPorTramosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -866,19 +917,75 @@ public class MenuPrincipal extends javax.swing.JPanel{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PanelBuscarEventosPorTramosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
-                            .addGroup(PanelBuscarEventosPorTramosLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jDateChooser8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(21, 21, 21))
+                            .addComponent(jDateChooser8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBuscarEventosPorTramosLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton15)
                         .addGap(41, 41, 41)))
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         PanelCambiante.add(PanelBuscarEventosPorTramos, "cardBuscarEventosPorTramos");
+
+        PanelBuscarEventosPorEtiquetas.setBackground(new java.awt.Color(204, 204, 204));
+        PanelBuscarEventosPorEtiquetas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jTable6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Titulo", "Lugar", "FechaInicio", "FechaFinal", "Etiquetas"
+            }
+        ));
+        jScrollPane8.setViewportView(jTable6);
+
+        jButton18.setBackground(new java.awt.Color(255, 255, 0));
+        jButton18.setText("Buscar Eventos");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Ingrese Nombre de la Etiqueta a Buscar:");
+
+        jTextField6.setText("NombreEtiqueta");
+
+        javax.swing.GroupLayout PanelBuscarEventosPorEtiquetasLayout = new javax.swing.GroupLayout(PanelBuscarEventosPorEtiquetas);
+        PanelBuscarEventosPorEtiquetas.setLayout(PanelBuscarEventosPorEtiquetasLayout);
+        PanelBuscarEventosPorEtiquetasLayout.setHorizontalGroup(
+            PanelBuscarEventosPorEtiquetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(PanelBuscarEventosPorEtiquetasLayout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(jLabel23)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(PanelBuscarEventosPorEtiquetasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(780, 780, 780))
+        );
+        PanelBuscarEventosPorEtiquetasLayout.setVerticalGroup(
+            PanelBuscarEventosPorEtiquetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelBuscarEventosPorEtiquetasLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(PanelBuscarEventosPorEtiquetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton18)
+                    .addComponent(jLabel23)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+
+        PanelCambiante.add(PanelBuscarEventosPorEtiquetas, "cardBuscarEventosPorEtiquetas");
 
         jButton10.setForeground(new java.awt.Color(0, 204, 153));
         jButton10.setText("Buscar Eventos Por Mes");
@@ -904,6 +1011,14 @@ public class MenuPrincipal extends javax.swing.JPanel{
             }
         });
 
+        jButton16.setForeground(new java.awt.Color(0, 204, 153));
+        jButton16.setText("Buscar Eventos Por Etiquetas");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -923,20 +1038,17 @@ public class MenuPrincipal extends javax.swing.JPanel{
                             .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(325, 325, 325)
-                        .addComponent(PanelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(PanelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, 1051, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(441, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(PanelCambiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -952,9 +1064,14 @@ public class MenuPrincipal extends javax.swing.JPanel{
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(PanelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -967,18 +1084,32 @@ public class MenuPrincipal extends javax.swing.JPanel{
         // Obtener la lista de eventos
         List<Evento> eventos = agenda.getEventosEnlistados();
         
-        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(new String[]{"Titulo", "Lugar", "FechaInicio", "FechaFin"}, 0);
-        
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
+            new Object[]{"ID", "Titulo", "Lugar", "FechaInicio", "FechaFin", "Etiquetas"}, 0
+        );
         // Limpiar el modelo antes de añadir filas nuevas
         modelo.setRowCount(0);
         
         // Recorrer la lista de eventos y añadir filas al modelo
         for (Evento evento : eventos) {
-            Object[] fila = new Object[4];
-            fila[0] = (Object)evento.getTitulo();
-            fila[1] = (Object)evento.getLugar();
-            fila[2] = (Object)evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
-            fila[3] = (Object)evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm"));
+            Object[] fila = new Object[6]; // 6 columnas: ID, Titulo, Lugar, FechaInicio, FechaFin, Etiquetas
+            
+            fila[0] = evento.getId(); // Añadir ID del evento
+            fila[1] = evento.getTitulo(); // Título del evento
+            fila[2] = evento.getLugar(); // Lugar del evento
+            fila[3] = evento.getFechaInicio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de inicio
+            fila[4] = evento.getFechaFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm")); // Fecha de fin
+            
+            // Convertir el array de etiquetas en un string para mostrarlo en una celda
+            List<Etiqueta> etiquetas = evento.getEtiquetas();
+            String etiquetasStr = etiquetas.stream()
+                    .map(Etiqueta::getNombre) // Obtener el nombre de cada etiqueta
+                    .reduce((acc, nombre) -> acc + ", " + nombre) // Unirlas en un string
+                    .orElse(""); // En caso de que no haya etiquetas
+            
+            fila[5] = etiquetasStr; // Añadir la cadena de etiquetas a la fila
+            
+            // Añadir la fila al modelo
             modelo.addRow(fila);
         }
         
@@ -1001,8 +1132,11 @@ public class MenuPrincipal extends javax.swing.JPanel{
         String titulo = jTextField1.getText(); // Campo para nombre del evento
         String descripcion = jTextArea1.getText(); // Campo para descripción
         String lugar = jTextField2.getText(); // Campo para lugar
-        int id = 0;
-
+        String nombreEtiqueta = jTextField8.getText(); // Campo para lugar
+        int id = agenda.getEventosEnlistadosLargo();
+        
+        Etiqueta nuevaEtiqueta = new Etiqueta(id, nombreEtiqueta);
+        
         // Obtener la fecha de los JDateChooser
         Date fechaHoraInicioDate = jDateChooser1.getDate(); // Campo para fecha y hora de inicio
         Date fechaHoraFinDate = jDateChooser2.getDate(); // Campo para fecha y hora de fin
@@ -1056,7 +1190,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
 
         // Crear un nuevo evento
         Evento nuevoEvento = new Evento(id, titulo, descripcion, fechaHoraInicio, fechaHoraFin, lugar);
-
+        nuevoEvento.agregarEtiqueta(nuevaEtiqueta);
         agenda.agregarEvento(nuevoEvento); // Asegúrate de que tengas este método en tu clase Agenda
 
         // Limpiar los campos después de agregar el evento
@@ -1148,8 +1282,10 @@ public class MenuPrincipal extends javax.swing.JPanel{
         String titulo = jTextField3.getText(); // Campo para nombre del evento
         String descripcion = jTextArea2.getText(); // Campo para descripción
         String lugar = jTextField4.getText(); // Campo para lugar
-        int id = 0;
-
+        String nombreEtiqueta = jTextField7.getText(); // Campo para lugar
+        int id = agenda.getEventosEnlistadosLargo();
+        Etiqueta nuevaEtiqueta = new Etiqueta(id, nombreEtiqueta);
+        
         // Obtener la fecha de los JDateChooser
         Date fechaHoraInicioDate = jDateChooser3.getDate(); // Campo para fecha y hora de inicio
         Date fechaHoraFinDate = jDateChooser4.getDate(); // Campo para fecha y hora de fin
@@ -1207,7 +1343,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
         if (cicloRepeticion.equals("Repetición Anual (próximos 5 años)")) {
             // Crear un evento que se repita cada año durante 5 años
             nuevoEvento = new EventosAnuales(id, titulo, descripcion, fechaHoraInicio, fechaHoraFin, lugar);
-            
+            nuevoEvento.agregarEtiqueta(nuevaEtiqueta);
             nuevoEvento.agendarEvento(agenda); // Agregar el evento a la agenda
             System.out.println("Evento anual creado");
 
@@ -1399,6 +1535,52 @@ public class MenuPrincipal extends javax.swing.JPanel{
             jTable5.setModel(modelo);
         }
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        cardLayout = (CardLayout) this.PanelCambiante.getLayout();
+        cardLayout.show(PanelCambiante, "cardBuscarEventosPorEtiquetas");
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        String nombreEtiqueta = jTextField6.getText();
+        
+         // Validar los campos (opcional)
+        if (nombreEtiqueta == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Etiqueta etiquetaBuscada = new Etiqueta(0, nombreEtiqueta);
+        
+        javax.swing.table.DefaultTableModel modelo = agenda.buscarEventosPorEtiqueta(etiquetaBuscada);
+        
+        if(modelo == null) {
+            JOptionPane.showMessageDialog(this, "No hay eventos para esa etiqueta", "Atención!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            jTable6.setModel(modelo);
+        }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7FocusGained
+
+    private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7FocusLost
+
+    private void jTextField8FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8FocusGained
+
+    private void jTextField8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8FocusLost
     
     
     
@@ -1406,6 +1588,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JPanel PanelAgregarEventosRepetitivos;
     private javax.swing.JPanel PanelAgregarEventosSimples;
     private javax.swing.JPanel PanelBuscarEventosPorDia;
+    private javax.swing.JPanel PanelBuscarEventosPorEtiquetas;
     private javax.swing.JPanel PanelBuscarEventosPorMes;
     private javax.swing.JPanel PanelBuscarEventosPorSemana;
     private javax.swing.JPanel PanelBuscarEventosPorTramos;
@@ -1419,6 +1602,8 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1451,6 +1636,9 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1467,6 +1655,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private com.toedter.components.JSpinField jSpinField1;
     private com.toedter.components.JSpinField jSpinField2;
     private com.toedter.components.JSpinField jSpinField3;
@@ -1480,6 +1669,7 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
@@ -1487,6 +1677,9 @@ public class MenuPrincipal extends javax.swing.JPanel{
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private com.toedter.calendar.JYearChooser jYearChooser1;
     // End of variables declaration//GEN-END:variables
 }

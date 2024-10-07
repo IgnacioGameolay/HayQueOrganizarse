@@ -93,26 +93,6 @@ public class Main {
                     agenda.editarEventoPorId(idBuscado);
                     presioneTeclaParaContinuar();
                     break;
-
-                case "7":
-                    // Buscar eventos por etiqueta
-                    System.out.println("=========================");
-                    System.out.println("Buscando evento por Etiqueta...");
-                    System.out.println("=========================");
-                    System.out.println("Ingrese la etiqueta a buscar:");
-                    
-                    String etiqueta = lector.readLine();
-                    
-                    Etiqueta etiquetaBuscada = new Etiqueta(0, etiqueta);
-                    
-                    ArrayList<Evento> eventosEncontrados = agenda.buscarEventosPorEtiqueta(etiquetaBuscada);
-                    
-                    for (Evento e : eventosEncontrados) {
-                        e.MostrarEvento();
-                    }
-                    
-                    presioneTeclaParaContinuar();
-                    break;
                 
                 default:
                     System.out.println("Opción inválida. Por favor, elige una opción válida...");
@@ -124,46 +104,7 @@ public class Main {
         } while(opcion != "9");
     }
     
-    
-    
-    
-    // Funciones auxiliares
-    
-    //* Valida si una hora ingresada es correcta (HH:mm).
-    //* @param hora Cadena que representa la hora en formato HH:mm.
-    //* @return true si la hora es válida, false en caso contrario.
-    
-    private static boolean horaValida(String hora) {
-        try {
-            LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm"));
-            return true;
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
-    
-    
-    //* Convierte una cadena de fecha y hora en un objeto LocalDateTime.
-    //* @param fecha La fecha en formato dd/MM/yyyy.
-    //* @param hora La hora en formato HH:mm.
-    //* @return Un objeto LocalDateTime si la fecha y hora son válidas; null si no lo son.
-    
-    private static LocalDateTime parsearFechaYHora(String fecha, String hora) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        try {
-            if (hora.equals("24:00")) {
-                LocalDate fechaBase = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                return fechaBase.plusDays(1).atStartOfDay();
-            } else {
-                return LocalDateTime.parse(fecha + " " + hora, formatter);
-            }
-        } catch (DateTimeParseException e) {
-            System.out.println("Error: Formato de fecha o hora inválido.");
-            System.out.println("Por favor, ingrese la fecha en el formato dd/MM/yyyy y la hora en el formato HH:mm.");
-            return null;
-        }
-    }
-    //* Limpia la pantalla de la consola.
+  
     public static void limpiarPantalla() {
         try {
             String sistemaOperativo = System.getProperty("os.name");
